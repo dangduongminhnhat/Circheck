@@ -1,7 +1,7 @@
 grammar Circom;
 
 @lexer::header {
-from lexererr import *
+    
 }
 
 @lexer::members {
