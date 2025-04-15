@@ -1,0 +1,109 @@
+└── Program
+    ├── locate:
+    │   └── FileLocation
+    │       ├── start: line 2, column 0
+    │       └── stop: line 6, column 12
+    ├── compile_version: None
+    ├── custom_gates: False
+    ├── custom_gates_declare: False
+    ├── includes:
+    ├── definitions:
+    │   └── Template
+    │       ├── locate:
+    │       │   └── FileLocation
+    │       │       ├── start: line 2, column 0
+    │       │       └── stop: line 6, column 12
+    │       ├── name_field: Foo
+    │       ├── args:
+    │           └── n
+    │       ├── body:
+    │       │   └── Block
+    │       │       ├── locate:
+    │       │       │   └── FileLocation
+    │       │       │       ├── start: line 2, column 16
+    │       │       │       └── stop: line 6, column 12
+    │       │       └── stmts:
+    │       │           ├── InitializationBlock
+    │       │           │   ├── locate:
+    │       │           │   │   └── FileLocation
+    │       │           │   │       ├── start: line 3, column 16
+    │       │           │   │       └── stop: line 3, column 32
+    │       │           │   ├── xtype:
+    │       │           │   │   └── Signal
+    │       │           │   │       ├── locate:
+    │       │           │   │       │   └── FileLocation
+    │       │           │   │       │       ├── start: line 3, column 16
+    │       │           │   │       │       └── stop: line 3, column 23
+    │       │           │   │       ├── signal_type: input
+    │       │           │   │       └── tag_list:
+    │       │           │   └── initializations:
+    │       │           │       └── Declaration
+    │       │           │           ├── locate:
+    │       │           │           │   └── FileLocation
+    │       │           │           │       ├── start: line 3, column 16
+    │       │           │           │       └── stop: line 3, column 32
+    │       │           │           ├── xtype:
+    │       │           │           │   └── Signal
+    │       │           │           │       ├── locate:
+    │       │           │           │       │   └── FileLocation
+    │       │           │           │       │       ├── start: line 3, column 16
+    │       │           │           │       │       └── stop: line 3, column 23
+    │       │           │           │       ├── signal_type: input
+    │       │           │           │       └── tag_list:
+    │       │           │           ├── name: a
+    │       │           │           ├── dimensions:
+    │       │           │           │   └── Number
+    │       │           │           │       ├── locate:
+    │       │           │           │       │   └── FileLocation
+    │       │           │           │       │       ├── start: line 3, column 31
+    │       │           │           │       │       └── stop: line 3, column 31
+    │       │           │           │       └── value: 2
+    │       │           │           └── is_constant: True
+    │       │           └── ConstraintEquality
+    │       │               ├── locate:
+    │       │               │   └── FileLocation
+    │       │               │       ├── start: line 5, column 16
+    │       │               │       └── stop: line 5, column 29
+    │       │               ├── lhe:
+    │       │               │   └── Variable
+    │       │               │       ├── locate:
+    │       │               │       │   └── FileLocation
+    │       │               │       │       ├── start: line 5, column 16
+    │       │               │       │       └── stop: line 5, column 19
+    │       │               │       ├── name: a
+    │       │               │       └── access:
+    │       │               │           └── ArrayAccess
+    │       │               │               ├── locate:
+    │       │               │               │   └── FileLocation
+    │       │               │               │       ├── start: line 5, column 17
+    │       │               │               │       └── stop: line 5, column 19
+    │       │               │               └── expr:
+    │       │               │                   └── Number
+    │       │               │                       ├── locate:
+    │       │               │                       │   └── FileLocation
+    │       │               │                       │       ├── start: line 5, column 18
+    │       │               │                       │       └── stop: line 5, column 18
+    │       │               │                       └── value: 0
+    │       │               └── rhe:
+    │       │                   └── Variable
+    │       │                       ├── locate:
+    │       │                       │   └── FileLocation
+    │       │                       │       ├── start: line 5, column 25
+    │       │                       │       └── stop: line 5, column 28
+    │       │                       ├── name: a
+    │       │                       └── access:
+    │       │                           └── ArrayAccess
+    │       │                               ├── locate:
+    │       │                               │   └── FileLocation
+    │       │                               │       ├── start: line 5, column 26
+    │       │                               │       └── stop: line 5, column 28
+    │       │                               └── expr:
+    │       │                                   └── Number
+    │       │                                       ├── locate:
+    │       │                                       │   └── FileLocation
+    │       │                                       │       ├── start: line 5, column 27
+    │       │                                       │       └── stop: line 5, column 27
+    │       │                                       └── value: 1
+    │       ├── parallel: None
+    │       └── is_custom_gate: None
+    └── main_component: None

@@ -1,0 +1,461 @@
+grammar Circom;
+
+options {
+    language = Python3;
+}
+
+// ====================================================================
+// Body
+// ====================================================================
+
+// A identifier list is a comma separated list of identifiers
+identifierListDef
+    :   IDENTIFIER (',' IDENTIFIER)*
+    ;
+
+// Pragma is included at the start of the file.
+// Their structure is the following: pragma circom "version of the compiler"
+parsePragma
+    :   'pragma' 'circom' version ';'
+    ;
+
+// Pragma to indicate that we are allowing the definition of custom templates.
+parseCustomGates
+    :   'pragma' 'custom_templates' ';'
+    ;
+
+// Includes are added at the start of the file.
+// Their structure is the following: #include "path to the file"
+parseInclude
+    :   'include' STRING ';'
+    ;
+
+// Parsing a program requires:
+// Parsing the version pragma, if there is one
+// Parsing the custom templates pragma, if there is one
+// Parsing "includes" instructions, if there is anyone
+// Parsing function and template definitions
+// Parsing the declaration of the main component
+parseAst
+    :   parsePragma? parseCustomGates? parseInclude* parseDefinition* parseMainComponent? EOF
+    ;
+
+// ====================================================================
+// Definitions
+// ====================================================================
+
+// The private list of the main component stands for the
+// list of private input signals
+parsePublicList
+    :   '{' 'public' '[' identifierListDef ']' '}'
+    ;
+
+parseMainComponent
+    :   'component' 'main' parsePublicList? '=' parseExpression ';'
+    ;
+
+parseDefinition
+    :   'function' IDENTIFIER '(' identifierListDef? ')' parseBlock
+    |   'template' 'custom'? 'parallel'? IDENTIFIER '(' identifierListDef? ')' parseBlock
+    ;
+
+// ====================================================================
+// VariableDefinitions
+// ====================================================================
+
+// To generate the list of tags associated to a signal
+parseTagsList
+    :   '{' identifierListDef '}'
+    ;
+
+parseSignalType
+    :   'input'
+    |   'output'
+    | // Default signal type if none is specified
+    ;
+
+signalHeader
+    :   'signal'  parseSignalType? parseTagsList?
+    ;
+
+// ====================================================================
+// Statements
+// ====================================================================
+
+// A Initialization is either just the name of a variable or
+// the name followed by a expression that initialices the variable.
+tupleInitialization
+    :   '<==' parseExpression
+    |   '<--' parseExpression
+    |   '=' parseExpression
+    ;
+
+simpleSymbol
+    :   IDENTIFIER parseArrayAcc*
+    ;
+
+complexSymbol
+    :   IDENTIFIER parseArrayAcc* '=' parseExpression
+    ;
+
+signalConstraintSymbol
+    :   IDENTIFIER parseArrayAcc* '<==' parseExpression
+    ;
+
+signalSimpleSymbol
+    :   IDENTIFIER parseArrayAcc* '<--' parseExpression
+    ;
+
+someSymbol
+    :   complexSymbol
+    |   simpleSymbol
+    ;
+
+signalSymbol
+    :   signalConstraintSymbol
+    |   simpleSymbol
+    ;
+
+signalAssignSymbol
+    :   signalSimpleSymbol
+    |   simpleSymbol
+    ;
+
+// A declaration is the definition of a type followed by the initialization
+parseDeclaration
+    :   'var' '(' simpleSymbol (',' simpleSymbol)* ')' tupleInitialization?
+    |   signalHeader '(' signalSymbol (',' signalSymbol)* ')' tupleInitialization?
+    |   'component' '(' simpleSymbol (',' simpleSymbol)* ')' tupleInitialization?
+    |   'var' someSymbol (',' someSymbol)*
+    |   'component' someSymbol (',' someSymbol)*
+    |   signalHeader signalSymbol (',' signalSymbol)*
+    |   signalHeader signalAssignSymbol (',' signalAssignSymbol)*
+    |   'var' '(' simpleSymbol ')' tupleInitialization?
+    |   signalHeader '(' signalSymbol ')' tupleInitialization?
+    |   'component' '(' simpleSymbol ')' tupleInitialization?
+    |   'var' someSymbol
+    |   'component' someSymbol
+    |   signalHeader signalSymbol
+    |   signalHeader signalAssignSymbol
+    ;
+
+parseSubstitution
+    :   parseExpression parseAssignOp parseExpression
+    |   parseExpression '-->' parseExpression
+    |   parseExpression '==>' parseExpression
+    |   parseVariable '\\=' parseExpression
+    |   parseVariable '**=' parseExpression
+    |   parseVariable '+=' parseExpression
+    |   parseVariable '-=' parseExpression
+    |   parseVariable '*=' parseExpression
+    |   parseVariable '/=' parseExpression
+    |   parseVariable '%=' parseExpression
+    |   parseVariable '<<=' parseExpression
+    |   parseVariable '>>=' parseExpression
+    |   parseVariable '&=' parseExpression
+    |   parseVariable '|=' parseExpression
+    |   parseVariable '^=' parseExpression
+    |   parseVariable '++'
+    |   parseVariable '--'
+    ;
+
+parseBlock
+    :   '{' parseStatement3* '}'
+    ;
+
+parseStatement
+    :   parseStatement0
+    ;
+
+parseElse[StmtLevel]
+    :   'else' StmtLevel
+    ;
+
+parseStatement0
+    :   parseStmt0NB
+    |   parseStatement1
+    ;
+
+parseStmt0NB
+    :   'if' '(' parseExpression ')' parseStmt0NB
+    |   'if' '(' parseExpression ')' parseStatement1
+    |   'if' '(' parseExpression ')' parseStatement1 parseElse[parseStmt0NB]
+    ;
+
+parseStatement1
+    :   'if' '(' parseExpression ')' parseStatement1 parseElse[parseStatement1]
+    |   parseStatement2
+    ;
+
+parseStatement2
+    :   'for' '(' parseDeclaration ';' parseExpression ';' parseSubstitution ')' parseStatement2
+    |   'for' '(' parseSubstitution ';' parseExpression ';' parseSubstitution ')' parseStatement2
+    |   'while' '(' parseExpression ')' parseStatement2
+    |   'return' parseExpression ';'
+    |   parseSubstitution ';'
+    |   parseExpression '===' parseExpression ';'
+    |   parseStatementLog
+    |   'assert' '(' parseExpression ')' ';'
+    |   parseExpression ';'
+    |   parseBlock
+    ;
+
+parseStatementLog
+    :   'log' '(' logListable ')' ';'
+    |   'log' '(' ')' ';'
+    ;
+
+parseStatement3
+    :   parseDeclaration ';'
+    |   parseStatement
+    ;
+
+// ====================================================================
+// Variable
+// ====================================================================
+
+parseVarAccess
+    :   parseArrayAcc
+    |   parseComponentAcc
+    ;
+
+parseArrayAcc
+    :   '[' parseExpression ']'
+    ;
+
+parseComponentAcc
+    :   '.' IDENTIFIER
+    ;
+
+parseVariable
+    :   IDENTIFIER parseVarAccess*
+    ;
+
+// ====================================================================
+// Expression
+// ====================================================================
+
+listable
+    :   parseExpression (',' parseExpression)*
+    ;
+
+listableWithInputNames
+    :   (IDENTIFIER parseAssignOp parseExpression ',')* IDENTIFIER parseAssignOp parseExpression
+    ;
+
+listableAnon
+    :   listable
+    |   listableWithInputNames
+    ;
+
+parseString
+    :   STRING
+    ;
+
+parseLogExp
+    :   parseExpression
+    ;
+
+parseLogArgument
+    :   parseLogExp
+    |   parseString
+    ;
+
+logListable
+    :   parseLogArgument (',' parseLogArgument)*
+    ;
+
+twoElemsListable
+    :   parseExpression ',' parseExpression (',' parseExpression)*
+    ;
+
+infixOpTier[Op, NextTier]
+    :   infixOpTier[Op, NextTier] Op NextTier
+    |   NextTier
+    ;
+
+prefixOpTier[Op, NextTier]
+    :   Op NextTier
+    |   NextTier
+    ;
+
+parseExpression
+    :   expression14
+    |   parseExpression1
+    ;
+
+parseExpression1
+    :   expression13
+    |   expression12
+    ;
+
+// parallel expr
+expression14
+    :   'parallel' parseExpression1
+    ;
+
+// ops: e ? a : i
+expression13
+    :   expression12 '?' expression12 ':' expression12
+    ;
+
+// ops: ||
+expression12
+    :   infixOpTier[parseBoolOr, expression11]
+    ;
+
+// ops: &&
+expression11
+    :   infixOpTier[parseBoolAnd, expression10]
+    ;
+
+// ops:  == != < > <= >=
+expression10
+    :   infixOpTier[parseCmpOpCodes, expression9]
+    ;
+
+// ops: |
+expression9
+    :   infixOpTier[parseBitOr, expression8]
+    ;
+
+// ops: ^
+expression8
+    :   infixOpTier[parseBitXOR, expression7]
+    ;
+
+// ops: &
+expression7
+    :   infixOpTier[parseBitAnd, expression6]
+    ;
+
+// ops: << >>
+expression6
+    :   infixOpTier[parseShift, expression5]
+    ;
+
+// ops: + -
+expression5
+    :   infixOpTier[parseAddAndSub, expression4]
+    ;
+
+// ops: * / \\ %
+expression4
+    :   infixOpTier[parseMulDiv, expression3]
+    ;
+
+// ops: **
+expression3
+    :   infixOpTier[parseExp, expression2]
+    ;
+
+// ops: Unary - ! ~
+expression2
+    :   prefixOpTier[parseExpressionPrefixOpcode, expression1]
+    ;
+
+// function call, array inline, anonymous component call
+expression1
+    :   IDENTIFIER '(' listable? ')' '(' listableAnon? ')'
+    |   IDENTIFIER '(' listable? ')'
+    |   '[' listable ']'
+    |   '(' twoElemsListable ')'
+    |   expression0
+    ;
+
+// Literal, parentheses
+expression0
+    :   parseVariable
+    |   '_'
+    |   DECNUMBER
+    |   HEXNUMBER
+    |   '(' parseExpression ')'
+    ;
+
+// ====================================================================
+// Terminals
+// ====================================================================
+
+parseExpressionPrefixOpcode
+    :   '!'
+    |   '~'
+    |   '-'
+    ;
+
+parseBoolOr
+    :   '||'
+    ;
+
+parseBoolAnd
+    :   '&&'
+    ;
+
+parseCmpOpCodes
+    :   '=='
+    |   '!='
+    |   '<'
+    |   '>'
+    |   '<='
+    |   '>='
+    ;
+
+parseBitOr
+    :   '|'
+    ;
+
+parseBitAnd
+    :   '&'
+    ;
+
+parseShift
+    :   '<<'
+    |   '>>'
+    ;
+
+parseAddAndSub
+    :   '+'
+    |   '-'
+    ;
+
+parseMulDiv
+    :   '*'
+    |   '/'
+    |   '\\\\'
+    |   '%'
+    ;
+
+parseExp
+    :   '**'
+    ;
+
+parseBitXOR
+    :   '^'
+    ;
+
+parseAssignOp
+    :   '='
+    |   '<--'
+    |   '<=='
+    ;
+
+DECNUMBER : [0-9]+ ;
+
+HEXNUMBER : '0x' [0-9A-Fa-f]* ;
+
+IDENTIFIER :  [$_]* [a-zA-Z] [a-zA-Z$_0-9]* ;
+
+STRING : '"' ~'"'* '"' ;
+
+SMALL_DECNUMBER : [0-9]+ ;
+
+// Version used by pragma to describe the compiler, its syntax is Number1.Number2.Number3...
+version
+    :   SMALL_DECNUMBER '.' SMALL_DECNUMBER '.' SMALL_DECNUMBER
+    ;
+
+// Whitespace and comments
+WS : [ \t\n\r]+ -> skip ;
+COMMENT
+    :   '//' .*? [\r\n] -> skip
+    |   '/*' .*? '*/' -> skip
+    ;
