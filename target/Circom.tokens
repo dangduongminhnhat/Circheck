@@ -72,6 +72,7 @@ NUMBER=71
 HEXNUMBER=72
 IDENTIFIER=73
 WHITESPACE=74
+UnclosedComment=75
 '('=2
 ')'=3
 '['=4

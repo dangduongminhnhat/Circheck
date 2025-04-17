@@ -1,7 +1,7 @@
 grammar Circom;
 
 @lexer::header {
-    
+    from Errors import *
 }
 
 @lexer::members {
@@ -215,7 +215,7 @@ expression12
 expression13
     : IDENTIFIER LP listable RP LP listableAnon RP
     | IDENTIFIER LP listable RP
-    | LB listable RB
+    | LB listable_prime RB
     | LP twoElemsListable RP
     | expression14
     ;
@@ -235,8 +235,10 @@ twoElemsListable
 log_arguement: expression | STRING;
 log_list: log_arguement COMMA log_list | log_arguement;
 
-listable: expression | expression COMMA listable;
-listableAnon: listable | listableWithInputNames;
+listable: listable_prime | ;
+listable_prime: expression | expression COMMA listable_prime;
+listableAnon: listableAnon_prime | ;
+listableAnon_prime: listable_prime | listableWithInputNames;
 listableWithInputNames
     : listableWithInputNames COMMA IDENTIFIER assign_opcode expression
     | IDENTIFIER assign_opcode expression
@@ -371,4 +373,8 @@ NUMBER: [0-9]+;
 HEXNUMBER : '0x' [0-9A-Fa-f]* ;
 IDENTIFIER: [$_]*[a-zA-Z] [a-zA-Z$_0-9]*;
 
-WHITESPACE : [ \t\b\f\r\n]+ -> skip ; // skip spaces, tabs 
+WHITESPACE : [ \t\b\f\r\n]+ -> skip ; // skip spaces, tabs
+UnclosedComment: '/*' .*? {
+    import Errors
+    raise Errors.UnclosedComment(self.line, self.column)
+};

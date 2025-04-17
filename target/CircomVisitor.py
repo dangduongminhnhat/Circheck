@@ -364,8 +364,18 @@ class CircomVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CircomParser#listable_prime.
+    def visitListable_prime(self, ctx:CircomParser.Listable_primeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CircomParser#listableAnon.
     def visitListableAnon(self, ctx:CircomParser.ListableAnonContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CircomParser#listableAnon_prime.
+    def visitListableAnon_prime(self, ctx:CircomParser.ListableAnon_primeContext):
         return self.visitChildren(ctx)
 
 

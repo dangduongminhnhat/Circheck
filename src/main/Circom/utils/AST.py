@@ -7,9 +7,9 @@ from antlr4 import Token
 
 
 class AST(ABC):
-    # @abstractmethod
-    # def accept(self, v: Visitor, param):
-    #     return v.visit(self, param)
+    @abstractmethod
+    def accept(self, v: Visitor, param):
+        return v.visit(self, param)
 
     def __str__(self, indent: str = "", is_last: bool = True):
         label = self.__class__.__name__
@@ -69,6 +69,7 @@ class LogArgument(AST):
 
 @dataclass
 class FileLocation(AST):
+    path: str
     start: Token
     stop: Token
 
@@ -77,6 +78,7 @@ class FileLocation(AST):
         branch = "└── " if is_last else "├── "
         output = [f"{indent}{branch}{label}"]
         indent += "    " if is_last else "│   "
+        output.append(f"{indent}├── path: {self.path}")
 
         start_line = self.start.line
         start_column = self.start.column
@@ -89,8 +91,8 @@ class FileLocation(AST):
 
         return "\n".join(output)
 
-    # def accept(self, v: Visitor, param):
-    #     return v.visitFileLocation(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitFileLocation(self, param)
 
 
 @dataclass
@@ -99,8 +101,8 @@ class MainComponent(AST):
     publics: List[str]
     expr: Expression
 
-    # def accept(self, v: Visitor, param):
-    #     return v.visitMainComponent(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitMainComponent(self, param)
 
 
 @dataclass
@@ -108,8 +110,8 @@ class Include(AST):
     locate: FileLocation
     path: str
 
-    # def accept(self, v: Visitor, param):
-    #     return v.visitInclude(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitInclude(self, param)
 
 
 @dataclass
@@ -122,8 +124,8 @@ class Program(AST):
     definitions: List[Definition]
     main_component: Optional[MainComponent]
 
-    # def accept(self, v: Visitor, param):
-    #     return v.visitProgram(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitProgram(self, param)
 
 
 @dataclass
@@ -135,8 +137,8 @@ class Template(Definition):
     parallel: bool
     is_custom_gate: bool
 
-    # def accept(self, v, param):
-    #     return v.visitTemplate(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitTemplate(self, param)
 
 
 @dataclass
@@ -146,8 +148,8 @@ class Function(Definition):
     args: List[str]
     body: Statement
 
-    # def accept(self, v, param):
-    #     return v.visitFunction(self, param)
+    def accept(self, v: Visitor, param):
+        return v.visitFunction(self, param)
 
 
 @dataclass
@@ -157,6 +159,9 @@ class IfThenElse(Statement):
     if_case: Statement
     else_case: Optional[Statement]
 
+    def accept(self, v: Visitor, param):
+        return v.visitIfThenElse(self, param)
+
 
 @dataclass
 class While(Statement):
@@ -164,11 +169,17 @@ class While(Statement):
     cond: Expression
     stmt: Statement
 
+    def accept(self, v: Visitor, param):
+        return v.visitWhile(self, param)
+
 
 @dataclass
 class Return(Statement):
     locate: FileLocation
     value: Expression
+
+    def accept(self, v: Visitor, param):
+        return v.visitReturn(self, param)
 
 
 @dataclass
@@ -176,6 +187,9 @@ class InitializationBlock(Statement):
     locate: FileLocation
     xtype: VariableType
     initializations: List[Statement]
+
+    def accept(self, v: Visitor, param):
+        return v.visitInitializationBlock(self, param)
 
 
 @dataclass
@@ -186,6 +200,9 @@ class Declaration(Statement):
     dimensions: List[Expression]
     is_constant: bool
 
+    def accept(self, v: Visitor, param):
+        return v.visitDeclaration(self, param)
+
 
 @dataclass
 class Substitution(Statement):
@@ -195,6 +212,9 @@ class Substitution(Statement):
     op: str
     rhe: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitSubstitution(self, param)
+
 
 @dataclass
 class MultiSubstitution(Statement):
@@ -203,6 +223,9 @@ class MultiSubstitution(Statement):
     op: str
     rhe: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitMultiSubstitution(self, param)
+
 
 @dataclass
 class ConstraintEquality(Statement):
@@ -210,11 +233,17 @@ class ConstraintEquality(Statement):
     lhe: Expression
     rhe: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitConstraintEquality(self, param)
+
 
 @dataclass
 class LogCall(Statement):
     locate: FileLocation
     args: List[LogArgument]
+
+    def accept(self, v: Visitor, param):
+        return v.visitLogCall(self, param)
 
 
 @dataclass
@@ -222,16 +251,23 @@ class Block(Statement):
     locate: FileLocation
     stmts: List[Statement]
 
+    def accept(self, v: Visitor, param):
+        return v.visitBlock(self, param)
+
 
 @dataclass
 class Assert(Statement):
     locate: FileLocation
     arg: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitAssert(self, param)
+
 
 @dataclass
 class Var(VariableType):
-    pass
+    def accept(self, v: Visitor, param):
+        return v.visitVar(self, param)
 
 
 @dataclass
@@ -240,15 +276,20 @@ class Signal(VariableType):
     signal_type: str
     tag_list: List[str]
 
+    def accept(self, v: Visitor, param):
+        return v.visitSignal(self, param)
+
 
 @dataclass
 class Component(VariableType):
-    pass
+    def accept(self, v: Visitor, param):
+        return v.visitComponent(self, param)
 
 
 @dataclass
 class AnonymousComponent(VariableType):
-    pass
+    def accept(self, v: Visitor, param):
+        return v.visitAnonymousComponent(self, param)
 
 
 @dataclass
@@ -258,12 +299,18 @@ class InfixOp(Expression):
     infix_op: str
     rhe: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitInfixOp(self, param)
+
 
 @dataclass
 class PrefixOp(Expression):
     locate: FileLocation
     prefix_op: str
     rhe: Expression
+
+    def accept(self, v: Visitor, param):
+        return v.visitPrefixOp(self, param)
 
 
 @dataclass
@@ -273,11 +320,17 @@ class InlineSwitchOp(Expression):
     if_true: Expression
     if_false: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitInlineSwitchOp(self, param)
+
 
 @dataclass
 class ParallelOp(Expression):
     locate: FileLocation
     rhe: Expression
+
+    def accept(self, v: Visitor, param):
+        return v.visitParallelOp(self, param)
 
 
 @dataclass
@@ -286,11 +339,17 @@ class Variable(Expression):
     name: str
     access: List[Access]
 
+    def accept(self, v: Visitor, param):
+        return v.visitVariable(self, param)
+
 
 @dataclass
 class Number(Expression):
     locate: FileLocation
     value: int
+
+    def accept(self, v: Visitor, param):
+        return v.visitNumber(self, param)
 
 
 @dataclass
@@ -298,6 +357,9 @@ class Call(Expression):
     locate: FileLocation
     id: str
     args: List[Expression]
+
+    def accept(self, v: Visitor, param):
+        return v.visitCall(self, param)
 
 
 @dataclass
@@ -309,11 +371,17 @@ class AnonymousComponentExpr(Expression):
     signals: List[Expression]
     names: Optional[List[Tuple[str, str]]]
 
+    def accept(self, v: Visitor, param):
+        return v.visitAnonymousComponentExpr(self, param)
+
 
 @dataclass
 class ArrayInLine(Expression):
     locate: FileLocation
     values: List[Expression]
+
+    def accept(self, v: Visitor, param):
+        return v.visitArrayInLine(self, param)
 
 
 @dataclass
@@ -321,11 +389,17 @@ class TupleExpr(Expression):
     locate: FileLocation
     values: List[Expression]
 
+    def accept(self, v: Visitor, param):
+        return v.visitTupleExpr(self, param)
+
 
 @dataclass
 class ComponentAccess(Access):
     locate: FileLocation
     name: str
+
+    def accept(self, v: Visitor, param):
+        return v.visitComponentAccess(self, param)
 
 
 @dataclass
@@ -333,14 +407,23 @@ class ArrayAccess(Access):
     locate: FileLocation
     expr: Expression
 
+    def accept(self, v: Visitor, param):
+        return v.visitArrayAccess(self, param)
+
 
 @dataclass
 class LogStr(LogArgument):
     locate: FileLocation
     value: str
 
+    def accept(self, v: Visitor, param):
+        return v.visitLogStr(self, param)
+
 
 @dataclass
 class LogExp(LogArgument):
     locate: FileLocation
     expr: Expression
+
+    def accept(self, v: Visitor, param):
+        return v.visitLogExp(self, param)
