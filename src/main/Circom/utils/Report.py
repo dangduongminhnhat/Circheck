@@ -18,18 +18,14 @@ class Report:
         self.has_location = has_location
 
     def show(self):
-        if self.type == ReportType.ERROR:
-            color = colorama.Fore.RED
-            icon = "❌"
-        else:
-            color = colorama.Fore.YELLOW
-            icon = "⚠️"
-
+        color = colorama.Fore.RED if self.type == ReportType.ERROR else colorama.Fore.YELLOW
+        prefix = f"{color}[{self.type.value}]{colorama.Style.RESET_ALL}"
         path = self.location.path
-        print(f"{icon} [{self.type.value}] in {path}")
         if self.has_location:
-            start_line = self.location.start.line
-            start_col = self.location.start.column
-            print(f"     {start_line}:{start_col} - {self.message}")
+            line = self.location.start.line
+            col = self.location.start.column
+            location_str = f"{path}:{line}:{col}"
         else:
-            print(f"     {self.message}")
+            location_str = path
+        print(f"{prefix:<9}  In {location_str}")
+        print(f"{' '*9}{self.message}")

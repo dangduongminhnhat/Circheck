@@ -52,12 +52,10 @@ def generate_ast(filename):
 def main():
     input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
     base_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Kết hợp đường dẫn và chuẩn hóa thành tuyệt đối
     absolute_path = os.path.abspath(os.path.join(base_dir, input_file))
     ast = generate_ast(absolute_path)
     if ast is None:
-        print("Error generating AST")
+        print("[Error]  Failed to generate AST.")
     else:
         from AST import Template
         file = open("text.txt", "wb")
@@ -65,7 +63,7 @@ def main():
             if isinstance(item, Template):
                 file.write(str(item.name_field + "\n").encode('utf-8'))
         file.close()
-        print("AST generated successfully")
+        print("[AST]    AST generated successfully.")
 
 
 if __name__ == "__main__":

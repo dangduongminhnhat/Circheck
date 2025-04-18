@@ -13,8 +13,7 @@ sys.setrecursionlimit(3000)
 
 class ASTGeneration(CircomVisitor):
     def generate_ast(self, filename, tree, path_env):
-        print("-------------------------------------------")
-        print("Generating AST for file:", filename)
+        print("[Info]   Generating AST for:", filename)
         self.file_name = filename
         ast_tree = self.visit(tree)
         base_dir = os.path.dirname(filename)
@@ -46,8 +45,13 @@ class ASTGeneration(CircomVisitor):
                 Report(ReportType.ERROR, FileLocation(
                     absolute_path, None, None), str(e), False).show()
                 return None
-            asttree = ASTGeneration().generate_ast(absolute_path, tree, path_env)
-            ast_tree.definitions += asttree.definitions
+            try:
+                asttree = ASTGeneration().generate_ast(absolute_path, tree, path_env)
+                ast_tree.definitions += asttree.definitions
+            except Exception as e:
+                Report(ReportType.ERROR, FileLocation(
+                    absolute_path, None, None), str(e), False).show()
+                return None
         return ast_tree
 
     # program: pragma_definition? custom_gate? include_list definition_list main_option EOF;
