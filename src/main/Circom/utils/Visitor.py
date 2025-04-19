@@ -46,6 +46,10 @@ class Visitor(ABC):
         pass
 
     @abstractmethod
+    def visitDeclaration(self, param):
+        pass
+
+    @abstractmethod
     def visitSubstitution(self, param):
         pass
 
@@ -171,6 +175,9 @@ class BaseVisitor(Visitor):
         return None
 
     def visitInitializationBlock(self, param):
+        return None
+
+    def visitDeclaration(self, param):
         return None
 
     def visitSubstitution(self, param):

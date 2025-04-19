@@ -10,14 +10,14 @@ class ReportType(Enum):
     WARNING = "Warning"
 
 
-class Report:
+class Report(Exception):
     def __init__(self, type_: ReportType, location: FileLocation, message: str, has_location: bool = True):
         self.type = type_
         self.location = location
         self.message = message
         self.has_location = has_location
 
-    def show(self):
+    def __str__(self):
         color = colorama.Fore.RED if self.type == ReportType.ERROR else colorama.Fore.YELLOW
         prefix = f"{color}[{self.type.value}]{colorama.Style.RESET_ALL}"
         path = self.location.path
@@ -27,5 +27,7 @@ class Report:
             location_str = f"{path}:{line}:{col}"
         else:
             location_str = path
-        print(f"{prefix:<9}  In {location_str}")
-        print(f"{' '*9}{self.message}")
+        return f"{prefix:<9}  In {location_str}\n{' ' * 9}{self.message}"
+
+    def show(self):
+        print(self.__str__())
