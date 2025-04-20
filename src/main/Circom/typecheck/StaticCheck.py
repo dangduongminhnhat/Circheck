@@ -81,12 +81,15 @@ class TypeCheck(BaseVisitor):
         self.global_env = [{}]
         self.list_function = {}
         self.in_function = False
+        self.no_block = False
         self.return_func = None
         self.list_template = {}
         self.in_template = False
         self.template_signals = None
         self.signal_in = None
         self.signal_out = None
+        self.is_multi_sub = False
+        self.count_visited = 0
 
     def check(self):
         self.visit(self.ast, self.global_env)
@@ -94,66 +97,100 @@ class TypeCheck(BaseVisitor):
     def visitFileLocation(self, ast: FileLocation, param):
         return None
 
-    def visitMainComponent(self, param):
-        return None
+    def visitMainComponent(self, ast: MainComponent, param):
+        template_type = self.visit(ast.expr, param)
+        if not isinstance(template_type, TemplateCircom):
+            raise Report(ReportType.ERROR, ast.locate,
+                         f"Main component must be a template. Found {type(template_type).__name__} instead")
+        for name in ast.publics:
+            if name not in template_type.signals_in:
+                raise Report(ReportType.ERROR, ast.locate,
+                             f"Signal '{name}' not declared in template '{template_type.name}'")
 
     def visitInclude(self, ast: Include, param):
         return None
 
     def visitTemplate(self, ast: TemplateCircom, param):
-        if ast.name_field in self.list_template:
-            raise Report(ReportType.ERROR, ast.locate,
-                         f"Template '{ast.name_field}' already declared")
-        env = [{}] + param
-        for arg in ast.args:
-            if arg in env[0]:
+        if self.count_visited == 0:
+            if ast.name_field in self.list_template:
                 raise Report(ReportType.ERROR, ast.locate,
-                             f"Argument '{arg}' already declared")
-            env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
-        self.in_template = True
-        self.template_signals = {}
-        self.signal_in = []
-        self.signal_out = []
-        self.visit(ast.body, env)
-        if self.return_func is not None:
-            raise Report(ReportType.ERROR, ast.locate,
-                         "Template can not have a return statement")
-        self.in_template = False
-        arg_list = []
-        for arg in ast.args:
-            arg_list.append(env[0][arg].mtype)
-        self.list_template[ast.name_field] = param[0] = Symbol(ast.name_field, TemplateCircom(
-            ast.name_field, ast.args, self.template_signals, self.signal_in, self.signal_out), None)
-        self.template_signals = None
-        self.signal_in = None
-        self.signal_out = None
+                             f"Template '{ast.name_field}' already declared")
+            env = [{}] + param
+            for arg in ast.args:
+                if arg in env[0]:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Argument '{arg}' already declared")
+                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+            self.in_template = True
+            self.template_signals = {}
+            self.signal_in = []
+            self.signal_out = []
+            self.visit(ast.body, env)
+            if self.return_func is not None:
+                raise Report(ReportType.ERROR, ast.locate,
+                             "Template can not have a return statement")
+            self.in_template = False
+            arg_list = []
+            for arg in ast.args:
+                arg_list.append(env[0][arg].mtype)
+            self.list_template[ast.name_field] = param[0][ast.name_field] = Symbol(ast.name_field, TemplateCircom(
+                ast.name_field, ast.args, self.template_signals, self.signal_in, self.signal_out), None)
+            self.template_signals = None
+            self.signal_in = None
+            self.signal_out = None
+        else:
+            env = [{}] + param
+            for arg in ast.args:
+                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+            self.in_template = True
+            self.visit(ast.body, env)
+            if self.return_func is not None:
+                raise Report(ReportType.ERROR, ast.locate,
+                             "Template can not have a return statement")
+            self.in_template = False
 
     def visitFunction(self, ast: Function, param):
-        if ast.name_field in self.list_function:
-            raise Report(ReportType.ERROR, ast.locate,
-                         f"Function '{ast.name_field}' already declared")
-        self.in_function = True
-        env = [{}] + param
-        for arg in ast.args:
-            if arg in env[0]:
+        if self.count_visited == 0:
+            if ast.name_field in self.list_function:
                 raise Report(ReportType.ERROR, ast.locate,
-                             f"Argument '{arg}' already declared")
-            env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
-        self.visit(ast.body, env)
-        if self.return_func is None:
-            raise Report(ReportType.ERROR, ast.locate,
-                         "Unable to infer the type of this function")
-        return_type = self.return_func
-        self.return_func = None
-        arg_list = []
-        for arg in ast.args:
-            arg_list.append(env[0][arg].mtype)
-        self.list_function[ast.name_field] = param[0] = Symbol(
-            ast.name_field, FunctionCircom(ast.name_field, arg_list, return_type), None)
-        self.in_function = False
+                             f"Function '{ast.name_field}' already declared")
+            env = [{}] + param
+            for arg in ast.args:
+                if arg in env[0]:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Argument '{arg}' already declared")
+                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+            self.in_function = True
+            self.no_block = True
+            self.visit(ast.body, env)
+            self.in_function = False
+            if self.return_func is None:
+                raise Report(ReportType.ERROR, ast.locate,
+                             "Unable to infer the type of this function")
+            arg_list = []
+            for arg in ast.args:
+                arg_list.append(env[0][arg].mtype)
+            self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(
+                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func), None)
+        else:
+            self.in_function = True
+            self.no_block = True
+            env = [{}] + param
+            for arg in ast.args:
+                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+            self.visit(ast.body, env)
+            if self.return_func is None:
+                raise Report(ReportType.ERROR, ast.locate,
+                             "Unable to infer the type of this function")
+            self.return_func = None
+            self.in_function = False
 
-    def visitProgram(self, param):
-        return None
+    def visitProgram(self, ast: Program, param):
+        for _ in range(2):
+            for definition in ast.definitions:
+                self.visit(definition, param)
+            self.count_visited += 1
+        self.visit(ast.main_component, param)
 
     def visitIfthenelse(self, ast: IfThenElse, param):
         cond_type = self.visit(ast.cond, param)
@@ -192,7 +229,11 @@ class TypeCheck(BaseVisitor):
 
     def visitInitializationBlock(self, ast: InitializationBlock, param):
         for init in ast.initializations:
-            self.visit(init, param)
+            if self.count_visited == 0:
+                if isinstance(init, Declaration):
+                    self.visit(init, param)
+            else:
+                self.visit(init, param)
 
     def visitDeclaration(self, ast: Declaration, param):
         if ast.name in param[0]:
@@ -208,15 +249,20 @@ class TypeCheck(BaseVisitor):
                              "Array indexes and lengths must be single arithmetic expressions. Found array instead of expression.")
         xtype = self.visit(ast.xtype, param)
         if isinstance(xtype, SignalCircom):
-            if xtype.sinal_type == SignalType.INPUT:
-                self.signal_in.append(ast.name)
-            elif xtype.sinal_type == SignalType.OUTPUT:
-                self.signal_out.append(ast.name)
-            self.template_signals[ast.name] = xtype
+            if self.count_visited == 0:
+                if ast.name in self.template_signals:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Signal '{ast.name}' already declared")
+                if xtype.sinal_type == SignalType.INPUT:
+                    self.signal_in.append(ast.name)
+                elif xtype.sinal_type == SignalType.OUTPUT:
+                    self.signal_out.append(ast.name)
             if len(ast.dimensions) > 0:
                 mtype = ArrayCircom(PrimeField(), len(ast.dimensions))
             else:
                 mtype = PrimeField()
+            if self.count_visited == 0:
+                self.template_signals[ast.name] = mtype
             param[0][ast.name] = Symbol(ast.name, mtype, xtype)
         elif isinstance(xtype, VarCircom):
             if len(ast.dimensions) > 0:
@@ -233,17 +279,94 @@ class TypeCheck(BaseVisitor):
             param[0][ast.name] = Symbol(ast.name, mtype, xtype)
 
     def visitSubstitution(self, ast: Substitution, param):
-        rhe_type = self.visit(ast.rhe, param)
+        symbol = None
+        for env in param:
+            if ast.var in env:
+                symbol = env[ast.var]
+                break
+        if self.is_multi_sub:
+            self.is_multi_sub = False
+            rhe_type = ast.rhe
+        else:
+            rhe_type = self.visit(ast.rhe, param)
         if ast.var == "_":
             if isinstance(rhe_type, TemplateCircom):
                 raise Report(ReportType.ERROR, ast.rhe.locate,
                              "Must be a single arithmetic expression. Found component")
         else:
-            lhe_type = self.visit(Variable(ast.var, ast.access), param)
-            if isinstance(lhe_type, TemplateCircom) and isinstance(rhe_type, TemplateCircom):
+            lhe_type = self.visit(
+                Variable(ast.locate, ast.var, ast.access), param)
+            symbol = None
+            for env in param:
+                if ast.var in env:
+                    symbol = env[ast.var]
+                    break
+            if isinstance(symbol.xtype, SignalCircom):
+                if symbol.xtype.sinal_type == SignalType.INPUT:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 "Cannot assign to an input signal")
+                if ast.op == "=":
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 "Cannot assign to a signal")
+                if isinstance(rhe_type, TemplateCircom):
+                    raise Report(ReportType.ERROR, ast.rhe.locate,
+                                 "Must be a single arithmetic expression. Found component")
+                if not is_same_type(lhe_type, rhe_type):
+                    raise Report(ReportType.ERROR, ast.rhe.locate,
+                                 "Types of the two sides of the equality are not compatible")
+            elif isinstance(symbol.xtype, VarCircom):
+                if ast.op != "=":
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 "Cannot use operator on a variable")
+                if isinstance(rhe_type, TemplateCircom):
+                    raise Report(ReportType.ERROR, ast.rhe.locate,
+                                 "Must be a single arithmetic expression. Found component")
+                if not is_same_type(lhe_type, rhe_type):
+                    print("LHE", lhe_type, "RHE", rhe_type)
+                    raise Report(ReportType.ERROR, ast.rhe.locate,
+                                 "Types of the two sides of the equality are not compatible")
+            elif isinstance(symbol.xtype, ComponentCircom):
+                if isinstance(lhe_type, TemplateCircom):
+                    if not isinstance(rhe_type, TemplateCircom):
+                        raise Report(ReportType.ERROR, ast.rhe.locate,
+                                     "Assignee and assigned types do not match.\n Expected template but found expression.")
+                    if ast.op != "=":
+                        raise Report(ReportType.ERROR, ast.locate,
+                                     "Cannot use operator on a component")
+                    if lhe_type.name == "":
+                        lhe_type.name = rhe_type.name
+                        lhe_type.params = rhe_type.params
+                        lhe_type.signals = rhe_type.signals
+                        lhe_type.signals_in = rhe_type.signals_in
+                        lhe_type.signals_out = rhe_type.signals_out
+                    else:
+                        if lhe_type.name != rhe_type.name:
+                            raise Report(ReportType.ERROR, ast.locate,
+                                         "Assignee and assigned types do not match.")
+                elif not is_same_type(lhe_type, rhe_type):
+                    raise Report(ReportType.ERROR, ast.rhe.locate,
+                                 "Assignee and assigned types do not match.")
 
-    def visitMultiSubstitution(self, param):
-        return None
+    def visitMultiSubstitution(self, ast: MultiSubstitution, param):
+        if not isinstance(ast.lhe, TupleExpr):
+            raise Report(ReportType.ERROR, ast.lhe.locate,
+                         "Left hand side of the substitution must be a tuple")
+        if not isinstance(ast.rhe, AnonymousComponentExpr):
+            raise Report(ReportType.ERROR, ast.rhe.locate,
+                         "Right hand side of the substitution must be a component")
+        lhe_type = self.visit(ast.lhe, param)
+        rhe_type = self.visit(ast.rhe, param)
+        if len(lhe_type) != len(rhe_type):
+            raise Report(ReportType.ERROR, ast.rhe.locate,
+                         "Number of elements in the left hand side and right hand side must be the same")
+        for i in range(len(lhe_type)):
+            if not isinstance(lhe_type[i], Variable):
+                raise Report(ReportType.ERROR, ast.lhe.locate, "Not variable")
+            if lhe_type.name == "_":
+                continue
+            self.is_multi_sub = True
+            self.visit(Substitution(
+                ast.lhe[i].locate, lhe_type[i].name, lhe_type[i].access, ast.op, rhe_type[i]), param)
 
     def visitConstraintEquality(self, ast: ConstraintEquality, param):
         lhe_type = self.visit(ast.lhe, param)
@@ -270,14 +393,18 @@ class TypeCheck(BaseVisitor):
                                  "Must be a single arithmetic expression. Found array")
 
     def visitBlock(self, ast: Block, param):
-        if self.in_template or self.in_function:
+        if self.in_template or self.no_block:
             env = param
             self.in_template = False
-            self.in_function = False
+            self.no_block = False
         else:
             env = [{}] + param
         for stmt in ast.stmts:
-            self.visit(stmt, env)
+            if self.count_visited == 0:
+                if isinstance(stmt, InitializationBlock) or isinstance(stmt, Return):
+                    self.visit(stmt, env)
+            else:
+                self.visit(stmt, env)
 
     def visitAssert(self, ast: Assert, param):
         arg_type = self.visit(ast.arg, param)
@@ -347,59 +474,36 @@ class TypeCheck(BaseVisitor):
         return rhe_type
 
     def visitVariable(self, ast: Variable, param):
-        var_type = None
+        typ = None
         for env in param:
             if ast.name in env:
-                var_type = env[ast.name].mtype
-        if var_type is None:
+                typ = env[ast.name].mtype
+                break
+        if typ is None:
             raise Report(ReportType.ERROR, ast.locate,
                          f"Variable '{ast.name}' not declared")
-        if len(ast.access) > 0:
+        if isinstance(typ, ArrayCircom):
+            var_type = ArrayCircom(typ.eleType, typ.dims)
+        else:
+            var_type = typ
+        for i in range(len(ast.access)):
             if isinstance(var_type, PrimeField):
                 raise Report(ReportType.ERROR, ast.locate,
-                             f"Variable '{ast.name}' is not an array")
-            elif isinstance(var_type, ArrayCircom):
-                ele_type = var_type.eleType
-                last_access = self.visit(ast.access[-1], param)
-                if isinstance(last_access, PrimeField):
-                    if len(ast.access) > var_type.dims:
-                        raise Report(ReportType.ERROR, ast.locate,
-                                     f"Array '{ast.name}' has only {var_type.dims} dimensions")
-                else:
-                    if not isinstance(ele_type, TemplateCircom) or (len(ast.access) - 1) > var_type.dims:
-                        raise Report(ReportType.ERROR, ast.locate,
-                                     "Not a valid array access or component access")
-                for i in range(len(ast.access) - 1):
-                    access_type = self.visit(ast.access[i], param)
-                    if not isinstance(access_type, PrimeField):
-                        raise Report(ReportType.ERROR, ast.locate,
-                                     "Not a valid array access")
-                if isinstance(last_access, PrimeField):
-                    if len(ast.access) == var_type.dims:
-                        return ele_type
-                    else:
-                        return ArrayCircom(ele_type, var_type.dims - len(ast.access))
-                else:
-                    if len(ast.access) - 1 == var_type.dims:
-                        if last_access not in var_type.signals:
-                            raise Report(
-                                ReportType.ERROR, ast.locate, f"Variable '{ast.name}' does not have signal '{last_access}'")
-                        return var_type.signals[last_access]
-                    else:
-                        return ArrayCircom(ele_type, var_type.dims - len(ast.access))
-            elif isinstance(var_type, TemplateCircom):
-                if len(ast.access) > 1:
+                             f"Variable '{ast.name}' is not an array or component")
+            access_type = self.visit(ast.access[i], param)
+            if isinstance(access_type, PrimeField):
+                if not isinstance(var_type, ArrayCircom):
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Variable '{ast.name}' is not an array")
+                if var_type.dims == 1:
+                    var_type = var_type.eleType
                 else:
-                    access_type = self.visit(ast.access[0], param)
-                    if isinstance(access_type, PrimeField):
-                        raise Report(ReportType.ERROR, ast.locate,
-                                     f"Variable '{ast.name}' is not an array")
-                    elif access_type not in var_type.signals:
-                        raise Report(ReportType.ERROR, ast.locate,
-                                     f"Variable '{ast.name}' does not have signal '{access_type}'")
-                    return var_type.signal_out[access_type]
+                    var_type.dims -= 1
+            else:
+                if not isinstance(var_type, TemplateCircom):
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Variable '{ast.name}' is not a component")
+                var_type = var_type.signals[access_type]
         return var_type
 
     def visitNumber(self, ast: Number, param):
@@ -410,12 +514,13 @@ class TypeCheck(BaseVisitor):
         for env in param:
             if ast.id in env:
                 func_type = env[ast.id].mtype
+                break
         if func_type is None:
             raise Report(ReportType.ERROR, ast.locate,
-                         f"Function '{ast.id}' not declared")
-        if not isinstance(func_type, FunctionCircom):
+                         f"Function or Template '{ast.id}' not declared")
+        if not isinstance(func_type, (FunctionCircom, TemplateCircom)):
             raise Report(ReportType.ERROR, ast.locate,
-                         f"'{ast.id}' is not a function")
+                         f"'{ast.id}' is not a function or template")
         if len(ast.args) != len(func_type.params):
             raise Report(ReportType.ERROR, ast.locate,
                          f"Function '{ast.id}' has {len(func_type.params)} arguments, but {len(ast.args)} were provided")
@@ -423,11 +528,48 @@ class TypeCheck(BaseVisitor):
             arg_type = self.visit(arg, param)
             if not isinstance(arg_type, PrimeField):
                 raise Report(ReportType.ERROR, ast.locate,
-                             f"Function '{ast.id}' argument must be a single arithmetic expression.")
-        return func_type.return_type
+                             f"'{ast.id}' argument must be a single arithmetic expression.")
+        if isinstance(func_type, FunctionCircom):
+            return func_type.return_type
+        elif isinstance(func_type, TemplateCircom):
+            return func_type
 
-    def visitAnonymousComponentExpr(self, param):
-        return None
+    def visitAnonymousComponentExpr(self, ast: AnonymousComponentExpr, param):
+        template_type = None
+        for env in param:
+            if ast.id in env:
+                template_type = env[ast.id].mtype
+                break
+        if template_type is None or not isinstance(template_type, TemplateCircom):
+            raise Report(ReportType.ERROR, ast.locate,
+                         f"Template '{ast.id}' not declared")
+        if ast.names and ast.names[0]:
+            if len(ast.names) != len(template_type.signals_in):
+                raise Report(ReportType.ERROR, ast.locate,
+                             f"Template '{ast.id}' has {len(template_type.signals_in)} input signals, but {len(ast.names)} were provided")
+            for i in range(len(ast.names)):
+                op, name = ast.names[i]
+                if name not in template_type.signals:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Signal '{name}' not declared in template '{ast.id}'")
+                if name not in template_type.signals_in:
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Signal '{name}' is not an input signal")
+                if not is_same_type(template_type.signals[name], self.visit(ast.params[i])):
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Signal '{name}' type does not match the template '{ast.id}' input signal type")
+        else:
+            if len(ast.params) != len(template_type.signals_in):
+                raise Report(ReportType.ERROR, ast.locate,
+                             f"Template '{ast.id}' has {len(template_type.signals_in)} input signals, but {len(ast.params)} were provided")
+            for i in range(len(ast.params)):
+                if not is_same_type(template_type.signals[template_type.signals_in[i]], self.visit(ast.params[i])):
+                    raise Report(ReportType.ERROR, ast.locate,
+                                 f"Signal '{template_type.signals_in[i]}' type does not match the template '{ast.id}' input signal type")
+        return_tuple = []
+        for name in template_type.signals_out:
+            return_tuple.append(template_type.signals[name])
+        return return_tuple
 
     def visitArrayInLine(self, ast: ArrayInLine, param):
         type_list = []
@@ -446,8 +588,8 @@ class TypeCheck(BaseVisitor):
                              "All elements in the array must be of the same type")
         return ArrayCircom(first_type, len(ast.values))
 
-    def visitTupleExpr(self, param):
-        return None
+    def visitTupleExpr(self, ast: TupleExpr, param):
+        return ast.values
 
     def visitComponentAccess(self, ast: ComponentAccess, param):
         return ast.name

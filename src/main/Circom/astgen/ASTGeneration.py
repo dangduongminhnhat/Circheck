@@ -47,6 +47,10 @@ class ASTGeneration(CircomVisitor):
                 return None
             try:
                 asttree = ASTGeneration().generate_ast(absolute_path, tree, path_env)
+                if asttree.main_component:
+                    Report(ReportType.ERROR, FileLocation(
+                        absolute_path, None, None), "Main component found in include file", False).show()
+                    return None
                 ast_tree.definitions += asttree.definitions
             except Exception as e:
                 Report(ReportType.ERROR, FileLocation(
@@ -171,13 +175,15 @@ class ASTGeneration(CircomVisitor):
             op = ctx.ASSIGNMENT_WITH_OP().getText()[0]
             variable = self.visit(ctx.variable())
             return Substitution(FileLocation(self.file_name, ctx.start, ctx.stop), variable.name, variable.access, "=", InfixOp(FileLocation(self.file_name, ctx.start, ctx.stop), variable, op, self.visit(ctx.expression(0))))
-        else:
-            if ctx.assign_opcode():
-                op = self.visit(ctx.assign_opcode())
-            elif ctx.RIGHT_ASSIGNMENT():
+        elif ctx.RIGHT_ASSIGNMENT() or ctx.RIGHT_CONSTRAINT():
+            if ctx.RIGHT_ASSIGNMENT():
                 op = ctx.RIGHT_ASSIGNMENT().getText()
             else:
                 op = ctx.RIGHT_CONSTRAINT().getText()
+            var = self.visit(ctx.expression(1))
+            return Substitution(FileLocation(self.file_name, ctx.start, ctx.stop), var.name, var.access, op, self.visit(ctx.expression(0))) if isinstance(var, Variable) else MultiSubstitution(FileLocation(self.file_name, ctx.start, ctx.stop), var, op, self.visit(ctx.expression(0)))
+        else:
+            op = self.visit(ctx.assign_opcode())
             var = self.visit(ctx.expression(0))
             return Substitution(FileLocation(self.file_name, ctx.start, ctx.stop), var.name, var.access, op, self.visit(ctx.expression(1))) if isinstance(var, Variable) else MultiSubstitution(FileLocation(self.file_name, ctx.start, ctx.stop), var, op, self.visit(ctx.expression(1)))
 

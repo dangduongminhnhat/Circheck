@@ -5,7 +5,7 @@ import sys
 import os
 import traceback
 locpath = ['./src/main/Circom/parser/', './src/main/Circom/astgen/',
-           './src/main/Circom/utils/', "./target/"]
+           './src/main/Circom/typecheck/', './src/main/Circom/utils/', "./target/"]
 
 for p in locpath:
     if not p in sys.path:
@@ -49,6 +49,21 @@ def generate_ast(filename):
         return None
 
 
+def typecheck(ast):
+    from StaticCheck import TypeCheck
+    from Report import Report, ReportType
+    from AST import FileLocation
+    checked = TypeCheck(ast)
+    try:
+        checked.check()
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print(e)
+        return False
+    return True
+
+
 def main():
     input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -56,14 +71,17 @@ def main():
     ast = generate_ast(absolute_path)
     if ast is None:
         print("[Error]  Failed to generate AST.")
-    else:
-        from AST import Template
-        file = open("text.txt", "wb")
-        for item in ast.definitions:
-            if isinstance(item, Template):
-                file.write(str(item.name_field + "\n").encode('utf-8'))
-        file.close()
-        print("[AST]    AST generated successfully.")
+        return
+    from AST import Template
+    file = open("text.txt", "wb")
+    file.write(str(ast).encode("utf-8"))
+    file.close()
+    print("[AST]    AST generated successfully.")
+
+    if not typecheck(ast):
+        print("[Error]  Type checking failed.")
+        return
+    print("[Type]   Type checking passed.")
 
 
 if __name__ == "__main__":
