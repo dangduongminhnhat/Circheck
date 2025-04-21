@@ -1,6 +1,4 @@
 from antlr4 import *
-import unittest
-import subprocess
 import sys
 import os
 import traceback
@@ -57,11 +55,10 @@ def typecheck(ast):
     try:
         checked.check()
     except Exception as e:
-        import traceback
         traceback.print_exc()
         print(e)
-        return False
-    return True
+        return None
+    return checked.global_env
 
 
 def main():
@@ -72,16 +69,19 @@ def main():
     if ast is None:
         print("[Error]  Failed to generate AST.")
         return
-    from AST import Template
     file = open("text.txt", "wb")
     file.write(str(ast).encode("utf-8"))
     file.close()
     print("[AST]    AST generated successfully.")
 
-    if not typecheck(ast):
+    checked = typecheck(ast)
+    if checked is None:
         print("[Error]  Type checking failed.")
         return
     print("[Type]   Type checking passed.")
+
+    # for k, v in checked[0].items():
+    #     print(f"{k}: {v}")
 
 
 if __name__ == "__main__":

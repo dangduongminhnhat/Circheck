@@ -6,10 +6,11 @@ from enum import Enum, auto
 
 
 class Symbol:
-    def __init__(self, name, mtype, xtype, value=None):
+    def __init__(self, name, mtype, xtype, ast=None, value=None):
         self.name = name
         self.mtype = mtype  # PrimeField, ArrayCircom, TemplateCircom, FunctionCircom
         self.xtype = xtype  # VarCircom, SignalCircom, ComponentCircom, AnonymousComponentCircom
+        self.ast = ast
         self.value = value
 
 
@@ -106,6 +107,8 @@ class TypeCheck(BaseVisitor):
             if name not in template_type.signals_in:
                 raise Report(ReportType.ERROR, ast.locate,
                              f"Signal '{name}' not declared in template '{template_type.name}'")
+        param[0]["main"] = Symbol(
+            "main", template_type, ComponentCircom(), ast)
 
     def visitInclude(self, ast: Include, param):
         return None
@@ -134,7 +137,7 @@ class TypeCheck(BaseVisitor):
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
             self.list_template[ast.name_field] = param[0][ast.name_field] = Symbol(ast.name_field, TemplateCircom(
-                ast.name_field, ast.args, self.template_signals, self.signal_in, self.signal_out), None)
+                ast.name_field, ast.args, self.template_signals, self.signal_in, self.signal_out), None, ast)
             self.template_signals = None
             self.signal_in = None
             self.signal_out = None
@@ -171,7 +174,7 @@ class TypeCheck(BaseVisitor):
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
             self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(
-                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func), None)
+                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func), None, ast)
             self.return_func = None
         else:
             self.in_function = True
@@ -269,20 +272,20 @@ class TypeCheck(BaseVisitor):
                 mtype = PrimeField()
             if self.count_visited == 0:
                 self.template_signals[ast.name] = mtype
-            param[0][ast.name] = Symbol(ast.name, mtype, xtype)
+            param[0][ast.name] = Symbol(ast.name, mtype, xtype, ast)
         elif isinstance(xtype, VarCircom):
             if len(ast.dimensions) > 0:
                 mtype = ArrayCircom(PrimeField(), len(ast.dimensions))
             else:
                 mtype = PrimeField()
-            param[0][ast.name] = Symbol(ast.name, mtype, xtype)
+            param[0][ast.name] = Symbol(ast.name, mtype, xtype, ast)
         elif isinstance(xtype, ComponentCircom):
             template_type = TemplateCircom("", None)
             if len(ast.dimensions) > 0:
                 mtype = ArrayCircom(template_type, len(ast.dimensions))
             else:
                 mtype = template_type
-            param[0][ast.name] = Symbol(ast.name, mtype, xtype)
+            param[0][ast.name] = Symbol(ast.name, mtype, xtype, ast)
 
     def visitSubstitution(self, ast: Substitution, param):
         symbol = None
