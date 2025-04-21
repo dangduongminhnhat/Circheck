@@ -25,8 +25,7 @@ class SignalType(Enum):
 
 
 class PrimeField(Type):
-    def __init__(self, is_known=True):
-        self.is_known = is_known
+    pass
 
 
 class SignalCircom(Type):

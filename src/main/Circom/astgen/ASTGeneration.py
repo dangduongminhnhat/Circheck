@@ -172,7 +172,7 @@ class ASTGeneration(CircomVisitor):
             variable = self.visit(ctx.variable())
             return Substitution(FileLocation(self.file_name, ctx.start, ctx.stop), variable.name, variable.access, "=", InfixOp(FileLocation(self.file_name, ctx.start, ctx.stop), variable, op, Number(FileLocation(self.file_name, ctx.start, ctx.stop), 1)))
         elif ctx.ASSIGNMENT_WITH_OP():
-            op = ctx.ASSIGNMENT_WITH_OP().getText()[0]
+            op = ctx.ASSIGNMENT_WITH_OP().getText()[:-1]
             variable = self.visit(ctx.variable())
             return Substitution(FileLocation(self.file_name, ctx.start, ctx.stop), variable.name, variable.access, "=", InfixOp(FileLocation(self.file_name, ctx.start, ctx.stop), variable, op, self.visit(ctx.expression(0))))
         elif ctx.RIGHT_ASSIGNMENT() or ctx.RIGHT_CONSTRAINT():
