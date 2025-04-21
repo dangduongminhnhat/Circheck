@@ -191,6 +191,9 @@ class TypeCheck(BaseVisitor):
             for definition in ast.definitions:
                 self.visit(definition, param)
             self.count_visited += 1
+        if ast.main_component is None:
+            raise Report(ReportType.ERROR, ast.locate,
+                         "Main component not declared")
         self.visit(ast.main_component, param)
 
     def visitIfThenElse(self, ast: IfThenElse, param):
