@@ -172,6 +172,7 @@ class TypeCheck(BaseVisitor):
                 arg_list.append(env[0][arg].mtype)
             self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(
                 ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func), None)
+            self.return_func = None
         else:
             self.in_function = True
             self.no_block = True
@@ -192,7 +193,7 @@ class TypeCheck(BaseVisitor):
             self.count_visited += 1
         self.visit(ast.main_component, param)
 
-    def visitIfthenelse(self, ast: IfThenElse, param):
+    def visitIfThenElse(self, ast: IfThenElse, param):
         cond_type = self.visit(ast.cond, param)
         if isinstance(cond_type, TemplateCircom):
             raise Report(ReportType.ERROR, ast.cond.locate,
@@ -220,6 +221,8 @@ class TypeCheck(BaseVisitor):
             if isinstance(value_type, TemplateCircom):
                 raise Report(ReportType.ERROR, ast.value.locate,
                              "Must be a single arithmetic expression. Found component")
+            if self.return_func is None:
+                self.return_func = value_type
             if not is_same_type(value_type, self.return_func):
                 raise Report(ReportType.ERROR, ast.value.locate,
                              "Return type is not compatible with the function return type")
@@ -322,7 +325,8 @@ class TypeCheck(BaseVisitor):
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Must be a single arithmetic expression. Found component")
                 if not is_same_type(lhe_type, rhe_type):
-                    print("LHE", lhe_type, "RHE", rhe_type)
+                    print("lhe_type", lhe_type.dims, lhe_type.eleType)
+                    print("rhe_type", rhe_type.dims, rhe_type.eleType)
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Types of the two sides of the equality are not compatible")
             elif isinstance(symbol.xtype, ComponentCircom):
@@ -586,7 +590,7 @@ class TypeCheck(BaseVisitor):
             elif not is_same_type(first_type, type_list[i]):
                 raise Report(ReportType.ERROR, ast.values[i].locate,
                              "All elements in the array must be of the same type")
-        return ArrayCircom(first_type, len(ast.values))
+        return ArrayCircom(first_type, 1)
 
     def visitTupleExpr(self, ast: TupleExpr, param):
         return ast.values

@@ -30,7 +30,7 @@ class Visitor(ABC):
         pass
 
     @abstractmethod
-    def visitIfthenelse(self, param):
+    def visitIfThenElse(self, param):
         pass
 
     @abstractmethod
@@ -165,7 +165,7 @@ class BaseVisitor(Visitor):
     def visitProgram(self, param):
         return None
 
-    def visitIfthenelse(self, param):
+    def visitIfThenElse(self, param):
         return None
 
     def visitWhile(self, param):
