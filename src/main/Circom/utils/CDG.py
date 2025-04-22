@@ -1,6 +1,7 @@
 from enum import Enum, auto
 from dataclasses import dataclass
 from typing import Dict
+from StaticCheck import SignalType
 
 
 class NodeType(Enum):
@@ -17,12 +18,14 @@ class EdgeType(Enum):
 class Node:
     id: str
     type: NodeType
+    signal_type: SignalType
+    component: str
 
 
 @dataclass
 class Edge:
-    Nfrom: Node
-    Nto: Node
+    node_from: Node
+    node_to: Node
     edge_type: EdgeType
     name: str
 
