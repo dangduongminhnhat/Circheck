@@ -146,7 +146,7 @@ class CDGGeneration(BaseVisitor):
     def visitFunction(self, param):
         return None
 
-    def visitProgram(self, param):
+    def visitProgram(self, ast: Program, param):
         return None
 
     def visitIfThenElse(self, param):
@@ -162,8 +162,9 @@ class CDGGeneration(BaseVisitor):
         for stmt in ast.initializations:
             self.visit(stmt, param)
 
-    def visitDeclaration(self, param):
-        return None
+    def visitDeclaration(self, ast: Declaration, param):
+        TypeCheck(ast).visit(ast, param["env"])
+        xtype = self.visit(ast.xtype)
 
     def visitSubstitution(self, param):
         return None
@@ -205,8 +206,8 @@ class CDGGeneration(BaseVisitor):
     def visitComponent(self, ast: Component, param):
         return ComponentCircom()
 
-    def visitAnonymousComponent(self, param):
-        return None
+    def visitAnonymousComponent(self, ast: AnonymousComponent, param):
+        return AnonymousComponentCircom()
 
     def visitInfixOp(self, ast: InfixOp, param):
         lhe_val = self.visit(ast.lhe, param).value
@@ -322,16 +323,18 @@ class CDGGeneration(BaseVisitor):
                         signal_type = SignalType.OUTPUT
                     var_type = var_type.signals[access_value]
                 else:
-                    if isinstance(var_type.eleType, TemplateCircom):
-                        value = value[access_value]
                     if var_type.dims == 1:
                         var_type = var_type.eleType
                     else:
                         var_type.dims -= 1
                     name += "[" + str(access_value) + "]"
-            if name not in param["node"]:
+            if template_name and name not in param["node"]:
                 param["node"][name] = Node(
                     name, NodeType.SIGNAL, signal_type, template_name)
+                param["component"][template_name][signal_type].append(name)
+                return Symbol(name, var_type, SignalType(signal_type), ast, None)
+            else:
+                return Symbol(name, var_type, ComponentCircom(), ast, None)
         elif isinstance(symbol.xtype, SignalCircom):
             for i in range(len(ast.access)):
                 access_value = self.visit(ast.access[i], param["env"])
@@ -343,6 +346,8 @@ class CDGGeneration(BaseVisitor):
             if name not in param["node"]:
                 param["node"][name] = Node(
                     name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
+                param["component"][param["name"]
+                                   ][symbol.xtype.signal_type].append(name)
             return Symbol(name, var_type, symbol.xtype, ast, value)
 
     def visitNumber(self, ast: Number, param):
@@ -361,8 +366,8 @@ class CDGGeneration(BaseVisitor):
             values.append(value)
         return values
 
-    def visitTupleExpr(self, param):
-        return None
+    def visitTupleExpr(self, ast: TupleExpr, param):
+        return ast.values
 
     def visitComponentAccess(self, ast: ComponentAccess, param):
         return ast.name
@@ -378,4 +383,111 @@ class CDGGeneration(BaseVisitor):
         return None
 
     def visitLogExp(self, ast: LogExp, param):
+        return None
+
+
+class FindNode(BaseVisitor):
+    def visitFileLocation(self, param):
+        return None
+
+    def visitMainComponent(self, param):
+        return None
+
+    def visitInclude(self, param):
+        return None
+
+    def visitTemplate(self, param):
+        return None
+
+    def visitFunction(self, param):
+        return None
+
+    def visitProgram(self, param):
+        return None
+
+    def visitIfThenElse(self, param):
+        return None
+
+    def visitWhile(self, param):
+        return None
+
+    def visitReturn(self, param):
+        return None
+
+    def visitInitializationBlock(self, param):
+        return None
+
+    def visitDeclaration(self, param):
+        return None
+
+    def visitSubstitution(self, param):
+        return None
+
+    def visitMultiSubstitution(self, param):
+        return None
+
+    def visitConstraintEquality(self, param):
+        return None
+
+    def visitLogCall(self, param):
+        return None
+
+    def visitBlock(self, param):
+        return None
+
+    def visitAssert(self, param):
+        return None
+
+    def visitVar(self, param):
+        return None
+
+    def visitSignal(self, param):
+        return None
+
+    def visitComponent(self, param):
+        return None
+
+    def visitAnonymousComponent(self, param):
+        return None
+
+    def visitInfixOp(self, param):
+        return None
+
+    def visitPrefixOp(self, param):
+        return None
+
+    def visitInlineSwitchOp(self, param):
+        return None
+
+    def visitParrallelOp(self, param):
+        return None
+
+    def visitVariable(self, param):
+        return None
+
+    def visitNumber(self, param):
+        return None
+
+    def visitCall(self, param):
+        return None
+
+    def visitAnonymousComponentExpr(self, param):
+        return None
+
+    def visitArrayInLine(self, param):
+        return None
+
+    def visitTupleExpr(self, param):
+        return None
+
+    def visitComponentAccess(self, param):
+        return None
+
+    def visitArrayAccess(self, param):
+        return None
+
+    def visitLogStr(self, param):
+        return None
+
+    def visitLogExp(self, param):
         return None
