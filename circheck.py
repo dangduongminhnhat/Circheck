@@ -2,8 +2,14 @@ from antlr4 import *
 import sys
 import os
 import traceback
-locpath = ['./src/main/Circom/parser/', './src/main/Circom/astgen/',
-           './src/main/Circom/typecheck/', './src/main/Circom/utils/', "./target/"]
+locpath = [
+    './src/main/Circom/parser/',
+    './src/main/Circom/astgen/',
+    './src/main/Circom/typecheck/',
+    './src/main/Circom/utils/',
+    './src/main/Circom/cdggen/',
+    "./target/"
+]
 
 for p in locpath:
     if not p in sys.path:
@@ -61,27 +67,38 @@ def typecheck(ast):
     return checked.global_env
 
 
+def generate_cdg(ast, param):
+    from CDGGeneration import CDGGeneration
+    try:
+        graphs = CDGGeneration(ast, param).generateCDG()
+        return graphs
+    except Exception as e:
+        traceback.print_exc()
+        print(e)
+        return None
+
+
 def main():
     input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
     base_dir = os.path.dirname(os.path.abspath(__file__))
     absolute_path = os.path.abspath(os.path.join(base_dir, input_file))
     ast = generate_ast(absolute_path)
     if ast is None:
-        print("[Error]  Failed to generate AST.")
+        print("[Error]      Failed to generate AST.")
         return
     file = open("text.txt", "wb")
     file.write(str(ast).encode("utf-8"))
     file.close()
-    print("[AST]    AST generated successfully.")
+    print("[Success]    AST generated successfully.")
 
     checked = typecheck(ast)
     if checked is None:
-        print("[Error]  Type checking failed.")
+        print("[Error]      Type checking failed.")
         return
-    print("[Type]   Type checking passed.")
+    print("[Success]    Type checking passed.")
 
-    # for k, v in checked[0].items():
-    #     print(f"{k}: {v}")
+    graphs = generate_cdg(ast, checked)
+    print(graphs)
 
 
 if __name__ == "__main__":

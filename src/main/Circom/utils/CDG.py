@@ -14,12 +14,14 @@ class EdgeType(Enum):
     CONSTRAINT = auto()
 
 
-@dataclass
 class Node:
-    id: str
-    type: NodeType
-    signal_type: SignalType
-    component: str
+    def __init__(self, id, node_type, signal_type, component):
+        self.id = id
+        self.node_type = node_type
+        self.signal_type = signal_type
+        self.component = component
+        self.data_node = []
+        self.constraint_node = []
 
 
 @dataclass
@@ -31,7 +33,7 @@ class Edge:
 
 
 class CircuitDependenceGraph:
-    def __init__(self):
-        self.edges: Dict[str, Edge] = {}
-        self.signal_nodes: Dict[str, Node] = {}
-        self.constant_nodes: Dict[str, Node] = {}
+    def __init__(self, edges, nodes, name):
+        self.edges = edges
+        self.nodes = nodes
+        self.name = name

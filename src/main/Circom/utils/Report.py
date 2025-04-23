@@ -27,7 +27,7 @@ class Report(Exception):
             location_str = f"{path}:{line}:{col}"
         else:
             location_str = path
-        return f"{prefix:<9}  In {location_str}\n{' ' * 9}{self.message}"
+        return f"{prefix:<13}  In {location_str}\n{' ' * 9}{self.message}"
 
     def show(self):
         print(self.__str__())

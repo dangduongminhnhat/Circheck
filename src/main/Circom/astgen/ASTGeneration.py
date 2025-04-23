@@ -13,7 +13,7 @@ sys.setrecursionlimit(3000)
 
 class ASTGeneration(CircomVisitor):
     def generate_ast(self, filename, tree, path_env):
-        print("[Info]   Generating AST for:", filename)
+        print("[Info]       Generating AST for:", filename)
         self.file_name = filename
         ast_tree = self.visit(tree)
         base_dir = os.path.dirname(filename)

@@ -30,7 +30,7 @@ class PrimeField(Type):
 
 class SignalCircom(Type):
     def __init__(self, signal_type):
-        self.sinal_type = signal_type
+        self.signal_type = signal_type
 
 
 class VarCircom(Type):
@@ -261,9 +261,9 @@ class TypeCheck(BaseVisitor):
                 if ast.name in self.template_signals:
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Signal '{ast.name}' already declared")
-                if xtype.sinal_type == SignalType.INPUT:
+                if xtype.signal_type == SignalType.INPUT:
                     self.signal_in.append(ast.name)
-                elif xtype.sinal_type == SignalType.OUTPUT:
+                elif xtype.signal_type == SignalType.OUTPUT:
                     self.signal_out.append(ast.name)
             if len(ast.dimensions) > 0:
                 mtype = ArrayCircom(PrimeField(), len(ast.dimensions))
@@ -310,7 +310,7 @@ class TypeCheck(BaseVisitor):
                     symbol = env[ast.var]
                     break
             if isinstance(symbol.xtype, SignalCircom):
-                if symbol.xtype.sinal_type == SignalType.INPUT:
+                if symbol.xtype.signal_type == SignalType.INPUT:
                     raise Report(ReportType.ERROR, ast.locate,
                                  "Cannot assign to an input signal")
                 if ast.op == "=":
@@ -586,7 +586,7 @@ class TypeCheck(BaseVisitor):
         return_tuple = []
         for name in template_type.signals_out:
             return_tuple.append(template_type.signals[name])
-        return return_tuple
+        return return_tuple if len(return_tuple) > 1 else return_tuple[0]
 
     def visitArrayInLine(self, ast: ArrayInLine, param):
         type_list = []

@@ -132,40 +132,96 @@ def create_nested_array(dimensions):
 
 
 class CDGGeneration(BaseVisitor):
-    def __init__(self, ast: AST, param):
+    def __init__(self, ast: AST, env):
         self.graphs = {}
-        self.remaining = {}
+        self.remaining = []
         self.ast = ast
         self.in_template = False
-        self.support_env = {
-            "env": param,
-            "component": {},
-            "node": {},
-            "name": {},
-        }
+        # self.support_env = {
+        #     "env": env,
+        #     "component": {},
+        #     "node": {},
+        #     "name": {},
+        #     "edge": {},
+        #     "args": {}
+        # }
+        self.env = env
         self.temp_component = 0
+
+    def generateCDG(self):
+        self.visit(self.ast, {})
+        return self.graphs
 
     def getComponentName(self):
         self.temp_component += 1
         return f"temp_comp[{self.temp_component}"
 
+    def getEdgeName(self, edge_type, nFrom, nTo):
+        if edge_type == EdgeType.DATA:
+            return f"data:{nFrom}-{nTo}"
+        else:
+            return f"constraint:{nFrom}-{nTo}"
+
+    def getGraphName(self, template_name, template_args, args):
+        name = template_name
+        for i in range(len(args)):
+            name += "@" + template_args[i] + "=" + str(args[i])
+        return name
+
     def visitFileLocation(self, ast: FileLocation, param):
         return None
 
-    def visitMainComponent(self, param):
-        return None
+    def visitMainComponent(self, ast: MainComponent, param):
+        param = {
+            "env": self.env
+        }
+        self.remaining.append(self.visit(ast.expr, param))
+        while len(self.remaining) > 0:
+            template_type, args = self.remaining[0]
+            self.remaining = self.remaining[1:]
+            support_env = {
+                "env": self.env,
+                "component": {},
+                "node": {},
+                "name": "",
+                "edge": {},
+                "args": args
+            }
+            template_name = template_type.name.split("@")[0]
+            template_ast = self.env[0][template_name].ast
+            self.visit(template_ast, support_env)
 
     def visitInclude(self, ast: Include, param):
         return None
 
-    def visitTemplate(self, param):
-        return None
+    def visitTemplate(self, ast: Template, param):
+        args = param["args"]
+        graph_name = self.getGraphName(ast.name_field, ast.args, args)
+        if graph_name in self.graphs:
+            return None
+        param["name"] = graph_name
+        print(
+            f"[Info]       Creating CDG: name={graph_name}, path={ast.locate.path}")
+        param["env"] = [{}] + param["env"]
+        param["component"][graph_name] = {
+            SignalType.INPUT: [],
+            SignalType.OUTPUT: [],
+            SignalType.INTERMEDIATE: []
+        }
+        for i in range(len(ast.args)):
+            param["env"][0][ast.args[i]] = Symbol(
+                ast.args[i], PrimeField(), VarCircom(), ast, args[i])
+        self.in_template = True
+        self.visit(ast.body, param)
+        self.in_template = False
+        self.graphs[graph_name] = CircuitDependenceGraph(
+            param["edge"], param["node"], graph_name)
 
-    def visitFunction(self, param):
+    def visitFunction(self, ast: Function, param):
         return None
 
     def visitProgram(self, ast: Program, param):
-        return None
+        self.visit(ast.main_component, param)
 
     def visitIfThenElse(self, ast: IfThenElse, param):
         cond_type = self.visit(ast.cond, param).value
@@ -180,7 +236,7 @@ class CDGGeneration(BaseVisitor):
     def visitWhile(self, ast: While, param):
         cond_type = self.visit(ast.cond, param).value
         if cond_type is None:
-            raise Report(ReportType, ast.cond.locate,
+            raise Report(ReportType.ERROR, ast.cond.locate,
                          "Condition Type is None.")
         while cond_type:
             self.visit(ast.stmt, param)
@@ -194,8 +250,10 @@ class CDGGeneration(BaseVisitor):
             self.visit(stmt, param)
 
     def visitDeclaration(self, ast: Declaration, param):
-        TypeCheck(ast).visit(ast, param["env"])
-        xtype = self.visit(ast.xtype)
+        checked = TypeCheck(ast)
+        checked.count_visited = 1
+        checked.visit(ast, param["env"])
+        xtype = self.visit(ast.xtype, param)
         dimensions = []
         for dim in ast.dimensions:
             val = self.visit(dim, param).value
@@ -226,7 +284,7 @@ class CDGGeneration(BaseVisitor):
             else:
                 param["node"][name] = Node(name, NodeType.CONSTANT, None, None)
 
-    def visitSubstitution(self, ast: Substituition, param):
+    def visitSubstitution(self, ast: Substitution, param):
         if ast.var == "_":
             return None
         for env in param["env"]:
@@ -237,7 +295,7 @@ class CDGGeneration(BaseVisitor):
             if isinstance(symbol.xtype, VarCircom):
                 value = symbol.value
                 rhe_value = self.visit(ast.rhe, param).value
-                if rhe_value:
+                if rhe_value is not None:
                     if len(ast.access) > 0:
                         for i in range(len(ast.access) - 1):
                             access_val = self.visit(ast.access[i], param)
@@ -247,15 +305,78 @@ class CDGGeneration(BaseVisitor):
                     else:
                         symbol.value = rhe_value
             elif isinstance(symbol.xtype, ComponentCircom):
-                pass
+                template_type, args = self.visit(ast.rhe, param)
+                value = symbol.value
+                if isinstance(symbol.mtype, ArrayCircom):
+                    symbol.mtype.eleType = template_type
+                else:
+                    symbol.mtype = template_type
+                graph_name = self.getGraphName(
+                    template_type.name, template_type.params, args)
+                if len(ast.access) > 0:
+                    for i in range(len(ast.access) - 1):
+                        access_val = self.visit(ast.access[i], param)
+                        value = value[access_val]
+                    last_access = self.visit(ast.access[-1], param)
+                    value[last_access] = TemplateCircom(
+                        graph_name, template_type.params, template_type.signals, template_type.signals_in, template_type.signals_out)
+                    append_template = value[last_access]
+                else:
+                    symbol.value = TemplateCircom(
+                        graph_name, template_type.params, template_type.signals, template_type.signals_in, template_type.signals_out)
+                    append_template = symbol.value
+                if not graph_name in param["component"]:
+                    param["component"][graph_name] = {
+                        SignalType.INPUT: [],
+                        SignalType.OUTPUT: [],
+                        SignalType.INTERMEDIATE: []
+                    }
+                self.remaining.append((append_template, args))
         else:
-            pass
+            lhe = Variable(ast.locate, ast.var, ast.access)
+            name = self.visit(lhe, param).name
+            self.visit(ast.rhe, param)
+            contains = FindNode().visit(ast.rhe, param)
+            if "==" in ast.op:
+                edge_type = EdgeType.CONSTRAINT
+            else:
+                edge_type = EdgeType.DATA
+            for fNode in contains:
+                edge_name = self.getEdgeName(edge_type, fNode, name)
+                if edge_name not in param["edge"]:
+                    param["edge"][edge_name] = Edge(
+                        param["node"][fNode], param["node"][name], edge_type, edge_name)
+                    param["node"][fNode].data_node.append(name)
+            if edge_type == EdgeType.CONSTRAINT:
+                self.visit(ConstraintEquality(ast.locate, lhe, ast.rhe), param)
 
-    def visitMultiSubstitution(self, param):
-        return None
+    def visitMultiSubstitution(self, ast: MultiSubstitution, param):
+        lhe_value = self.visit(ast.lhe, param)
+        rhe_value = self.visit(ast.rhe, param)
+        for i in range(len(lhe_value)):
+            self.visit(Substitution(
+                ast.locate, lhe_value[i].var, lhe_value[i].access, ast.op, rhe_value[i]))
 
-    def visitConstraintEquality(self, param):
-        return None
+    def visitConstraintEquality(self, ast: ConstraintEquality, param):
+        self.visit(ast.lhe, param)
+        self.visit(ast.rhe, param)
+        find_node = FindNode()
+        lhe_node = find_node.visit(ast.lhe, param)
+        rhe_node = find_node.visit(ast.rhe, param)
+        for lnode in lhe_node:
+            for rnode in rhe_node:
+                if lnode == rnode:
+                    continue
+                edge_name = self.getEdgeName(EdgeType.CONSTRAINT, lnode, rnode)
+                if edge_name not in param["edge"]:
+                    param["edge"][edge_name] = Edge(
+                        param["node"][lnode], param["node"][rnode], EdgeType.CONSTRAINT, edge_name)
+                    param["node"][lnode].constraint_node.append(rnode)
+                edge_name = self.getEdgeName(EdgeType.CONSTRAINT, rnode, lnode)
+                if edge_name not in param["edge"]:
+                    param["edge"][edge_name] = Edge(
+                        param["node"][rnode], param["node"][lnode], EdgeType.CONSTRAINT, edge_name)
+                    param["node"][rnode].constraint_node.append(lnode)
 
     def visitLogCall(self, ast: LogCall, param):
         return None
@@ -394,31 +515,29 @@ class CDGGeneration(BaseVisitor):
             return Symbol("", var_type, VarCircom(), ast, value)
         elif isinstance(symbol.xtype, ComponentCircom):
             template_name = None
+            is_access = True
             for i in range(len(ast.access)):
                 access_value = self.visit(ast.access[i], param)
                 if isinstance(access_value, str):
                     name += "." + access_value
-                    template_name = var_type.name
+                    template_name = value.name
                     if access_value in var_type.signals_in:
                         signal_type = SignalType.INPUT
                     else:
                         signal_type = SignalType.OUTPUT
                     var_type = var_type.signals[access_value]
+                    is_access = False
                 else:
                     if var_type.dims == 1:
                         var_type = var_type.eleType
                     else:
                         var_type.dims -= 1
                     name += "[" + str(access_value) + "]"
+                    if is_access:
+                        value = value[access_value]
             if template_name and name not in param["node"]:
                 param["node"][name] = Node(
                     name, NodeType.SIGNAL, signal_type, template_name)
-                if template_name not in param["component"]:
-                    param["component"][template_name] = {
-                        SignalType.INPUT: [],
-                        SignalType.OUTPUT: [],
-                        SignalType.INTERMEDIATE: []
-                    }
                 param["component"][template_name][signal_type].append(name)
                 return Symbol(name, var_type, SignalType(signal_type), ast, None)
             else:
@@ -436,7 +555,7 @@ class CDGGeneration(BaseVisitor):
                     name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
                 param["component"][param["name"]
                                    ][symbol.xtype.signal_type].append(name)
-            return Symbol(name, var_type, symbol.xtype, ast, value)
+            return Symbol(name, var_type, symbol.xtype, ast, None)
 
     def visitNumber(self, ast: Number, param):
         return Symbol("", PrimeField(), None, ast, ast.value)
@@ -470,16 +589,24 @@ class CDGGeneration(BaseVisitor):
                 break
         if ast.names and ast.names[0]:
             for i in range(len(ast.name)):
-                pass
+                op, name = ast.names[i]
+                self.visit(Substitution(ast.locate, component_name,
+                           [name], "<==", ast.signals[i]), param)
         else:
-            pass
+            for i in range(len(ast.signals)):
+                self.visit(Substituition(ast.locate, component_name, [
+                           symbol.mtype.signals_in[i]], "<==", ast.signals[i]), param)
+        return_tuple = []
+        for name in symbol.mtype.signals_out:
+            return_tuple.append(Variable(component_name, [name]))
+        return return_tuple if len(return_tuple) > 1 else return_tuple[0]
 
     def visitArrayInLine(self, ast: ArrayInLine, param):
         values = []
         for expr in ast.values:
             value = self.visit(expr, param).value
             values.append(value)
-        return values
+        return Symbol("", ArrayCircom(1, PrimeField()), VarCircom(), ast, values)
 
     def visitTupleExpr(self, ast: TupleExpr, param):
         return ast.values
@@ -509,23 +636,22 @@ class FindNode(BaseVisitor):
     def visitPrefixOp(self, ast: PrefixOp, param):
         return self.visit(ast.rhe, param)
 
-    def visitInlineSwitchOp(self, ast: InlienSwitchOp, param):
+    def visitInlineSwitchOp(self, ast: InlineSwitchOp, param):
         return []
 
-    def visitParrallelOp(self, ast: ParrallelOp, param):
+    def visitParrallelOp(self, ast: ParallelOp, param):
         return self.visit(ast.rhe, param)
 
     def visitVariable(self, ast: Variable, param):
         name = ast.name
         temp = CDGGeneration(ast, param)
-        symbol = temp.visit(ast, param)
         for access in ast.access:
             val = temp.visit(access, param)
             if isinstance(val, str):
                 name += "." + val
             else:
                 name += "[" + str(val) + "]"
-        return [(name, symbol.xtype)]
+        return [name]
 
     def visitNumber(self, ast: Number, param):
         return []
