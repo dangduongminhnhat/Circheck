@@ -552,6 +552,14 @@ class TypeCheck(BaseVisitor):
         if template_type is None or not isinstance(template_type, TemplateCircom):
             raise Report(ReportType.ERROR, ast.locate,
                          f"Template '{ast.id}' not declared")
+        if len(ast.params) != len(template_type.params):
+            raise Report(ReportType.ERROR, ast.locate,
+                         "Don't have same size of params")
+        for par in ast.params:
+            param_type = self.visit(par, param)
+            if not isinstance(param_type, PrimeField):
+                raise Report(ReportType.ERROR, par.locate,
+                             "Type Mismatch in parameter")
         if ast.names and ast.names[0]:
             if len(ast.names) != len(template_type.signals_in):
                 raise Report(ReportType.ERROR, ast.locate,
@@ -564,15 +572,15 @@ class TypeCheck(BaseVisitor):
                 if name not in template_type.signals_in:
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Signal '{name}' is not an input signal")
-                if not is_same_type(template_type.signals[name], self.visit(ast.params[i])):
+                if not is_same_type(template_type.signals[name], self.visit(ast.signals[i], param)):
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Signal '{name}' type does not match the template '{ast.id}' input signal type")
         else:
-            if len(ast.params) != len(template_type.signals_in):
+            if len(ast.signals) != len(template_type.signals_in):
                 raise Report(ReportType.ERROR, ast.locate,
-                             f"Template '{ast.id}' has {len(template_type.signals_in)} input signals, but {len(ast.params)} were provided")
-            for i in range(len(ast.params)):
-                if not is_same_type(template_type.signals[template_type.signals_in[i]], self.visit(ast.params[i])):
+                             f"Template '{ast.id}' has {len(template_type.signals_in)} input signals, but {len(ast.signals)} were provided")
+            for i in range(len(ast.signals)):
+                if not is_same_type(template_type.signals[template_type.signals_in[i]], self.visit(ast.signals[i], param)):
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Signal '{template_type.signals_in[i]}' type does not match the template '{ast.id}' input signal type")
         return_tuple = []

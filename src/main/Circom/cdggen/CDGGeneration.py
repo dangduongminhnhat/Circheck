@@ -124,12 +124,30 @@ def circom_cond(condition: bool, true_val: Union[int, bool], false_val: Union[in
     return true_val if condition else false_val
 
 
+def create_nested_array(dimensions):
+    if not dimensions:
+        return None
+    size = dimensions[0]
+    return [create_nested_array(dimensions[1:]) for _ in range(size)]
+
+
 class CDGGeneration(BaseVisitor):
     def __init__(self, ast: AST, param):
         self.graphs = {}
         self.remaining = {}
         self.ast = ast
         self.in_template = False
+        self.support_env = {
+            "env": param,
+            "component": {},
+            "node": {},
+            "name": {},
+        }
+        self.temp_component = 0
+
+    def getComponentName(self):
+        self.temp_component += 1
+        return f"temp_comp[{self.temp_component}"
 
     def visitFileLocation(self, ast: FileLocation, param):
         return None
@@ -149,11 +167,24 @@ class CDGGeneration(BaseVisitor):
     def visitProgram(self, ast: Program, param):
         return None
 
-    def visitIfThenElse(self, param):
-        return None
+    def visitIfThenElse(self, ast: IfThenElse, param):
+        cond_type = self.visit(ast.cond, param).value
+        if cond_type is None:
+            raise Report(ReportType, ast.cond.locate,
+                         "Condition Type is None.")
+        if cond_type:
+            self.visit(ast.if_case, param)
+        elif ast.else_case:
+            self.visit(ast.else_case, param)
 
-    def visitWhile(self, param):
-        return None
+    def visitWhile(self, ast: While, param):
+        cond_type = self.visit(ast.cond, param).value
+        if cond_type is None:
+            raise Report(ReportType, ast.cond.locate,
+                         "Condition Type is None.")
+        while cond_type:
+            self.visit(ast.stmt, param)
+            cond_type = self.visit(ast.cond, param).value
 
     def visitReturn(self, ast: Return, param):
         return None
@@ -165,9 +196,60 @@ class CDGGeneration(BaseVisitor):
     def visitDeclaration(self, ast: Declaration, param):
         TypeCheck(ast).visit(ast, param["env"])
         xtype = self.visit(ast.xtype)
+        dimensions = []
+        for dim in ast.dimensions:
+            val = self.visit(dim, param).value
+            if val is None:
+                raise Report(ReportType.ERROR, ast.dimensions,
+                             "None value dims array.")
+            dimensions.append(val)
+        for env in param["env"]:
+            if ast.name in env:
+                symbol = env[ast.name]
+                break
+        symbol.value = create_nested_array(dimensions)
+        if isinstance(xtype, ComponentCircom):
+            return None
+        nodes = [ast.name]
+        for val in dimensions:
+            temp = []
+            for index in range(val):
+                for node in nodes:
+                    temp.append(node + "[" + str(index) + "]")
+            nodes = temp
+        for name in nodes:
+            if isinstance(xtype, SignalCircom):
+                param["node"][name] = Node(
+                    name, NodeType.SIGNAL, xtype.signal_type, param["name"])
+                param["component"][param["name"]
+                                   ][xtype.signal_type].append(name)
+            else:
+                param["node"][name] = Node(name, NodeType.CONSTANT, None, None)
 
-    def visitSubstitution(self, param):
-        return None
+    def visitSubstitution(self, ast: Substituition, param):
+        if ast.var == "_":
+            return None
+        for env in param["env"]:
+            if ast.var in env:
+                symbol = env[ast.var]
+                break
+        if ast.op == "=":
+            if isinstance(symbol.xtype, VarCircom):
+                value = symbol.value
+                rhe_value = self.visit(ast.rhe, param).value
+                if rhe_value:
+                    if len(ast.access) > 0:
+                        for i in range(len(ast.access) - 1):
+                            access_val = self.visit(ast.access[i], param)
+                            value = value[access_val]
+                        last_access = self.visit(ast.access[-1], param)
+                        value[last_access] = rhe_value
+                    else:
+                        symbol.value = rhe_value
+            elif isinstance(symbol.xtype, ComponentCircom):
+                pass
+        else:
+            pass
 
     def visitMultiSubstitution(self, param):
         return None
@@ -302,7 +384,7 @@ class CDGGeneration(BaseVisitor):
             var_type = symbol.mtype
         if isinstance(symbol.xtype, VarCircom):
             for i in range(len(ast.access)):
-                access_value = self.visit(ast.access[i], param["env"])
+                access_value = self.visit(ast.access[i], param)
                 if var_type.dims == 1:
                     var_type = var_type.eleType
                 else:
@@ -313,7 +395,7 @@ class CDGGeneration(BaseVisitor):
         elif isinstance(symbol.xtype, ComponentCircom):
             template_name = None
             for i in range(len(ast.access)):
-                access_value = self.visit(ast.access[i], param["env"])
+                access_value = self.visit(ast.access[i], param)
                 if isinstance(access_value, str):
                     name += "." + access_value
                     template_name = var_type.name
@@ -331,13 +413,19 @@ class CDGGeneration(BaseVisitor):
             if template_name and name not in param["node"]:
                 param["node"][name] = Node(
                     name, NodeType.SIGNAL, signal_type, template_name)
+                if template_name not in param["component"]:
+                    param["component"][template_name] = {
+                        SignalType.INPUT: [],
+                        SignalType.OUTPUT: [],
+                        SignalType.INTERMEDIATE: []
+                    }
                 param["component"][template_name][signal_type].append(name)
                 return Symbol(name, var_type, SignalType(signal_type), ast, None)
             else:
                 return Symbol(name, var_type, ComponentCircom(), ast, None)
         elif isinstance(symbol.xtype, SignalCircom):
             for i in range(len(ast.access)):
-                access_value = self.visit(ast.access[i], param["env"])
+                access_value = self.visit(ast.access[i], param)
                 if var_type.dims == 1:
                     var_type = var_type.eleType
                 else:
@@ -353,11 +441,38 @@ class CDGGeneration(BaseVisitor):
     def visitNumber(self, ast: Number, param):
         return Symbol("", PrimeField(), None, ast, ast.value)
 
-    def visitCall(self, param):
-        return None
+    def visitCall(self, ast: Call, param):
+        for env in param["env"]:
+            if ast.id in env:
+                symbol = env[ast.id]
+                break
+        if isinstance(symbol.mtype, TemplateCircom):
+            args = []
+            for arg in ast.args:
+                val = self.visit(arg, param).value
+                if val is None:
+                    raise Report(ReportType.ERROR, arg.locate,
+                                 "Arguement has None value.")
+                args.append(val)
+            return (symbol.mtype, args)
+        else:
+            return Symbol("", PrimeField(), VarCircom(), ast, None)
 
-    def visitAnonymousComponentExpr(self, param):
-        return None
+    def visitAnonymousComponentExpr(self, ast: AnonymousComponentExpr, param):
+        component_name = self.getComponentName()
+        self.visit(Declaration(ast.locate, Component(),
+                   component_name, [], True), param)
+        self.visit(Substitution(ast.locate, component_name, [],
+                   "=", Call(ast.locate, ast.id, ast.params)))
+        for env in param["env"]:
+            if ast.id in env:
+                symbol = env[ast.id]
+                break
+        if ast.names and ast.names[0]:
+            for i in range(len(ast.name)):
+                pass
+        else:
+            pass
 
     def visitArrayInLine(self, ast: ArrayInLine, param):
         values = []
@@ -386,108 +501,52 @@ class CDGGeneration(BaseVisitor):
         return None
 
 
+# Help Class to find Node in Expression
 class FindNode(BaseVisitor):
-    def visitFileLocation(self, param):
-        return None
+    def visitInfixOp(self, ast: InfixOp, param):
+        return self.visit(ast.lhe, param) + self.visit(ast.rhe, param)
 
-    def visitMainComponent(self, param):
-        return None
+    def visitPrefixOp(self, ast: PrefixOp, param):
+        return self.visit(ast.rhe, param)
 
-    def visitInclude(self, param):
-        return None
+    def visitInlineSwitchOp(self, ast: InlienSwitchOp, param):
+        return []
 
-    def visitTemplate(self, param):
-        return None
+    def visitParrallelOp(self, ast: ParrallelOp, param):
+        return self.visit(ast.rhe, param)
 
-    def visitFunction(self, param):
-        return None
+    def visitVariable(self, ast: Variable, param):
+        name = ast.name
+        temp = CDGGeneration(ast, param)
+        symbol = temp.visit(ast, param)
+        for access in ast.access:
+            val = temp.visit(access, param)
+            if isinstance(val, str):
+                name += "." + val
+            else:
+                name += "[" + str(val) + "]"
+        return [(name, symbol.xtype)]
 
-    def visitProgram(self, param):
-        return None
+    def visitNumber(self, ast: Number, param):
+        return []
 
-    def visitIfThenElse(self, param):
-        return None
+    def visitCall(self, ast: Call, param):
+        ans = []
+        for arg in ast.args:
+            ans += self.visit(arg, param)
+        return ans
 
-    def visitWhile(self, param):
-        return None
+    def visitAnonymousComponentExpr(self, ast: AnonymousComponent, param):
+        ans = []
+        for signal in ast.signals:
+            ans += self.visit(signal, param)
+        return ans
 
-    def visitReturn(self, param):
-        return None
+    def visitArrayInLine(self, ast: ArrayInLine, param):
+        return []
 
-    def visitInitializationBlock(self, param):
-        return None
-
-    def visitDeclaration(self, param):
-        return None
-
-    def visitSubstitution(self, param):
-        return None
-
-    def visitMultiSubstitution(self, param):
-        return None
-
-    def visitConstraintEquality(self, param):
-        return None
-
-    def visitLogCall(self, param):
-        return None
-
-    def visitBlock(self, param):
-        return None
-
-    def visitAssert(self, param):
-        return None
-
-    def visitVar(self, param):
-        return None
-
-    def visitSignal(self, param):
-        return None
-
-    def visitComponent(self, param):
-        return None
-
-    def visitAnonymousComponent(self, param):
-        return None
-
-    def visitInfixOp(self, param):
-        return None
-
-    def visitPrefixOp(self, param):
-        return None
-
-    def visitInlineSwitchOp(self, param):
-        return None
-
-    def visitParrallelOp(self, param):
-        return None
-
-    def visitVariable(self, param):
-        return None
-
-    def visitNumber(self, param):
-        return None
-
-    def visitCall(self, param):
-        return None
-
-    def visitAnonymousComponentExpr(self, param):
-        return None
-
-    def visitArrayInLine(self, param):
-        return None
-
-    def visitTupleExpr(self, param):
-        return None
-
-    def visitComponentAccess(self, param):
-        return None
-
-    def visitArrayAccess(self, param):
-        return None
-
-    def visitLogStr(self, param):
-        return None
-
-    def visitLogExp(self, param):
-        return None
+    def visitTupleExpr(self, ast: TupleExpr, param):
+        ans = []
+        for val in ast.values:
+            ans += self.visit(val, param)
+        return ans
