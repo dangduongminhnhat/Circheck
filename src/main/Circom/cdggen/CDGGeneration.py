@@ -137,16 +137,9 @@ class CDGGeneration(BaseVisitor):
         self.remaining = []
         self.ast = ast
         self.in_template = False
-        # self.support_env = {
-        #     "env": env,
-        #     "component": {},
-        #     "node": {},
-        #     "name": {},
-        #     "edge": {},
-        #     "args": {}
-        # }
         self.env = env
         self.temp_component = 0
+        self.comp_id = 0
 
     def generateCDG(self):
         self.visit(self.ast, {})
@@ -157,8 +150,8 @@ class CDGGeneration(BaseVisitor):
         return f"temp_comp[{self.temp_component}"
 
     def getEdgeName(self, edge_type, nFrom, nTo):
-        if edge_type == EdgeType.DATA:
-            return f"data:{nFrom}-{nTo}"
+        if edge_type == EdgeType.DEPEND:
+            return f"depend:{nFrom}-{nTo}"
         else:
             return f"constraint:{nFrom}-{nTo}"
 
@@ -187,7 +180,7 @@ class CDGGeneration(BaseVisitor):
                 "edge": {},
                 "args": args
             }
-            template_name = template_type.name.split("@")[0]
+            template_name = template_type.name.split("|")[0].split("@")[0]
             template_ast = self.env[0][template_name].ast
             self.visit(template_ast, support_env)
 
@@ -211,6 +204,8 @@ class CDGGeneration(BaseVisitor):
         for i in range(len(ast.args)):
             param["env"][0][ast.args[i]] = Symbol(
                 ast.args[i], PrimeField(), VarCircom(), ast, args[i])
+            param["node"][ast.args[i]] = Node(
+                ast.locate, ast.args[i], NodeType.CONSTANT, None, graph_name)
         self.in_template = True
         self.visit(ast.body, param)
         self.in_template = False
@@ -279,11 +274,12 @@ class CDGGeneration(BaseVisitor):
         for name in nodes:
             if isinstance(xtype, SignalCircom):
                 param["node"][name] = Node(
-                    name, NodeType.SIGNAL, xtype.signal_type, param["name"])
+                    ast.locate, name, NodeType.SIGNAL, xtype.signal_type, param["name"])
                 param["component"][param["name"]
                                    ][xtype.signal_type].append(name)
             else:
-                param["node"][name] = Node(name, NodeType.CONSTANT, None, None)
+                param["node"][name] = Node(
+                    ast.locate, name, NodeType.CONSTANT, None, param["name"])
 
     def visitSubstitution(self, ast: Substitution, param):
         if ast.var == "_":
@@ -305,6 +301,17 @@ class CDGGeneration(BaseVisitor):
                         value[last_access] = rhe_value
                     else:
                         symbol.value = rhe_value
+                edge_type = EdgeType.DEPEND
+                contains = FindNode().visit(ast.rhe, param)
+                lhe = Variable(ast.locate, ast.var, ast.access)
+                name = self.visit(lhe, param).name
+                for fNode in contains:
+                    edge_name = self.getEdgeName(edge_type, fNode, name)
+                    if edge_name not in param["edge"]:
+                        edge = param["edge"][edge_name] = Edge(
+                            param["node"][fNode], param["node"][name], edge_type, edge_name)
+                        param["node"][fNode].flow_to.append(edge)
+                        param["node"][name].flow_from.append(edge)
             elif isinstance(symbol.xtype, ComponentCircom):
                 template_type, args = self.visit(ast.rhe, param)
                 value = symbol.value
@@ -313,7 +320,8 @@ class CDGGeneration(BaseVisitor):
                 else:
                     symbol.mtype = template_type
                 graph_name = self.getGraphName(
-                    template_type.name, template_type.params, args)
+                    template_type.name, template_type.params, args) + "|id=" + str(self.comp_id)
+                self.comp_id += 1
                 if len(ast.access) > 0:
                     for i in range(len(ast.access) - 1):
                         access_val = self.visit(ast.access[i], param)
@@ -341,15 +349,14 @@ class CDGGeneration(BaseVisitor):
             if "==" in ast.op:
                 edge_type = EdgeType.CONSTRAINT
             else:
-                edge_type = EdgeType.DATA
+                edge_type = EdgeType.DEPEND
             for fNode in contains:
                 edge_name = self.getEdgeName(edge_type, fNode, name)
                 if edge_name not in param["edge"]:
-                    param["edge"][edge_name] = Edge(
+                    edge = param["edge"][edge_name] = Edge(
                         param["node"][fNode], param["node"][name], edge_type, edge_name)
-                    param["node"][fNode].data_node.append(name)
-            if edge_type == EdgeType.CONSTRAINT:
-                self.visit(ConstraintEquality(ast.locate, lhe, ast.rhe), param)
+                    param["node"][fNode].flow_to.append(edge)
+                    param["node"][name].flow_from.append(edge)
 
     def visitMultiSubstitution(self, ast: MultiSubstitution, param):
         lhe_value = self.visit(ast.lhe, param)
@@ -370,14 +377,16 @@ class CDGGeneration(BaseVisitor):
                     continue
                 edge_name = self.getEdgeName(EdgeType.CONSTRAINT, lnode, rnode)
                 if edge_name not in param["edge"]:
-                    param["edge"][edge_name] = Edge(
+                    edge = param["edge"][edge_name] = Edge(
                         param["node"][lnode], param["node"][rnode], EdgeType.CONSTRAINT, edge_name)
-                    param["node"][lnode].constraint_node.append(rnode)
+                    param["node"][lnode].flow_to.append(edge)
+                    param["node"][rnode].flow_from.append(edge)
                 edge_name = self.getEdgeName(EdgeType.CONSTRAINT, rnode, lnode)
                 if edge_name not in param["edge"]:
-                    param["edge"][edge_name] = Edge(
+                    edge = param["edge"][edge_name] = Edge(
                         param["node"][rnode], param["node"][lnode], EdgeType.CONSTRAINT, edge_name)
-                    param["node"][rnode].constraint_node.append(lnode)
+                    param["node"][rnode].flow_to.append(edge)
+                    param["node"][lnode].flow_from.append(edge)
 
     def visitLogCall(self, ast: LogCall, param):
         return None
@@ -513,7 +522,11 @@ class CDGGeneration(BaseVisitor):
                     var_type.dims -= 1
                 if value:
                     value = value[access_value]
-            return Symbol("", var_type, VarCircom(), ast, value)
+                name += "[" + str(access_value) + "]"
+            if name not in param["node"]:
+                param["node"][name] = Node(
+                    ast.locate, name, NodeType.CONSTANT, None, param["name"])
+            return Symbol(name, var_type, VarCircom(), ast, value)
         elif isinstance(symbol.xtype, ComponentCircom):
             template_name = None
             is_access = True
@@ -538,7 +551,7 @@ class CDGGeneration(BaseVisitor):
                         value = value[access_value]
             if template_name and name not in param["node"]:
                 param["node"][name] = Node(
-                    name, NodeType.SIGNAL, signal_type, template_name)
+                    ast.locate, name, NodeType.SIGNAL, signal_type, template_name)
                 param["component"][template_name][signal_type].append(name)
                 return Symbol(name, var_type, SignalType(signal_type), ast, None)
             else:
@@ -553,7 +566,7 @@ class CDGGeneration(BaseVisitor):
                 name += "[" + str(access_value) + "]"
             if name not in param["node"]:
                 param["node"][name] = Node(
-                    name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
+                    ast.locate, name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
                 param["component"][param["name"]
                                    ][symbol.xtype.signal_type].append(name)
             return Symbol(name, var_type, symbol.xtype, ast, None)
@@ -576,6 +589,8 @@ class CDGGeneration(BaseVisitor):
                 args.append(val)
             return (symbol.mtype, args)
         else:
+            for arg in ast.args:
+                self.visit(arg, param)
             return Symbol("", PrimeField(), VarCircom(), ast, None)
 
     def visitAnonymousComponentExpr(self, ast: AnonymousComponentExpr, param):
@@ -631,6 +646,8 @@ class CDGGeneration(BaseVisitor):
 
 # Help Class to find Node in Expression
 class FindNode(BaseVisitor):
+    node_number = 0
+
     def visitInfixOp(self, ast: InfixOp, param):
         return self.visit(ast.lhe, param) + self.visit(ast.rhe, param)
 
@@ -655,7 +672,11 @@ class FindNode(BaseVisitor):
         return [name]
 
     def visitNumber(self, ast: Number, param):
-        return []
+        name = "Number[" + str(FindNode.node_number)
+        FindNode.node_number += 1
+        param["node"][name] = Node(
+            ast.locate, name, NodeType.CONSTANT, None, param["name"])
+        return [name]
 
     def visitCall(self, ast: Call, param):
         ans = []

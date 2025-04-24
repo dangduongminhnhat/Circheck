@@ -1,3 +1,5 @@
+from functools import wraps
+import time
 from antlr4 import *
 import sys
 import os
@@ -8,12 +10,24 @@ locpath = [
     './src/main/Circom/typecheck/',
     './src/main/Circom/utils/',
     './src/main/Circom/cdggen/',
+    './src/main/Circom/detect/',
     "./target/"
 ]
 
 for p in locpath:
     if not p in sys.path:
         sys.path.append(p)
+
+
+def timeit(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"[Timeit]     Analysis completed in {(end - start):.2f} s")
+        return result
+    return wrapper
 
 
 def generate_ast(filename):
@@ -78,17 +92,12 @@ def generate_cdg(ast, param):
         return None
 
 
-def main():
-    input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    absolute_path = os.path.abspath(os.path.join(base_dir, input_file))
+@timeit
+def detect(absolute_path):
     ast = generate_ast(absolute_path)
     if ast is None:
         print("[Error]      Failed to generate AST.")
         return
-    file = open("text.txt", "wb")
-    file.write(str(ast).encode("utf-8"))
-    file.close()
     print("[Success]    AST generated successfully.")
 
     checked = typecheck(ast)
@@ -98,7 +107,19 @@ def main():
     print("[Success]    Type checking passed.")
 
     graphs = generate_cdg(ast, checked)
-    print(graphs)
+    if graphs is None:
+        print("[Error]      Created CDG failed.")
+        return
+    print("[Success]    CDG created successfully.")
+    from Detect import Detector
+    Detector(graphs).detect()
+
+
+def main():
+    input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    absolute_path = os.path.abspath(os.path.join(base_dir, input_file))
+    detect(absolute_path)
 
 
 if __name__ == "__main__":
