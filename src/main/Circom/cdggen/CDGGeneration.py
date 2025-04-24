@@ -201,7 +201,7 @@ class CDGGeneration(BaseVisitor):
             return None
         param["name"] = graph_name
         print(
-            f"[Info]       Creating CDG: name={graph_name}, path={ast.locate.path}")
+            f"[Info]       Creating CDG: name = {graph_name}, path = {ast.locate.path}")
         param["env"] = [{}] + param["env"]
         param["component"][graph_name] = {
             SignalType.INPUT: [],
@@ -215,7 +215,8 @@ class CDGGeneration(BaseVisitor):
         self.visit(ast.body, param)
         self.in_template = False
         self.graphs[graph_name] = CircuitDependenceGraph(
-            param["edge"], param["node"], graph_name)
+            param["edge"], param["node"], graph_name, param["component"])
+        self.graphs[graph_name].build_graph()
 
     def visitFunction(self, ast: Function, param):
         return None
