@@ -117,11 +117,17 @@ def detect(absolute_path):
     file = open("report.json", "w", encoding="utf-8")
     output = {}
     for graph in graphs.values():
-        output[graph.name] = {}
+        has_report = False
         for report_list in reports[graph.name].values():
             for report in report_list:
+                has_report = True
                 report.show()
+        if not has_report:
+            continue
+        output[graph.name] = {}
         for vul in reports[graph.name].keys():
+            if len(reports[graph.name][vul]) == 0:
+                continue
             output[graph.name][vul] = {}
             for report in reports[graph.name][vul]:
                 path = report.location.path

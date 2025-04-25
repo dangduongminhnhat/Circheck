@@ -180,7 +180,8 @@ class CDGGeneration(BaseVisitor):
                 "node": {},
                 "name": "",
                 "edge": {},
-                "args": args
+                "args": args,
+                "var": {}
             }
             template_name = template_type.name.split("|")[0].split("@")[0]
             template_ast = self.env[0][template_name].ast
@@ -206,8 +207,11 @@ class CDGGeneration(BaseVisitor):
         for i in range(len(ast.args)):
             param["env"][0][ast.args[i]] = Symbol(
                 ast.args[i], PrimeField(), VarCircom(), ast, args[i])
-            param["node"][ast.args[i]] = Node(
-                ast.locate, ast.args[i], NodeType.CONSTANT, None, graph_name)
+            arg_name = ast.args[i]
+            param["var"][arg_name] = 0
+            arg_name += "[var0"
+            param["node"][arg_name] = Node(
+                ast.locate, arg_name, NodeType.CONSTANT, None, graph_name)
         self.in_template = True
         self.visit(ast.body, param)
         self.in_template = False
@@ -279,6 +283,8 @@ class CDGGeneration(BaseVisitor):
                 param["component"][param["name"]
                                    ][xtype.signal_type].append(name)
             else:
+                param["var"][name] = 0
+                name += "[var0"
                 param["node"][name] = Node(
                     ast.locate, name, NodeType.CONSTANT, None, param["name"])
 
@@ -305,8 +311,16 @@ class CDGGeneration(BaseVisitor):
                 edge_type = EdgeType.DEPEND
                 contains = FindNode().visit(ast.rhe, param)
                 lhe = Variable(ast.locate, ast.var, ast.access)
+                mtype = TypeCheck(ast).visit(lhe, param["env"])
+                if not isinstance(mtype, ArrayCircom):
+                    lhe_var = FindNode().visit(lhe, param)[0]
+                    param["var"][lhe_var] += 1
                 name = self.visit(lhe, param).name
                 for fNode in contains:
+                    if fNode in param["var"]:
+                        fNode += "[var" + str(param["var"][fNode])
+                    if fNode == name:
+                        continue
                     edge_name = self.getEdgeName(edge_type, fNode, name)
                     if edge_name not in param["edge"]:
                         edge = param["edge"][edge_name] = Edge(
@@ -352,6 +366,8 @@ class CDGGeneration(BaseVisitor):
             else:
                 edge_type = EdgeType.DEPEND
             for fNode in contains:
+                if fNode in param["var"]:
+                    fNode += "[var" + str(param["var"][fNode])
                 if fNode == name:
                     continue
                 edge_name = self.getEdgeName(edge_type, fNode, name)
@@ -383,6 +399,10 @@ class CDGGeneration(BaseVisitor):
         rhe_node = find_node.visit(ast.rhe, param)
         for lnode in lhe_node:
             for rnode in rhe_node:
+                if lnode in param["var"]:
+                    lnode += "[var" + str(param["var"][lnode])
+                if rnode in param["var"]:
+                    rnode += "[var" + str(param["var"][rnode])
                 if lnode == rnode:
                     continue
                 edge_name = self.getEdgeName(EdgeType.CONSTRAINT, lnode, rnode)
@@ -533,6 +553,10 @@ class CDGGeneration(BaseVisitor):
                 if value:
                     value = value[access_value]
                 name += "[" + str(access_value) + "]"
+            if not isinstance(var_type, ArrayCircom):
+                if name not in param["var"]:
+                    param["var"][name] = 0
+                name += "[var" + str(param["var"][name])
             if name not in param["node"]:
                 param["node"][name] = Node(
                     ast.locate, name, NodeType.CONSTANT, None, param["name"])

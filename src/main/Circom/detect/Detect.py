@@ -14,6 +14,7 @@ class Detector:
             self.reports[graph.name] = {}
             self.detect_unconstrainted_output(graph)
             self.detect_unconstrained_comp_input(graph)
+            self.detect_data_flow_constraint_discrepancy(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -58,7 +59,9 @@ class Detector:
         return graph.has_path_constraint(node_a, node_b)
 
     def is_depended(self, graph, node_a, node_b):
-        return graph.has_path_depend(node_a, node_b)
+        if node_a.id not in graph.node_flows_to:
+            return False
+        return node_b.id in graph.node_flows_to[node_a.id]
 
     def unconstrained_comp_input(self, graph, node):
         if graph.name == node.component or not node.is_signal_in():
@@ -94,3 +97,23 @@ class Detector:
                 results.append(Report(ReportType.WARNING, node.locate,
                                f"Input signal '{node.id}' is unconstrained and may accept unchecked values."))
         self.reports[graph.name]["unconstrained component input"] = results
+
+    def detect_data_flow_constraint_discrepancy(self, graph):
+        resutlts = []
+        for n_id, n_set in graph.node_flows_to.items():
+            for n1_id in n_set:
+                node = graph.nodes[n_id]
+                node_1 = graph.nodes[n1_id]
+                if not self.is_constrainted(graph, node, node_1):
+                    resutlts.append(Report(ReportType.WARNING, node_1.locate,
+                                    f"Signal '{node_1.id}' depends on '{node.id}' via dataflow, but there is no corresponding constraint dependency."))
+        # for edge in graph.edges.values():
+        #     if edge.edge_type == EdgeType.DEPEND:
+        #         node_from = edge.node_from
+        #         node_to = edge.node_to
+        #         if not node_from.is_signal() or not node_to.is_signal():
+        #             continue
+        #         if not self.is_constrainted(graph, node_from, node_to):
+        #             resutlts.append(Report(ReportType.WARNING, node_to.locate,
+        #                             f"Signal '{node_to.id}' depends on '{node_from.id}' via dataflow, but there is no corresponding constraint dependency."))
+        self.reports[graph.name]["data flow constraint discrepancy"] = resutlts

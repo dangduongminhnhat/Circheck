@@ -76,6 +76,7 @@ class CircuitDependenceGraph:
         self.nodes = nodes
         self.name = name
         self.components = components
+        self.node_flows_to = {}
 
     def is_signal(self, node):
         return node.node_type == NodeType.SIGNAL
@@ -202,6 +203,36 @@ class CircuitDependenceGraph:
                                         v.flow_to.append(edge)
                                         u.flow_from.append(edge)
 
+    def flows_to(self, node):
+        if node.id in self.node_flows_to:
+            return self.node_flows_to[node.id]
+        flows_to_set = set()
+        for edge in node.flow_to:
+            if edge.edge_type == EdgeType.CONSTRAINT:
+                continue
+            node_to = edge.node_to
+            if node_to.is_signal():
+                flows_to_sub = self.flows_to(node_to)
+                flows_to_set.union(flows_to_sub)
+                flows_to_set.add(node_to.id)
+            else:
+                for e1 in node_to.flow_to:
+                    if e1.edge_type == EdgeType.CONSTRAINT:
+                        continue
+                    to_1 = e1.node_to
+                    if to_1.is_signal():
+                        flows_to_sub = self.flows_to(to_1)
+                        flows_to_set.union(flows_to_sub)
+                        flows_to_set.add(to_1.id)
+        self.node_flows_to[node.id] = flows_to_set
+        return flows_to_set
+
+    def compute(self):
+        for node in self.nodes.values():
+            if node.is_signal():
+                self.flows_to(node)
+
     def build_graph(self, graphs):
         self.build_conditional_depend_edges(graphs)
         self.build_condition_constraint_edges(graphs)
+        self.compute()
