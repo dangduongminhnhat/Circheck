@@ -55,7 +55,7 @@ class Detector:
         return False
 
     def is_constrainted(self, graph, node_a, node_b):
-        return graph.has_path_constraint(node_a, node_b) or graph.has_path_constraint(node_b, node_a)
+        return graph.has_path_constraint(node_a, node_b)
 
     def is_depended(self, graph, node_a, node_b):
         return graph.has_path_depend(node_a, node_b)
