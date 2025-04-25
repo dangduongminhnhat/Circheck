@@ -112,7 +112,27 @@ def detect(absolute_path):
         return
     print("[Success]    CDG created successfully.")
     from Detect import Detector
-    Detector(graphs).detect()
+    import json
+    reports = Detector(graphs).detect()
+    file = open("report.json", "w", encoding="utf-8")
+    output = {}
+    for graph in graphs.values():
+        output[graph.name] = {}
+        for report_list in reports[graph.name].values():
+            for report in report_list:
+                report.show()
+        for vul in reports[graph.name].keys():
+            output[graph.name][vul] = {}
+            for report in reports[graph.name][vul]:
+                path = report.location.path
+                if path not in output[graph.name][vul]:
+                    output[graph.name][vul][path] = []
+                line = report.location.start.line
+                col = report.location.start.column
+                output[graph.name][vul][path].append(
+                    f"{line}:{col}:{report.message}")
+    json.dump(output, file, indent=2)
+    file.close()
 
 
 def main():

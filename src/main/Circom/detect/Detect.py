@@ -13,8 +13,8 @@ class Detector:
         for graph in self.graphs.values():
             self.reports[graph.name] = {}
             self.detect_unconstrainted_output(graph)
-            for report in self.reports[graph.name]["unconstrained_output"]:
-                report.show()
+            self.detect_unconstrained_comp_input(graph)
+        return self.reports
 
     def detect_unconstrainted_output(self, graph):
         results = []
@@ -59,3 +59,38 @@ class Detector:
 
     def is_depended(self, graph, node_a, node_b):
         return graph.has_path_depend(node_a, node_b)
+
+    def unconstrained_comp_input(self, graph, node):
+        if graph.name == node.component or not node.is_signal_in():
+            return False
+        for edge in node.flow_from:
+            if edge.edge_type == EdgeType.CONSTRAINT:
+                node_from = edge.node_from
+                node_from_var_name = node_from.id.split(".")[0]
+                node_var_name = node.id.split(".")[0]
+                if node_from_var_name != node_var_name:
+                    return False
+        for edge in node.flow_to:
+            if edge.edge_type == EdgeType.CONSTRAINT:
+                node_to = edge.node_to
+                node_to_var_name = node_to.id.split(".")[0]
+                node_var_name = node.id.split(".")[0]
+                if node_to_var_name != node_var_name:
+                    return False
+            if edge.node_to.node_type == NodeType.CONSTANT:
+                node_to = edge.node_to
+                for e1 in node_to.flow_to:
+                    if e1.edge_type == EdgeType.CONSTRAINT:
+                        return False
+                for e1 in node_to.flow_from:
+                    if e1.edge_type == EdgeType.CONSTRAINT:
+                        return False
+        return True
+
+    def detect_unconstrained_comp_input(self, graph):
+        results = []
+        for node in graph.nodes.values():
+            if self.unconstrained_comp_input(graph, node):
+                results.append(Report(ReportType.WARNING, node.locate,
+                               f"Input signal '{node.id}' is unconstrained and may accept unchecked values."))
+        self.reports[graph.name]["unconstrained component input"] = results
