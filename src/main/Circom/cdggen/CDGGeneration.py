@@ -143,6 +143,8 @@ class CDGGeneration(BaseVisitor):
 
     def generateCDG(self):
         self.visit(self.ast, {})
+        for graph in self.graphs.values():
+            graph.build_graph(self.graphs)
         return self.graphs
 
     def getComponentName(self):
@@ -211,7 +213,6 @@ class CDGGeneration(BaseVisitor):
         self.in_template = False
         self.graphs[graph_name] = CircuitDependenceGraph(
             param["edge"], param["node"], graph_name, param["component"])
-        self.graphs[graph_name].build_graph()
 
     def visitFunction(self, ast: Function, param):
         return None
@@ -351,12 +352,21 @@ class CDGGeneration(BaseVisitor):
             else:
                 edge_type = EdgeType.DEPEND
             for fNode in contains:
+                if fNode == name:
+                    continue
                 edge_name = self.getEdgeName(edge_type, fNode, name)
                 if edge_name not in param["edge"]:
                     edge = param["edge"][edge_name] = Edge(
                         param["node"][fNode], param["node"][name], edge_type, edge_name)
                     param["node"][fNode].flow_to.append(edge)
                     param["node"][name].flow_from.append(edge)
+                    edge_name_reversed = self.getEdgeName(
+                        edge_type, name, fNode)
+                    if edge_type == EdgeType.CONSTRAINT and edge_name_reversed not in param["edge"]:
+                        edge = param["edge"][edge_name] = Edge(
+                            param["node"][name], param["node"][fNode], edge_type, edge_name_reversed)
+                        param["node"][name].flow_to.append(edge)
+                        param["node"][fNode].flow_from.append(edge)
 
     def visitMultiSubstitution(self, ast: MultiSubstitution, param):
         lhe_value = self.visit(ast.lhe, param)

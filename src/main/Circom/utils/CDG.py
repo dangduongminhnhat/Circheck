@@ -125,7 +125,7 @@ class CircuitDependenceGraph:
                     stack.append(edge.node_to)
         return False
 
-    def build_conditional_depend_edges(self):
+    def build_conditional_depend_edges(self, graphs):
         for u in self.nodes.values():
             if self.is_signal_in(u):
                 component = u.component
@@ -138,8 +138,25 @@ class CircuitDependenceGraph:
                                 u, v, EdgeType.DEPEND, edge_name)
                             u.flow_to.append(edge)
                             v.flow_from.append(edge)
+                    else:
+                        graph_name = component.split("|")[0]
+                        if graph_name != self.name:
+                            graph = graphs[graph_name]
+                            a_id = u.id.split(".")[1]
+                            b_id = v_id.split(".")[1]
+                            if a_id not in graph.nodes or b_id not in graph.nodes:
+                                continue
+                            node_a = graph.nodes[a_id]
+                            node_b = graph.nodes[b_id]
+                            if graph.has_path_depend(node_a, node_b):
+                                edge_name = getEdgeName(EdgeType.DEPEND, u, v)
+                                if edge_name not in self.edges:
+                                    edge = self.edges[edge_name] = Edge(
+                                        u, v, EdgeType.DEPEND, edge_name)
+                                    u.flow_to.append(edge)
+                                    v.flow_from.append(edge)
 
-    def build_condition_constraint_edges(self):
+    def build_condition_constraint_edges(self, graphs):
         for u in self.nodes.values():
             if self.is_signal_in(u):
                 component = u.component
@@ -152,7 +169,39 @@ class CircuitDependenceGraph:
                                 u, v, EdgeType.CONSTRAINT, edge_name)
                             u.flow_to.append(edge)
                             v.flow_from.append(edge)
+                            edge_name_reversed = getEdgeName(
+                                EdgeType.CONSTRAINT, v, u)
+                            if edge_name_reversed not in self.edges:
+                                edge = self.edges[edge_name] = Edge(
+                                    v, u, EdgeType.CONSTRAINT, edge_name_reversed)
+                                v.flow_to.append(edge)
+                                u.flow_from.append(edge)
+                    else:
+                        graph_name = component.split("|")[0]
+                        if graph_name != self.name:
+                            graph = graphs[graph_name]
+                            a_id = u.id.split(".")[1]
+                            b_id = v_id.split(".")[1]
+                            if a_id not in graph.nodes or b_id not in graph.nodes:
+                                continue
+                            node_a = graph.nodes[a_id]
+                            node_b = graph.nodes[b_id]
+                            if graph.has_path_constraint(node_a, node_b):
+                                edge_name = getEdgeName(
+                                    EdgeType.CONSTRAINT, u, v)
+                                if edge_name not in self.edges:
+                                    edge = self.edges[edge_name] = Edge(
+                                        u, v, EdgeType.CONSTRAINT, edge_name)
+                                    u.flow_to.append(edge)
+                                    v.flow_from.append(edge)
+                                    edge_name_reversed = getEdgeName(
+                                        EdgeType.CONSTRAINT, v, u)
+                                    if edge_name_reversed not in self.edges:
+                                        edge = self.edges[edge_name] = Edge(
+                                            v, u, EdgeType.CONSTRAINT, edge_name_reversed)
+                                        v.flow_to.append(edge)
+                                        u.flow_from.append(edge)
 
-    def build_graph(self):
-        self.build_conditional_depend_edges()
-        self.build_condition_constraint_edges()
+    def build_graph(self, graphs):
+        self.build_conditional_depend_edges(graphs)
+        self.build_condition_constraint_edges(graphs)

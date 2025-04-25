@@ -13,7 +13,7 @@ class Detector:
         for graph in self.graphs.values():
             self.reports[graph.name] = {}
             self.detect_unconstrainted_output(graph)
-            for report in self.reports[graph.name]["unconstrainted_output"]:
+            for report in self.reports[graph.name]["unconstrained_output"]:
                 report.show()
 
     def detect_unconstrainted_output(self, graph):
@@ -23,7 +23,7 @@ class Detector:
             if self.unconstrainted_ouput(graph, node):
                 results.append(Report(ReportType.WARNING, node.locate,
                                f"Output signal '{node.id}' is not constrained by any constraint."))
-        self.reports[graph.name]["unconstrainted_output"] = results
+        self.reports[graph.name]["unconstrained_output"] = results
 
     def unconstrainted_ouput(self, graph, node):
         if not node.is_signal_out():
