@@ -16,6 +16,7 @@ class Detector:
             self.detect_unconstrained_comp_input(graph)
             self.detect_data_flow_constraint_discrepancy(graph)
             self.detect_unused_comp_output(graph)
+            self.detect_type_mismatch(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -65,7 +66,8 @@ class Detector:
         return node_b.id in graph.node_flows_to[node_a.id]
 
     def unconstrained_comp_input(self, graph, node):
-        if graph.name == node.component or not node.is_signal_in():
+        component = node.component.split("|")[0]
+        if graph.name == component or not node.is_signal_in():
             return False
         for edge in node.flow_from:
             if edge.edge_type == EdgeType.CONSTRAINT:
@@ -117,9 +119,9 @@ class Detector:
         return False
 
     def unused_comp_output(self, graph, node):
-        if not node.is_signal_out() or node.component == graph.name:
-            return False
         component = node.component.split("|")[0]
+        if not node.is_signal_out() or component == graph.name:
+            return False
         sub_graph = self.graphs[component]
         node_var_name, signal_name = node.id.split(".")
         sub_o_node = sub_graph.nodes[signal_name]
@@ -144,7 +146,8 @@ class Detector:
         self.reports[graph.name]["unused component output"] = resuluts
 
     def unsused_signal(self, graph, node):
-        if node.is_signal_out() and node.component == graph.name:
+        component = node.component.split("|")[0]
+        if node.is_signal_out() and component == graph.name:
             return False
         if node.node_type == NodeType.CONSTANT:
             return False
@@ -157,3 +160,43 @@ class Detector:
                 results.append(Report(ReportType.WARNING, node.locate,
                                f"This signal '{node.id}' is declared but never used in any computation or constraint."))
         self.reports[graph.name]["unused signal"] = results
+
+    def detect_type_mismatch(self, graph):
+        num2bits_required = {"LessThan", "LessEqThan",
+                             "GreaterThan", "GreaterEqThan", "BigLessThan"}
+        num2bits_like = {"Num2Bits", "Num2Bits_strict",
+                         "RangeProof", "MultiRangeProof", "RangeCheck2D"}
+        results = []
+        for node in graph.nodes.values():
+            component = node.component.split("|")[0]
+            if not node.is_signal_in() or component == graph.name:
+                continue
+            template_name = component.split("@")[0]
+            if template_name not in num2bits_required:
+                continue
+            input_nodes = []
+            for edge in node.flow_from:
+                if edge.edge_type == EdgeType.CONSTRANT:
+                    continue
+                if edge.node_from.is_signal():
+                    input_nodes.append(edge.node_from)
+                if edge.node_from.node_type == NodeType.CONSTANT:
+                    for e1 in edge.node_from.flow_from:
+                        if e1.edge_type == EdgeType.DEPEND and e1.node_from.is_signal():
+                            input_nodes.append(e1.node_from)
+            for n1 in input_nodes:
+                is_checked = False
+                flows_to = graph.flows_to(n1)
+                for n2_id in flows_to:
+                    n2 = graph.nodes[n2_id]
+                    n2_comp = n2.component.split("|")[0]
+                    if not n1.is_signal_in() or n2_comp == graph.name:
+                        continue
+                    template_name_n2 = n2_comp.split("@")[0]
+                    if template_name_n2 in num2bits_like:
+                        is_checked = True
+                        break
+                if not is_checked:
+                    results.append(Report(ReportType.WARNING, node.locate,
+                                   f"Signal '{n1.id}' flows into '{template_name}' without being properly range-checked."))
+        self.reports[graph.name]["type mismatch"] = results

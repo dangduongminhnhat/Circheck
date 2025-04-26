@@ -158,8 +158,8 @@ def detect(absolute_path):
     print("[Success]    CDG created successfully.")
     from Detect import Detector
     reports = Detector(graphs).detect()
-    print_reports(graphs, reports)
     report_to_file(graphs, reports)
+    # print_reports(graphs, reports)
 
 
 def main():
