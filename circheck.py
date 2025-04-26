@@ -92,6 +92,51 @@ def generate_cdg(ast, param):
         return None
 
 
+def print_reports(graphs, reports):
+    to_print = {}
+    for graph in graphs.values():
+        for report_list in reports[graph.name].values():
+            for report in report_list:
+                path = report.location.path
+                line = report.location.start.line
+                col = report.location.start.column
+                path += f":{line}:{col}"
+                if path not in to_print:
+                    to_print[path] = report
+                else:
+                    to_print[path].message += "\n" + ' ' * 13 + report.message
+    for report in to_print.values():
+        report.show()
+
+
+def report_to_file(graphs, reports):
+    import json
+    file = open("report.json", "w", encoding="utf-8")
+    output = {}
+    for graph in graphs.values():
+        has_report = False
+        for report_list in reports[graph.name].values():
+            if len(report_list) > 0:
+                has_report = True
+        if not has_report:
+            continue
+        output[graph.name] = {}
+        for vul in reports[graph.name].keys():
+            if len(reports[graph.name][vul]) == 0:
+                continue
+            output[graph.name][vul] = {}
+            for report in reports[graph.name][vul]:
+                path = report.location.path
+                line = report.location.start.line
+                col = report.location.start.column
+                path += f":{line}:{col}"
+                if path not in output[graph.name][vul]:
+                    output[graph.name][vul][path] = []
+                output[graph.name][vul][path].append(report.message)
+    json.dump(output, file, indent=2)
+    file.close()
+
+
 @timeit
 def detect(absolute_path):
     ast = generate_ast(absolute_path)
@@ -112,33 +157,9 @@ def detect(absolute_path):
         return
     print("[Success]    CDG created successfully.")
     from Detect import Detector
-    import json
     reports = Detector(graphs).detect()
-    file = open("report.json", "w", encoding="utf-8")
-    output = {}
-    for graph in graphs.values():
-        has_report = False
-        for report_list in reports[graph.name].values():
-            for report in report_list:
-                has_report = True
-                report.show()
-        if not has_report:
-            continue
-        output[graph.name] = {}
-        for vul in reports[graph.name].keys():
-            if len(reports[graph.name][vul]) == 0:
-                continue
-            output[graph.name][vul] = {}
-            for report in reports[graph.name][vul]:
-                path = report.location.path
-                line = report.location.start.line
-                col = report.location.start.column
-                path += f":{line}:{col}"
-                if path not in output[graph.name][vul]:
-                    output[graph.name][vul][path] = []
-                output[graph.name][vul][path].append(report.message)
-    json.dump(output, file, indent=2)
-    file.close()
+    print_reports(graphs, reports)
+    report_to_file(graphs, reports)
 
 
 def main():

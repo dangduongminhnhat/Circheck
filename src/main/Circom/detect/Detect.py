@@ -140,5 +140,20 @@ class Detector:
         for node in graph.nodes.values():
             if self.unused_comp_output(graph, node):
                 resuluts.append(Report(ReportType.WARNING, node.locate,
-                                f"This output '{node.id}' is not checked nor used in any constraint at the call site."))
+                                f"This output '{node.id}' is not checked nor used from the call site."))
         self.reports[graph.name]["unused component output"] = resuluts
+
+    def unsused_signal(self, graph, node):
+        if node.is_signal_out() and node.component == graph.name:
+            return False
+        if node.node_type == NodeType.CONSTANT:
+            return False
+        return (len(node.flow_from()) + len(node.flow_to())) == 0
+
+    def detect_unused_signal(self, graph):
+        results = []
+        for node in graph.nodes.values():
+            if self.unsused_signal(graph, node):
+                results.append(Report(ReportType.WARNING, node.locate,
+                               f"This signal '{node.id}' is declared but never used in any computation or constraint."))
+        self.reports[graph.name]["unused signal"] = results
