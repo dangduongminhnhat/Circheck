@@ -15,6 +15,7 @@ class Detector:
             self.detect_unconstrainted_output(graph)
             self.detect_unconstrained_comp_input(graph)
             self.detect_data_flow_constraint_discrepancy(graph)
+            self.detect_unused_comp_output(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -108,3 +109,36 @@ class Detector:
                     resutlts.append(Report(ReportType.WARNING, node_1.locate,
                                     f"Signal '{node_1.id}' depends on '{node.id}' via dataflow, but there is no corresponding constraint dependency."))
         self.reports[graph.name]["data flow constraint discrepancy"] = resutlts
+
+    def is_checking_signal(self, node):
+        for edge in node.flow_to:
+            if edge.edge_type == EdgeType.DEPEND:
+                return True
+        return False
+
+    def unused_comp_output(self, graph, node):
+        if not node.is_signal_out() or node.component == graph.name:
+            return False
+        component = node.component.split("|")[0]
+        sub_graph = self.graphs[component]
+        node_var_name, signal_name = node.id.split(".")
+        sub_o_node = sub_graph.nodes[signal_name]
+        if self.is_checking_signal(sub_o_node):
+            return False
+        for edge in node.flow_to:
+            node_to_var_name = edge.node_to.id.split(".")[0]
+            if node_var_name != node_to_var_name:
+                return False
+        for edge in node.flow_from:
+            node_from_var_name = edge.node_from.id.split(".")[0]
+            if node_var_name != node_from_var_name:
+                return False
+        return True
+
+    def detect_unused_comp_output(self, graph):
+        resuluts = []
+        for node in graph.nodes.values():
+            if self.unused_comp_output(graph, node):
+                resuluts.append(Report(ReportType.WARNING, node.locate,
+                                f"This output '{node.id}' is not checked nor used in any constraint at the call site."))
+        self.reports[graph.name]["unused component output"] = resuluts
