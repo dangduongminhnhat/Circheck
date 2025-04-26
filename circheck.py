@@ -131,12 +131,12 @@ def detect(absolute_path):
             output[graph.name][vul] = {}
             for report in reports[graph.name][vul]:
                 path = report.location.path
-                if path not in output[graph.name][vul]:
-                    output[graph.name][vul][path] = []
                 line = report.location.start.line
                 col = report.location.start.column
-                output[graph.name][vul][path].append(
-                    f"{line}:{col}:{report.message}")
+                path += f":{line}:{col}"
+                if path not in output[graph.name][vul]:
+                    output[graph.name][vul][path] = []
+                output[graph.name][vul][path].append(report.message)
     json.dump(output, file, indent=2)
     file.close()
 

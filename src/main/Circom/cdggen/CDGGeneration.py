@@ -298,7 +298,8 @@ class CDGGeneration(BaseVisitor):
         if ast.op == "=":
             if isinstance(symbol.xtype, VarCircom):
                 value = symbol.value
-                rhe_value = self.visit(ast.rhe, param).value
+                rhe_symbol = self.visit(ast.rhe, param)
+                rhe_value = rhe_symbol.value
                 if rhe_value is not None:
                     if len(ast.access) > 0:
                         for i in range(len(ast.access) - 1):
@@ -315,18 +316,78 @@ class CDGGeneration(BaseVisitor):
                 if not isinstance(mtype, ArrayCircom):
                     lhe_var = FindNode().visit(lhe, param)[0]
                     param["var"][lhe_var] += 1
-                name = self.visit(lhe, param).name
-                for fNode in contains:
-                    if fNode in param["var"]:
-                        fNode += "[var" + str(param["var"][fNode])
-                    if fNode == name:
-                        continue
-                    edge_name = self.getEdgeName(edge_type, fNode, name)
-                    if edge_name not in param["edge"]:
-                        edge = param["edge"][edge_name] = Edge(
-                            param["node"][fNode], param["node"][name], edge_type, edge_name)
-                        param["node"][fNode].flow_to.append(edge)
-                        param["node"][name].flow_from.append(edge)
+                    name = self.visit(lhe, param).name
+                    for fNode in contains:
+                        if fNode in param["var"]:
+                            fNode += "[var" + str(param["var"][fNode])
+                        if fNode == name:
+                            continue
+                        edge_name = self.getEdgeName(edge_type, fNode, name)
+                        if edge_name not in param["edge"]:
+                            edge = param["edge"][edge_name] = Edge(
+                                param["node"][fNode], param["node"][name], edge_type, edge_name)
+                            param["node"][fNode].flow_to.append(edge)
+                            param["node"][name].flow_from.append(edge)
+                else:
+                    lhe_array = FindNode().visit(lhe, param)[0]
+                    lhe_vars = []
+                    for var in param["var"].keys():
+                        if lhe_array == var[:len(lhe_array)]:
+                            lhe_vars.append(var)
+                    if isinstance(ast.rhe, Call):
+                        for lhe_var in lhe_vars:
+                            param["var"][lhe_var] += 1
+                            name = lhe_var + "[var" + \
+                                str(param["var"][lhe_var])
+                            if name not in param["node"]:
+                                param["node"][name] = Node(
+                                    ast.locate, name, NodeType.CONSTANT, None, param["name"])
+                            for fNode in contains:
+                                if fNode in param["var"]:
+                                    fNode += "[var" + str(param["var"][fNode])
+                                if fNode == name:
+                                    continue
+                                edge_name = self.getEdgeName(
+                                    edge_type, fNode, name)
+                                if edge_name not in param["edge"]:
+                                    edge = param["edge"][edge_name] = Edge(
+                                        param["node"][fNode], param["node"][name], edge_type, edge_name)
+                                    param["node"][fNode].flow_to.append(edge)
+                                    param["node"][name].flow_from.append(edge)
+                    elif isinstance(ast.rhe, Variable):
+                        for lhe_var in lhe_vars:
+                            param["var"][lhe_var] += 1
+                            name = lhe_var + "[var" + \
+                                str(param["var"][lhe_var])
+                            if name not in param["node"]:
+                                param["node"][name] = Node(
+                                    ast.locate, name, NodeType.CONSTANT, None, param["name"])
+                            fNode = contains[0] + lhe_var[len(lhe_array):]
+                            if fNode in param["var"]:
+                                fNode += "[var" + str(param["var"][fNode])
+                            if fNode == name:
+                                continue
+                            if isinstance(rhe_symbol.xtype, SignalCircom):
+                                if fNode not in param["node"]:
+                                    template_name = param["node"][rhe_symbol.name].component
+                                    signal_type = rhe_symbol.xtype.signal_type
+                                    param["node"][fNode] = Node(
+                                        ast.rhe.locate, fNode, NodeType.SIGNAL, signal_type, template_name)
+                                    param["component"][template_name][signal_type].append(
+                                        fNode)
+                            edge_name = self.getEdgeName(
+                                edge_type, fNode, name)
+                            if edge_name not in param["edge"]:
+                                edge = param["edge"][edge_name] = Edge(
+                                    param["node"][fNode], param["node"][name], edge_type, edge_name)
+                                param["node"][fNode].flow_to.append(edge)
+                                param["node"][name].flow_from.append(edge)
+                        if isinstance(rhe_symbol.xtype, SignalCircom):
+                            template_name = param["node"][rhe_symbol.name].component
+                            signal_type = rhe_symbol.xtype.signal_type
+                            del param["node"][rhe_symbol.name]
+                            param["component"][template_name][signal_type].remove(
+                                rhe_symbol.name)
             elif isinstance(symbol.xtype, ComponentCircom):
                 template_type, args = self.visit(ast.rhe, param)
                 value = symbol.value
@@ -587,7 +648,7 @@ class CDGGeneration(BaseVisitor):
                 param["node"][name] = Node(
                     ast.locate, name, NodeType.SIGNAL, signal_type, template_name)
                 param["component"][template_name][signal_type].append(name)
-                return Symbol(name, var_type, SignalType(signal_type), ast, None)
+                return Symbol(name, var_type, SignalCircom(signal_type), ast, None)
             else:
                 return Symbol(name, var_type, ComponentCircom(), ast, None)
         elif isinstance(symbol.xtype, SignalCircom):

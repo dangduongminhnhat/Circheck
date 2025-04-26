@@ -107,13 +107,4 @@ class Detector:
                 if not self.is_constrainted(graph, node, node_1):
                     resutlts.append(Report(ReportType.WARNING, node_1.locate,
                                     f"Signal '{node_1.id}' depends on '{node.id}' via dataflow, but there is no corresponding constraint dependency."))
-        # for edge in graph.edges.values():
-        #     if edge.edge_type == EdgeType.DEPEND:
-        #         node_from = edge.node_from
-        #         node_to = edge.node_to
-        #         if not node_from.is_signal() or not node_to.is_signal():
-        #             continue
-        #         if not self.is_constrainted(graph, node_from, node_to):
-        #             resutlts.append(Report(ReportType.WARNING, node_to.locate,
-        #                             f"Signal '{node_to.id}' depends on '{node_from.id}' via dataflow, but there is no corresponding constraint dependency."))
         self.reports[graph.name]["data flow constraint discrepancy"] = resutlts
