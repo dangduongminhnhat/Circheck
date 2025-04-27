@@ -31,13 +31,17 @@ class TestCircomAnalysis(unittest.TestCase):
         knownbugs_dir = "../../benchmarks/knownbugs"
         bug_files = [os.path.join(knownbugs_dir, file) for file in os.listdir(
             knownbugs_dir) if file.endswith(".circom")]
-
+        knownbugs_results_dir = os.path.join(self.results_dir, "knownbugs")
+        if not os.path.exists(knownbugs_results_dir):
+            os.makedirs(knownbugs_results_dir)
         for file_path in bug_files:
             print(f"[Info]       Running analysis for {file_path}")
             graphs, reports = detect(file_path)
             if graphs:
                 report_to_file(graphs, reports, os.path.join(
-                    self.results_dir, f"{os.path.basename(file_path)}_report.json"))
+                    knownbugs_results_dir, f"{os.path.basename(file_path)}_report.json"))
+            print("---------------------------------------------")
+            break
 
 
 if __name__ == "__main__":
