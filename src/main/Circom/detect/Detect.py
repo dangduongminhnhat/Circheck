@@ -1,7 +1,7 @@
 from CDG import *
 from Report import *
 from StaticCheck import SignalType
-from AST import FileLocation
+from AST import *
 
 
 class Detector:
@@ -17,6 +17,7 @@ class Detector:
             self.detect_data_flow_constraint_discrepancy(graph)
             self.detect_unused_comp_output(graph)
             self.detect_type_mismatch(graph)
+            self.detect_assignment_misue(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -37,7 +38,7 @@ class Detector:
 
     def constrainted_by_input(self, graph, node):
         for n1 in graph.nodes.values():
-            if not n1.is_signal_in_of(node.component):
+            if not n1.is_signal_in():
                 continue
             if self.is_constrainted(graph, node, n1):
                 return True
@@ -54,7 +55,8 @@ class Detector:
                 if node_from.node_type == NodeType.CONSTANT:
                     return True
                 if node_from.node_type == NodeType.SIGNAL and node_from.signal_type == SignalType.INTERMEDIATE:
-                    return True
+                    if self.constrainted_as_const(graph, node_from):
+                        return True
         return False
 
     def is_constrainted(self, graph, node_a, node_b):
@@ -124,6 +126,8 @@ class Detector:
             return False
         sub_graph = self.graphs[component]
         node_var_name, signal_name = node.id.split(".")
+        if signal_name not in sub_graph.nodes:
+            return False
         sub_o_node = sub_graph.nodes[signal_name]
         if self.is_checking_signal(sub_o_node):
             return False
@@ -200,3 +204,43 @@ class Detector:
                     results.append(Report(ReportType.WARNING, node.locate,
                                    f"Signal '{n1.id}' flows into '{template_name}' without being properly range-checked."))
         self.reports[graph.name]["type mismatch"] = results
+
+    def is_trivial_instruction(self, ast):
+        if isinstance(ast, Variable) or isinstance(ast, Number):
+            return True
+        elif isinstance(ast, PrefixOp):
+            return self.is_trivial_instruction(ast.rhe)
+        elif isinstance(ast, InfixOp):
+            return self.is_trivial_instruction(ast.lhe) and self.is_trivial_instruction(ast.rhe)
+        else:
+            return False
+
+    def is_rewritable_assignment(self, edge):
+        if edge.edge_type != EdgeType.DEPEND or edge.ast is None:
+            return False
+        node_from = edge.node_from
+        node_to = edge.node_to
+        for e1 in node_from.flow_to:
+            if e1.node_to.id == node_to.id and e1.edge_type == EdgeType.CONSTRAINT:
+                return False
+        for e1 in node_from.flow_from:
+            if e1.node_from.id == node_to.id and e1.edge_type == EdgeType.CONSTRAINT:
+                return False
+        if node_to.node_type == NodeType.CONSTANT:
+            return False
+        if node_from.node_type != NodeType.CONSTANT:
+            return True
+        return self.is_trivial_instruction(edge.ast.rhe)
+
+    def detect_assignment_misue(self, graph):
+        results = []
+        for edge in graph.edges.values():
+            if self.is_rewritable_assignment(edge):
+                op = edge.ast.op
+                if op == "<--":
+                    instead_op = "<=="
+                else:
+                    instead_op = "==>"
+                results.append(Report(ReportType.WARNING, edge.ast.locate,
+                               f"Variable {edge.ast.var} is assigned using {op} instead of {instead_op}."))
+        self.reports[graph.name]["assignment missue"] = results

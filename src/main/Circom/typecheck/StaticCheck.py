@@ -309,6 +309,8 @@ class TypeCheck(BaseVisitor):
             param[0][ast.name] = Symbol(ast.name, mtype, xtype, ast)
 
     def visitSubstitution(self, ast: Substitution, param):
+        if self.count_visited == 0:
+            return
         symbol = None
         for env in param:
             if ast.var in env:

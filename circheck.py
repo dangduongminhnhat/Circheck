@@ -132,7 +132,8 @@ def report_to_file(graphs, reports, filename="report.json"):
                 path += f":{line}:{col}"
                 if path not in output[graph.name][vul]:
                     output[graph.name][vul][path] = []
-                output[graph.name][vul][path].append(report.message)
+                if report.message not in output[graph.name][vul][path]:
+                    output[graph.name][vul][path].append(report.message)
     with open(filename, "w", encoding="utf-8") as file:
         json.dump(output, file, indent=2)
 
@@ -158,6 +159,12 @@ def detect(absolute_path):
     print("[Success]    CDG created successfully.")
 
     from Detect import Detector
-    reports = Detector(graphs).detect()
+    try:
+        reports = Detector(graphs).detect()
+        print("[Success]    Detection completed successfully.")
+    except Exception as e:
+        traceback.print_exc()
+        print(f"[Error]      An error occurred during detection. {str(e)}")
+        return None, None
 
     return graphs, reports

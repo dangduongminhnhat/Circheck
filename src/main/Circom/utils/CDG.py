@@ -55,12 +55,13 @@ class Node:
         return self.is_signal() and self.component == component
 
 
-@dataclass
 class Edge:
-    node_from: Node
-    node_to: Node
-    edge_type: EdgeType
-    name: str
+    def __init__(self, node_from, node_to, edge_type, name, ast=None):
+        self.node_from = node_from
+        self.node_to = node_to
+        self.edge_type = edge_type
+        self.name = name
+        self.ast = ast
 
 
 def getEdgeName(edge_type, nFrom, nTo):

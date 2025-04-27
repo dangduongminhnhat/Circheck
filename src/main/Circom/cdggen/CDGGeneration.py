@@ -401,12 +401,13 @@ class CDGGeneration(BaseVisitor):
                                     param["node"][fNode], param["node"][name], edge_type, edge_name)
                                 param["node"][fNode].flow_to.append(edge)
                                 param["node"][name].flow_from.append(edge)
-                        if isinstance(rhe_symbol.xtype, SignalCircom):
-                            template_name = param["node"][rhe_symbol.name].component
-                            signal_type = rhe_symbol.xtype.signal_type
-                            del param["node"][rhe_symbol.name]
-                            param["component"][template_name][signal_type].remove(
-                                rhe_symbol.name)
+                        # if isinstance(rhe_symbol.xtype, SignalCircom):
+                        #     print(param["node"].keys())
+                        #     template_name = param["node"][rhe_symbol.name].component
+                        #     signal_type = rhe_symbol.xtype.signal_type
+                        #     del param["node"][rhe_symbol.name]
+                        #     param["component"][template_name][signal_type].remove(
+                        #         rhe_symbol.name)
             elif isinstance(symbol.xtype, ComponentCircom):
                 template_type, args = self.visit(ast.rhe, param)
                 value = symbol.value
@@ -451,7 +452,7 @@ class CDGGeneration(BaseVisitor):
                         EdgeType.DEPEND, fNode, name)
                     if depend_edge_name not in param["edge"]:
                         edge_depend = param["edge"][depend_edge_name] = Edge(
-                            param["node"][fNode], param["node"][name], EdgeType.DEPEND, depend_edge_name)
+                            param["node"][fNode], param["node"][name], EdgeType.DEPEND, depend_edge_name, ast)
                         param["node"][fNode].flow_to.append(edge_depend)
                         param["node"][name].flow_from.append(edge_depend)
                 if "==" in ast.op:
