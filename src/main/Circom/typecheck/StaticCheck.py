@@ -61,11 +61,12 @@ class TemplateCircom(Type):
 
 
 class FunctionCircom(Type):
-    def __init__(self, name, params, return_type, body):
+    def __init__(self, name, params, return_type, body, args):
         self.name = name
         self.params = params
         self.return_type = return_type
         self.body = body
+        self.args = args
 
 
 def is_same_type(type1, type2):
@@ -185,8 +186,8 @@ class TypeCheck(BaseVisitor):
             arg_list = []
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
-            self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(
-                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func, ast.body), None, ast)
+            self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(ast.name_field, FunctionCircom(
+                ast.name_field, arg_list, self.return_func, ast.body, ast.args), None, ast)
             self.return_func = None
         else:
             self.in_function = True

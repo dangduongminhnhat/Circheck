@@ -87,7 +87,6 @@ def generate_cdg(ast, param, list_function, list_template):
                                list_template).generateCDG()
         return graphs
     except Exception as e:
-        traceback.print_exc()
         print(e)
         return None
 

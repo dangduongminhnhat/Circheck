@@ -246,10 +246,12 @@ class CDGGeneration(BaseVisitor):
                          "Condition Type is None.")
         while cond_type:
             self.visit(ast.stmt, param)
+            if self.in_function and self.return_value:
+                break
             cond_type = self.visit(ast.cond, param).value
 
     def visitReturn(self, ast: Return, param):
-        return self.visit(ast.value, param)
+        self.return_value = self.visit(ast.value, param)
 
     def visitInitializationBlock(self, ast: InitializationBlock, param):
         for stmt in ast.initializations:
@@ -314,6 +316,8 @@ class CDGGeneration(BaseVisitor):
                         value[last_access] = rhe_value
                     else:
                         symbol.value = rhe_value
+                if self.in_function:
+                    return
                 edge_type = EdgeType.DEPEND
                 contains = FindNode().visit(ast.rhe, param)
                 lhe = Variable(ast.locate, ast.var, ast.access)
@@ -359,6 +363,8 @@ class CDGGeneration(BaseVisitor):
                                         fNode += "[var" + \
                                             str(param["var"][fNode])
                                 if fNode == name:
+                                    continue
+                                if fNode not in param["node"]:
                                     continue
                                 edge_name = self.getEdgeName(
                                     edge_type, fNode, name)
@@ -716,9 +722,10 @@ class CDGGeneration(BaseVisitor):
             env = param["env"]
             param["env"] = [{}] + param["env"]
             for i in range(len(ast.args)):
-                param["env"][0][ast.args[i]] = Symbol(
+                param["env"][0][symbol.mtype.args[i]] = Symbol(
                     ast.args[i], PrimeField(), VarCircom(), ast.args, args[i])
             self.in_function = True
+            self.block = True
             self.visit(symbol.mtype.body, param)
             param["env"] = env
             ret_value = self.return_value
