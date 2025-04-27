@@ -75,16 +75,16 @@ def typecheck(ast):
     try:
         checked.check()
     except Exception as e:
-        traceback.print_exc()
         print(e)
-        return None
-    return checked.global_env
+        return None, None, None
+    return checked.global_env, checked.list_function, checked.list_template
 
 
-def generate_cdg(ast, param):
+def generate_cdg(ast, param, list_function, list_template):
     from CDGGeneration import CDGGeneration
     try:
-        graphs = CDGGeneration(ast, param).generateCDG()
+        graphs = CDGGeneration(ast, param, list_function,
+                               list_template).generateCDG()
         return graphs
     except Exception as e:
         traceback.print_exc()
@@ -93,6 +93,7 @@ def generate_cdg(ast, param):
 
 
 def print_reports(graphs, reports):
+    from Report import Report, ReportType
     to_print = {}
     for graph in graphs.values():
         for report_list in reports[graph.name].values():
@@ -102,16 +103,16 @@ def print_reports(graphs, reports):
                 col = report.location.start.column
                 path += f":{line}:{col}"
                 if path not in to_print:
-                    to_print[path] = report
+                    to_print[path] = Report(
+                        report.type, report.location, report.location)
                 else:
                     to_print[path].message += "\n" + ' ' * 13 + report.message
     for report in to_print.values():
         report.show()
 
 
-def report_to_file(graphs, reports):
+def report_to_file(graphs, reports, filename="report.json"):
     import json
-    file = open("report.json", "w", encoding="utf-8")
     output = {}
     for graph in graphs.values():
         has_report = False
@@ -133,8 +134,8 @@ def report_to_file(graphs, reports):
                 if path not in output[graph.name][vul]:
                     output[graph.name][vul][path] = []
                 output[graph.name][vul][path].append(report.message)
-    json.dump(output, file, indent=2)
-    file.close()
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(output, file, indent=2)
 
 
 @timeit
@@ -142,32 +143,22 @@ def detect(absolute_path):
     ast = generate_ast(absolute_path)
     if ast is None:
         print("[Error]      Failed to generate AST.")
-        return
+        return None, None
     print("[Success]    AST generated successfully.")
 
-    checked = typecheck(ast)
+    checked, list_function, list_template = typecheck(ast)
     if checked is None:
         print("[Error]      Type checking failed.")
-        return
+        return None, None
     print("[Success]    Type checking passed.")
 
-    graphs = generate_cdg(ast, checked)
+    graphs = generate_cdg(ast, checked, list_function, list_template)
     if graphs is None:
         print("[Error]      Created CDG failed.")
-        return
+        return None, None
     print("[Success]    CDG created successfully.")
+
     from Detect import Detector
     reports = Detector(graphs).detect()
-    report_to_file(graphs, reports)
-    # print_reports(graphs, reports)
 
-
-def main():
-    input_file = "./benchmarks/aes-circom/aes_256_ctr_test.circom"
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    absolute_path = os.path.abspath(os.path.join(base_dir, input_file))
-    detect(absolute_path)
-
-
-if __name__ == "__main__":
-    main()
+    return graphs, reports

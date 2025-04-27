@@ -132,7 +132,7 @@ def create_nested_array(dimensions):
 
 
 class CDGGeneration(BaseVisitor):
-    def __init__(self, ast: AST, env):
+    def __init__(self, ast: AST, env, list_function, list_template):
         self.graphs = {}
         self.remaining = []
         self.ast = ast
@@ -140,6 +140,11 @@ class CDGGeneration(BaseVisitor):
         self.env = env
         self.temp_component = 0
         self.comp_id = 0
+        self.in_function = False
+        self.block = False
+        self.return_value = None
+        self.list_function = list_function
+        self.list_template = list_template
 
     def generateCDG(self):
         self.visit(self.ast, {})
@@ -244,7 +249,7 @@ class CDGGeneration(BaseVisitor):
             cond_type = self.visit(ast.cond, param).value
 
     def visitReturn(self, ast: Return, param):
-        return None
+        return self.visit(ast.value, param)
 
     def visitInitializationBlock(self, ast: InitializationBlock, param):
         for stmt in ast.initializations:
@@ -500,10 +505,14 @@ class CDGGeneration(BaseVisitor):
         env = param["env"]
         if self.in_template:
             self.in_template = False
+        elif self.block:
+            self.block = False
         else:
             param["env"] = [{}] + env
         for stmt in ast.stmts:
             self.visit(stmt, param)
+            if self.in_function and self.return_value:
+                break
         param["env"] = env
 
     def visitAssert(self, ast: Assert, param):
@@ -684,10 +693,10 @@ class CDGGeneration(BaseVisitor):
         return Symbol("", PrimeField(), None, ast, ast.value)
 
     def visitCall(self, ast: Call, param):
-        for env in param["env"]:
-            if ast.id in env:
-                symbol = env[ast.id]
-                break
+        if ast.id in self.list_function:
+            symbol = self.list_function[ast.id]
+        elif ast.id in self.list_template:
+            symbol = self.list_template[ast.id]
         if isinstance(symbol.mtype, TemplateCircom):
             args = []
             for arg in ast.args:
@@ -698,9 +707,24 @@ class CDGGeneration(BaseVisitor):
                 args.append(val)
             return (symbol.mtype, args)
         else:
+            args = []
             for arg in ast.args:
-                self.visit(arg, param)
-            return Symbol("", PrimeField(), VarCircom(), ast, None)
+                val = self.visit(arg, param).value
+                if val is None:
+                    return Symbol("", PrimeField(), VarCircom(), ast, None)
+                args.append(val)
+            env = param["env"]
+            param["env"] = [{}] + param["env"]
+            for i in range(len(ast.args)):
+                param["env"][0][ast.args[i]] = Symbol(
+                    ast.args[i], PrimeField(), VarCircom(), ast.args, args[i])
+            self.in_function = True
+            self.visit(symbol.mtype.body, param)
+            param["env"] = env
+            ret_value = self.return_value
+            self.return_value = None
+            self.in_function = False
+            return ret_value
 
     def visitAnonymousComponentExpr(self, ast: AnonymousComponentExpr, param):
         component_name = self.getComponentName()
@@ -771,7 +795,7 @@ class FindNode(BaseVisitor):
 
     def visitVariable(self, ast: Variable, param):
         name = ast.name
-        temp = CDGGeneration(ast, param)
+        temp = CDGGeneration(ast, param, [], [])
         for access in ast.access:
             val = temp.visit(access, param)
             if isinstance(val, str):

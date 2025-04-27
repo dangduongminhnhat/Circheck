@@ -61,10 +61,11 @@ class TemplateCircom(Type):
 
 
 class FunctionCircom(Type):
-    def __init__(self, name, params, return_type):
+    def __init__(self, name, params, return_type, body):
         self.name = name
         self.params = params
         self.return_type = return_type
+        self.body = body
 
 
 def is_same_type(type1, type2):
@@ -90,6 +91,18 @@ class TypeCheck(BaseVisitor):
         self.signal_out = None
         self.is_multi_sub = False
         self.count_visited = 0
+
+    def infer_type(self, var, param, typ=PrimeField()):
+        symbol = None
+        for env in param:
+            if var.name in env:
+                symbol = env[var.name]
+                break
+        if len(var.access) == 0:
+            symbol.mtype = typ
+        else:
+            symbol.mtype = ArrayCircom(typ, len(var.access))
+        self.visit(var, param)
 
     def check(self):
         self.visit(self.ast, self.global_env)
@@ -122,7 +135,7 @@ class TypeCheck(BaseVisitor):
                 if arg in env[0]:
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Argument '{arg}' already declared")
-                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+                env[0][arg] = Symbol(arg, None, VarCircom())
             self.in_template = True
             self.template_signals = {}
             self.signal_in = []
@@ -143,7 +156,7 @@ class TypeCheck(BaseVisitor):
         else:
             env = [{}] + param
             for arg in ast.args:
-                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+                env[0][arg] = Symbol(arg, None, VarCircom())
             self.in_template = True
             self.visit(ast.body, env)
             if self.return_func is not None:
@@ -161,7 +174,7 @@ class TypeCheck(BaseVisitor):
                 if arg in env[0]:
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Argument '{arg}' already declared")
-                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+                env[0][arg] = Symbol(arg, None, VarCircom())
             self.in_function = True
             self.no_block = True
             self.visit(ast.body, env)
@@ -173,14 +186,14 @@ class TypeCheck(BaseVisitor):
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
             self.list_function[ast.name_field] = param[0][ast.name_field] = Symbol(
-                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func), None, ast)
+                ast.name_field, FunctionCircom(ast.name_field, arg_list, self.return_func, ast.body), None, ast)
             self.return_func = None
         else:
             self.in_function = True
             self.no_block = True
             env = [{}] + param
             for arg in ast.args:
-                env[0][arg] = Symbol(arg, PrimeField(), VarCircom())
+                env[0][arg] = Symbol(arg, None, VarCircom())
             self.visit(ast.body, env)
             if self.return_func is None:
                 raise Report(ReportType.ERROR, ast.locate,
@@ -199,6 +212,11 @@ class TypeCheck(BaseVisitor):
         self.visit(ast.main_component, param)
 
     def visitIfThenElse(self, ast: IfThenElse, param):
+        if self.count_visited == 0:
+            self.visit(ast.if_case, param)
+            if ast.else_case:
+                self.visit(ast.else_case, param)
+                return
         cond_type = self.visit(ast.cond, param)
         if isinstance(cond_type, TemplateCircom):
             raise Report(ReportType.ERROR, ast.cond.locate,
@@ -211,6 +229,9 @@ class TypeCheck(BaseVisitor):
             self.visit(ast.else_case, param)
 
     def visitWhile(self, ast: While, param):
+        if self.count_visited == 0:
+            self.visit(ast.stmt, param)
+            return
         cond_type = self.visit(ast.cond, param)
         if isinstance(cond_type, TemplateCircom):
             raise Report(ReportType.ERROR, ast.cond.locate,
@@ -316,6 +337,9 @@ class TypeCheck(BaseVisitor):
                 if ast.op == "=":
                     raise Report(ReportType.ERROR, ast.locate,
                                  "Cannot assign to a signal")
+                if rhe_type is None:
+                    self.infer_type(ast.rhe, param, lhe_type)
+                    rhe_type = lhe_type
                 if isinstance(rhe_type, TemplateCircom):
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Must be a single arithmetic expression. Found component")
@@ -326,12 +350,13 @@ class TypeCheck(BaseVisitor):
                 if ast.op != "=":
                     raise Report(ReportType.ERROR, ast.locate,
                                  "Cannot use operator on a variable")
+                if rhe_type is None:
+                    self.infer_type(ast.rhe, param, lhe_type)
+                    rhe_type = lhe_type
                 if isinstance(rhe_type, TemplateCircom):
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Must be a single arithmetic expression. Found component")
                 if not is_same_type(lhe_type, rhe_type):
-                    print("lhe_type", lhe_type.dims, lhe_type.eleType)
-                    print("rhe_type", rhe_type.dims, rhe_type.eleType)
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Types of the two sides of the equality are not compatible")
             elif isinstance(symbol.xtype, ComponentCircom):
@@ -410,7 +435,7 @@ class TypeCheck(BaseVisitor):
             env = [{}] + param
         for stmt in ast.stmts:
             if self.count_visited == 0:
-                if isinstance(stmt, InitializationBlock) or isinstance(stmt, Return):
+                if isinstance(stmt, InitializationBlock) or isinstance(stmt, Return) or isinstance(stmt, Block) or isinstance(stmt, IfThenElse) or isinstance(stmt, While):
                     self.visit(stmt, env)
             else:
                 self.visit(stmt, env)
@@ -444,7 +469,13 @@ class TypeCheck(BaseVisitor):
 
     def visitInfixOp(self, ast: InfixOp, param):
         lhe_type = self.visit(ast.lhe, param)
+        if lhe_type is None:
+            self.infer_type(ast.lhe, param)
+            lhe_type = PrimeField()
         rhe_type = self.visit(ast.rhe, param)
+        if rhe_type is None:
+            self.infer_type(ast.rhe, param)
+            rhe_type = PrimeField()
         if isinstance(lhe_type, TemplateCircom) or isinstance(lhe_type, ArrayCircom):
             raise Report(ReportType.ERROR, ast.lhe.locate,
                          "Type not allowed by the operator")
@@ -455,6 +486,9 @@ class TypeCheck(BaseVisitor):
 
     def visitPrefixOp(self, ast: PrefixOp, param):
         rhe_type = self.visit(ast.rhe, param)
+        if rhe_type is None:
+            self.infer_type(ast.rhe, param)
+            rhe_type = PrimeField()
         if isinstance(rhe_type, TemplateCircom) or isinstance(rhe_type, ArrayCircom):
             raise Report(ReportType.ERROR, ast.rhe.locate,
                          "Type not allowed by the operator")
@@ -483,14 +517,17 @@ class TypeCheck(BaseVisitor):
         return rhe_type
 
     def visitVariable(self, ast: Variable, param):
-        typ = None
+        symbol = None
         for env in param:
             if ast.name in env:
-                typ = env[ast.name].mtype
+                symbol = env[ast.name]
                 break
-        if typ is None:
+        if symbol is None:
             raise Report(ReportType.ERROR, ast.locate,
                          f"Variable '{ast.name}' not declared")
+        typ = symbol.mtype
+        if typ is None:
+            return None
         if isinstance(typ, ArrayCircom):
             var_type = ArrayCircom(typ.eleType, typ.dims)
         else:
@@ -519,12 +556,11 @@ class TypeCheck(BaseVisitor):
         return PrimeField()
 
     def visitCall(self, ast: Call, param):
-        func_type = None
-        for env in param:
-            if ast.id in env:
-                func_type = env[ast.id].mtype
-                break
-        if func_type is None:
+        if ast.id in self.list_function:
+            func_type = self.list_function[ast.id].mtype
+        elif ast.id in self.list_template:
+            func_type = self.list_template[ast.id].mtype
+        else:
             raise Report(ReportType.ERROR, ast.locate,
                          f"Function or Template '{ast.id}' not declared")
         if not isinstance(func_type, (FunctionCircom, TemplateCircom)):
@@ -534,10 +570,7 @@ class TypeCheck(BaseVisitor):
             raise Report(ReportType.ERROR, ast.locate,
                          f"Function '{ast.id}' has {len(func_type.params)} arguments, but {len(ast.args)} were provided")
         for arg in ast.args:
-            arg_type = self.visit(arg, param)
-            if not isinstance(arg_type, PrimeField):
-                raise Report(ReportType.ERROR, ast.locate,
-                             f"'{ast.id}' argument must be a single arithmetic expression.")
+            self.visit(arg, param)
         if isinstance(func_type, FunctionCircom):
             return func_type.return_type
         elif isinstance(func_type, TemplateCircom):
