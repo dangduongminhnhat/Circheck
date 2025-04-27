@@ -1,0 +1,9 @@
+{
+  "SingleAssignment0": {
+    "data flow constraint discrepancy": {
+      "../../benchmarks/knownbugs\\SingleAssignment0@inspire.circom:6:4": [
+        "Signal 'out' depends on 'a' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  }
+}
