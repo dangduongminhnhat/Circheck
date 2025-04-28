@@ -1,0 +1,16 @@
+{
+  "MiMCSponge@nInputs=1@nRounds=220@nOutputs=1": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
+        "Output signal 'outs[0]' is not constrained by any constraint."
+      ]
+    }
+  },
+  "MiMCSponge@nInputs=2@nRounds=220@nOutputs=1": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
+        "Output signal 'outs[0]' is not constrained by any constraint."
+      ]
+    }
+  }
+}

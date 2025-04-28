@@ -17,27 +17,7 @@ for p in locpath:
         sys.path.append(p)
 
 
-def test_known_bugs():
-    knownbugs_dir = "../../benchmarks/knownbugs"
-    results_dir = os.path.join(os.path.dirname(__file__), "results")
-    knownbugs_results_dir = os.path.join(results_dir, "knownbugs")
-
-    if not os.path.exists(knownbugs_results_dir):
-        os.makedirs(knownbugs_results_dir)
-
-    bug_files = [os.path.join(knownbugs_dir, file) for file in os.listdir(
-        knownbugs_dir) if file.endswith(".circom")]
-
-    for file_path in bug_files:
-        print(f"[Info]       Running analysis for {file_path}")
-        graphs, reports = detect(file_path)
-        if graphs:
-            report_to_file(graphs, reports, os.path.join(
-                knownbugs_results_dir, f"{os.path.basename(file_path)}_report.json"))
-        print("---------------------------------------------")
-
-
-def test_other_bugs():
+def test_bugs():
     benchmarks_dir = "../../benchmarks"
     results_dir = os.path.join(os.path.dirname(__file__), "results")
 
@@ -56,10 +36,15 @@ def test_other_bugs():
         "hermez-network-9a696e3-fixed",
         "hydra-2010a65",
         "iden3-core-56a08f9",
-        "internal"
+        "internal",
+        "keccak256-circom-af3e898",
+        "knownbugs",
+        "maci-9b1b1a6-fixed",
+        "semaphore-0f0fc95",
+        "zk-group-sigs-1337689-fixed"
     ]
 
-    # Because it's cause time out.
+    # Because it's cause time out or recursive many times.
     file_not_check = [
         "ECDSAVerifyNoPubkeyCheck@circom-ecdsa@n=64@k=4.circom",
         "secp256k1ScalarMult@circom-ecdsa@n=64@k=4.circom",
@@ -118,7 +103,49 @@ def test_other_bugs():
         "idOwnershipBySignatureTest.circom",
         "utils_getClaimExpiration.circom",
         "utils_isUpdatable.circom",
-        "Rotate@telepathy.circom"
+        "Rotate@telepathy.circom",
+        "absorb_test.circom",
+        "final_test.circom",
+        "keccakf_test.circom",
+        "keccak_256_256_test.circom",
+        "keccak_32_256_test.circom",
+        "batchUpdateStateTree_32.circom",
+        "batchUpdateStateTree_32_batch16.circom",
+        "batchUpdateStateTree_32_batch256.circom",
+        "batchUpdateStateTree_large.circom",
+        "batchUpdateStateTree_medium.circom",
+        "batchUpdateStateTree_small.circom",
+        "batchUpdateStateTree_test.circom",
+        "hasher11_test.circom",
+        "hasher5_test.circom",
+        "hashleftright_test.circom",
+        "merkleTreeCheckRoot_test.circom",
+        "merkleTreeInclusionProof_test.circom"
+        "merkleTreeLeafExists_test.circom",
+        "merkleTreeLeafExists_test.circom",
+        "merkleTreeInclusionProof_test.circom",
+        "performChecksBeforeUpdate_test.circom",
+        "quadVoteTally_32.circom",
+        "quadVoteTally_32_batch16.circom",
+        "quadVoteTally_32_batch256.circom",
+        "quadVoteTally_large.circom",
+        "quadVoteTally_medium.circom",
+        "quadVoteTally_small.circom",
+        "quadVoteTally_test.circom",
+        "quinGeneratePathIndices_test.circom",
+        "quinSelector_test.circom",
+        "quinTreeCheckRoot_test.circom",
+        "quinTreeInclusionProof_test.circom",
+        "quinTreeLeafExists_test.circom",
+        "resultCommitmentVerifier_test.circom",
+        "splicer_test.circom",
+        "updateStateTree_test.circom",
+        "verifySignature_test.circom",
+        "semaphore.circom",
+        "delete.circom",
+        "insert.circom",
+        "select.circom",
+        "update.circom"
     ]
 
     for root, dirs, files in os.walk(benchmarks_dir):
@@ -158,6 +185,4 @@ def test_other_bugs():
 
 if __name__ == "__main__":
     from circheck import detect, report_to_file
-
-    # test_known_bugs()
-    test_other_bugs()
+    test_bugs()

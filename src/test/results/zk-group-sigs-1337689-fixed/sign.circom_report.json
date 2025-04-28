@@ -1,0 +1,111 @@
+{
+  "Main@GROUP_SIZE=40": {
+    "unconstrained_output": {
+      "../../benchmarks\\zk-group-sigs-1337689-fixed\\sign.circom:14:2": [
+        "Output signal 'msgAttestation' is not constrained by any constraint."
+      ]
+    },
+    "unconstrained component input": {
+      "../../benchmarks\\zk-group-sigs-1337689-fixed\\sign.circom:36:4": [
+        "Input signal 'is_hash_present[1].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[2].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[3].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[4].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[5].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[6].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[7].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[8].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[9].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[10].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[11].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[12].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[13].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[14].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[15].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[16].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[17].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[18].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[19].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[20].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[21].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[22].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[23].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[24].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[25].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[26].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[27].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[28].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[29].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[30].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[31].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[32].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[33].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[34].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[35].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[36].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[37].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[38].b' is unconstrained and may accept unchecked values.",
+        "Input signal 'is_hash_present[39].b' is unconstrained and may accept unchecked values."
+      ]
+    },
+    "unused component output": {
+      "../../benchmarks\\zk-group-sigs-1337689-fixed\\sign.circom:36:38": [
+        "This output 'eqs[0].out' is not checked nor used from the call site."
+      ],
+      "../../benchmarks\\zk-group-sigs-1337689-fixed\\sign.circom:36:51": [
+        "This output 'is_hash_present[1].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[2].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[3].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[4].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[5].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[6].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[7].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[8].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[9].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[10].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[11].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[12].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[13].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[14].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[15].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[16].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[17].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[18].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[19].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[20].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[21].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[22].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[23].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[24].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[25].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[26].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[27].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[28].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[29].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[30].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[31].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[32].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[33].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[34].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[35].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[36].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[37].out' is not checked nor used from the call site.",
+        "This output 'is_hash_present[38].out' is not checked nor used from the call site."
+      ]
+    }
+  },
+  "MiMCSponge@nInputs=1@nRounds=220@nOutputs=1": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
+        "Output signal 'outs[0]' is not constrained by any constraint."
+      ]
+    }
+  },
+  "MiMCSponge@nInputs=2@nRounds=220@nOutputs=1": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
+        "Output signal 'outs[0]' is not constrained by any constraint."
+      ]
+    }
+  }
+}
