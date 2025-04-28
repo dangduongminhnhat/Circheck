@@ -1,0 +1,31 @@
+{
+  "FeeAccumulator@maxFeeTx=16": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\fee-accumulator.circom:62:4": [
+        "Output signal 'accFeeOut[0]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[1]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[2]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[3]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[4]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[5]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[6]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[7]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[8]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[9]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[10]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[11]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[12]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[13]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[14]' is not constrained by any constraint.",
+        "Output signal 'accFeeOut[15]' is not constrained by any constraint."
+      ]
+    }
+  },
+  "FeeAccumulatorStep": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\fee-accumulator.circom:25:4": [
+        "Output signal 'accFeeOut' is not constrained by any constraint."
+      ]
+    }
+  }
+}

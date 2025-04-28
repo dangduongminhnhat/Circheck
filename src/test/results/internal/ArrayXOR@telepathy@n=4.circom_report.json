@@ -1,0 +1,29 @@
+{
+  "ArrayXOR@n=4": {
+    "unconstrained_output": {
+      "../../benchmarks\\internal\\ArrayXOR@telepathy@n=4.circom:6:4": [
+        "Output signal 'out[0]' is not constrained by any constraint.",
+        "Output signal 'out[1]' is not constrained by any constraint.",
+        "Output signal 'out[2]' is not constrained by any constraint.",
+        "Output signal 'out[3]' is not constrained by any constraint."
+      ]
+    },
+    "data flow constraint discrepancy": {
+      "../../benchmarks\\internal\\ArrayXOR@telepathy@n=4.circom:6:4": [
+        "Signal 'out[0]' depends on 'a[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'a[1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'a[2]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'a[3]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'b[1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'b[2]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'b[3]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "../../benchmarks\\internal\\ArrayXOR@telepathy@n=4.circom:9:8": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

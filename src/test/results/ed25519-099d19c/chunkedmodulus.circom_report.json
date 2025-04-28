@@ -1,0 +1,190 @@
+{
+  "ModulusWith25519Chunked51@n=20": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\modulus.circom:341:2": [
+        "Output signal 'out[0]' is not constrained by any constraint.",
+        "Output signal 'out[1]' is not constrained by any constraint.",
+        "Output signal 'out[2]' is not constrained by any constraint."
+      ]
+    }
+  },
+  "ChunkedMul@m=17@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[17]' depends on 'carry[17]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedAdd@m=3@n=2@base=85": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:39:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:40:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=15@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[15]' depends on 'carry[15]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=13@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[13]' depends on 'carry[13]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=11@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[11]' depends on 'carry[11]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=9@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[9]' depends on 'carry[9]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=7@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[7]' depends on 'carry[7]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=5@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[5]' depends on 'carry[5]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=3@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[3]' depends on 'carry[3]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ChunkedMul@m=1@n=1@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
+        "Signal 'out[1]' depends on 'carry[1]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "ModulusWith25519Chunked51@n=2": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\modulus.circom:341:2": [
+        "Output signal 'out[2]' is not constrained by any constraint."
+      ]
+    }
+  }
+}

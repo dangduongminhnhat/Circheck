@@ -1,0 +1,10 @@
+{
+  "Multiplexer@wIn=2@nIn=2": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\multiplexer.circom:98:4": [
+        "Output signal 'out[0]' is not constrained by any constraint.",
+        "Output signal 'out[1]' is not constrained by any constraint."
+      ]
+    }
+  }
+}

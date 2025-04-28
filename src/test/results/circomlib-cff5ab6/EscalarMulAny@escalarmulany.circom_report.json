@@ -1,0 +1,48 @@
+{
+  "SegmentMulAny@n=2": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\escalarmulany.circom:74:4": [
+        "Output signal 'dbl[0]' is not constrained by any constraint.",
+        "Output signal 'dbl[1]' is not constrained by any constraint."
+      ]
+    }
+  },
+  "Edwards2Montgomery": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "Montgomery2Edwards": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:54:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "BabyAdd": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
+        "Variable xout is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:48:4": [
+        "Variable yout is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "MontgomeryDouble": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
+        "Variable lamda is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "MontgomeryAdd": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
+        "Variable lamda is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

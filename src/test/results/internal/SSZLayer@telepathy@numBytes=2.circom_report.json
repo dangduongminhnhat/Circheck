@@ -1,0 +1,9 @@
+{
+  "SSZLayer@numBytes=2": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\telepathy\\circuits\\circuits\\ssz.circom:12:4": [
+        "Output signal 'out[0]' is not constrained by any constraint."
+      ]
+    }
+  }
+}

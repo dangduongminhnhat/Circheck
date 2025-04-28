@@ -1,0 +1,9 @@
+{
+  "MontgomeryAdd": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
+        "Variable lamda is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

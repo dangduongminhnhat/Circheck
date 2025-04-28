@@ -2,27 +2,46 @@ from CDG import *
 from Report import *
 from StaticCheck import SignalType
 from AST import *
+import sys
+from tqdm import tqdm
+
+sys.setrecursionlimit(5000)
 
 
 class Detector:
     def __init__(self, graphs):
         self.graphs = graphs
         self.reports = {}
+        self.as_const = {}
 
     def detect(self):
         for graph in self.graphs.values():
             self.reports[graph.name] = {}
+            print(
+                f"[Info]       Starting the analysis process of graph {graph.name}.")
+
+            print("[Info]       Detecting unconstrainted output...")
             self.detect_unconstrainted_output(graph)
+
+            print("[Info]       Detecting unconstrained component input...")
             self.detect_unconstrained_comp_input(graph)
+
+            print("[Info]       Detecting data flow constraint discrepancy...")
             self.detect_data_flow_constraint_discrepancy(graph)
+
+            print("[Info]       Detecting unused component output...")
             self.detect_unused_comp_output(graph)
+
+            print("[Info]       Detecting type mismatch...")
             self.detect_type_mismatch(graph)
+
+            print("[Info]       Detecting assignment misuse...")
             self.detect_assignment_misue(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
         results = []
-        for n_id in graph.components[graph.name][SignalType.OUTPUT]:
+        for n_id in tqdm(graph.components[graph.name][SignalType.OUTPUT]):
             node = graph.nodes[n_id]
             if self.unconstrainted_ouput(graph, node):
                 results.append(Report(ReportType.WARNING, node.locate,
@@ -45,18 +64,26 @@ class Detector:
         return False
 
     def constrainted_as_const(self, graph, node):
+        if node.id in self.as_const:
+            return self.as_const[node.id]
+        else:
+            self.as_const[node.id] = False
         for edge in node.flow_to:
             if edge.edge_type == EdgeType.CONSTRAINT:
                 if edge.node_to.node_type == NodeType.CONSTANT:
+                    self.as_const[node.id] = True
                     return True
         for edge in node.flow_from:
             if edge.edge_type == EdgeType.CONSTRAINT:
                 node_from = edge.node_from
                 if node_from.node_type == NodeType.CONSTANT:
+                    self.as_const[node.id] = True
                     return True
                 if node_from.node_type == NodeType.SIGNAL and node_from.signal_type == SignalType.INTERMEDIATE:
                     if self.constrainted_as_const(graph, node_from):
+                        self.as_const[node.id] = True
                         return True
+        self.as_const[node.id] = False
         return False
 
     def is_constrainted(self, graph, node_a, node_b):
@@ -97,7 +124,7 @@ class Detector:
 
     def detect_unconstrained_comp_input(self, graph):
         results = []
-        for node in graph.nodes.values():
+        for node in tqdm(graph.nodes.values()):
             if self.unconstrained_comp_input(graph, node):
                 results.append(Report(ReportType.WARNING, node.locate,
                                f"Input signal '{node.id}' is unconstrained and may accept unchecked values."))
@@ -105,7 +132,7 @@ class Detector:
 
     def detect_data_flow_constraint_discrepancy(self, graph):
         resutlts = []
-        for n_id, n_set in graph.node_flows_to.items():
+        for n_id, n_set in tqdm(graph.node_flows_to.items()):
             for n1_id in n_set:
                 node = graph.nodes[n_id]
                 node_1 = graph.nodes[n1_id]
@@ -143,7 +170,7 @@ class Detector:
 
     def detect_unused_comp_output(self, graph):
         resuluts = []
-        for node in graph.nodes.values():
+        for node in tqdm(graph.nodes.values()):
             if self.unused_comp_output(graph, node):
                 resuluts.append(Report(ReportType.WARNING, node.locate,
                                 f"This output '{node.id}' is not checked nor used from the call site."))
@@ -159,7 +186,7 @@ class Detector:
 
     def detect_unused_signal(self, graph):
         results = []
-        for node in graph.nodes.values():
+        for node in tqdm(graph.nodes.values()):
             if self.unsused_signal(graph, node):
                 results.append(Report(ReportType.WARNING, node.locate,
                                f"This signal '{node.id}' is declared but never used in any computation or constraint."))
@@ -171,7 +198,7 @@ class Detector:
         num2bits_like = {"Num2Bits", "Num2Bits_strict",
                          "RangeProof", "MultiRangeProof", "RangeCheck2D"}
         results = []
-        for node in graph.nodes.values():
+        for node in tqdm(graph.nodes.values()):
             component = node.component.split("|")[0]
             if not node.is_signal_in() or component == graph.name:
                 continue
@@ -234,7 +261,7 @@ class Detector:
 
     def detect_assignment_misue(self, graph):
         results = []
-        for edge in graph.edges.values():
+        for edge in tqdm(graph.edges.values()):
             if self.is_rewritable_assignment(edge):
                 op = edge.ast.op
                 if op == "<--":

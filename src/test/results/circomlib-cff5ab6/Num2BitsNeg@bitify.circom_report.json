@@ -1,0 +1,9 @@
+{
+  "Num2BitsNeg@n=2": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:96:8": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

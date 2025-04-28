@@ -8,7 +8,7 @@ from antlr4 import *
 import sys
 from Report import Report, ReportType
 
-sys.setrecursionlimit(3000)
+sys.setrecursionlimit(5000)
 
 
 class ASTGeneration(CircomVisitor):
@@ -456,7 +456,7 @@ class ASTGeneration(CircomVisitor):
     #     | expression2
     #     ;
     def visitExpression1(self, ctx: CircomParser.Expression1Context):
-        return InlineSwitchOp(FileLocation(self.file_name, ctx.start, ctx.stop), self.visit(ctx.expression2(1)), self.visit(ctx.expression2(0)), self.visit(ctx.expression2(2))) if ctx.TERNARY_ALTERNATIVE() else self.visit(ctx.expression2(0))
+        return InlineSwitchOp(FileLocation(self.file_name, ctx.start, ctx.stop), self.visit(ctx.expression2(0)), self.visit(ctx.expression2(1)), self.visit(ctx.expression2(2))) if ctx.TERNARY_ALTERNATIVE() else self.visit(ctx.expression2(0))
 
     # expression2
     #     : expression2 OR expression3

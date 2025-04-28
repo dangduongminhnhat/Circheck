@@ -131,6 +131,16 @@ def create_nested_array(dimensions):
     return [create_nested_array(dimensions[1:]) for _ in range(size)]
 
 
+def check_none(lst):
+    for item in lst:
+        if item is None:
+            return True
+        if isinstance(item, list):
+            if check_none(item):
+                return True
+    return False
+
+
 class CDGGeneration(BaseVisitor):
     def __init__(self, ast: AST, env, list_function, list_template):
         self.graphs = {}
@@ -209,9 +219,10 @@ class CDGGeneration(BaseVisitor):
             SignalType.OUTPUT: [],
             SignalType.INTERMEDIATE: []
         }
+        template = self.list_template[ast.name_field].mtype
         for i in range(len(ast.args)):
             param["env"][0][ast.args[i]] = Symbol(
-                ast.args[i], PrimeField(), VarCircom(), ast, args[i])
+                ast.args[i], template.params[i], VarCircom(), ast, args[i])
             arg_name = ast.args[i]
             param["var"][arg_name] = 0
             arg_name += "[var0"
@@ -232,7 +243,7 @@ class CDGGeneration(BaseVisitor):
     def visitIfThenElse(self, ast: IfThenElse, param):
         cond_type = self.visit(ast.cond, param).value
         if cond_type is None:
-            raise Report(ReportType, ast.cond.locate,
+            raise Report(ReportType.ERROR, ast.cond.locate,
                          "Condition Type is None.")
         if cond_type:
             self.visit(ast.if_case, param)
@@ -416,7 +427,7 @@ class CDGGeneration(BaseVisitor):
                 else:
                     symbol.mtype = template_type
                 graph_name = self.getGraphName(
-                    template_type.name, template_type.params, args) + "|id=" + str(self.comp_id)
+                    template_type.name, template_type.args, args) + "|id=" + str(self.comp_id)
                 self.comp_id += 1
                 if len(ast.access) > 0:
                     for i in range(len(ast.access) - 1):
@@ -664,7 +675,12 @@ class CDGGeneration(BaseVisitor):
                         signal_type = SignalType.INPUT
                     else:
                         signal_type = SignalType.OUTPUT
-                    var_type = var_type.signals[access_value]
+                    temp_type = var_type.signals[access_value]
+                    if isinstance(temp_type, ArrayCircom):
+                        var_type = ArrayCircom(
+                            temp_type.eleType, temp_type.dims)
+                    else:
+                        var_type = temp_type
                     is_access = False
                 else:
                     if var_type.dims == 1:
@@ -689,11 +705,11 @@ class CDGGeneration(BaseVisitor):
                 else:
                     var_type.dims -= 1
                 name += "[" + str(access_value) + "]"
-            if name not in param["node"]:
-                param["node"][name] = Node(
-                    ast.locate, name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
-                param["component"][param["name"]
-                                   ][symbol.xtype.signal_type].append(name)
+            # if name not in param["node"]:
+            #     param["node"][name] = Node(
+            #         ast.locate, name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
+            #     param["component"][param["name"]
+            #                        ][symbol.xtype.signal_type].append(name)
             return Symbol(name, var_type, symbol.xtype, ast, None)
 
     def visitNumber(self, ast: Number, param):
@@ -719,12 +735,15 @@ class CDGGeneration(BaseVisitor):
                 val = self.visit(arg, param).value
                 if val is None:
                     return Symbol("", PrimeField(), VarCircom(), ast, None)
+                if isinstance(val, list) and check_none(val):
+                    return Symbol("", PrimeField(), VarCircom(), ast, None)
                 args.append(val)
             env = param["env"]
             param["env"] = [{}] + param["env"]
             for i in range(len(ast.args)):
+                arg_type = TypeCheck(ast).visit(ast.args[i], env)
                 param["env"][0][symbol.mtype.args[i]] = Symbol(
-                    ast.args[i], PrimeField(), VarCircom(), ast.args, args[i])
+                    symbol.mtype.args[i], arg_type, VarCircom(), ast.args[i], args[i])
             self.in_function = True
             self.block = True
             self.visit(symbol.mtype.body, param)

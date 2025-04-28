@@ -1,0 +1,12 @@
+{
+  "ChunkedAdd@m=4@n=4@base=51": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:39:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:40:4": [
+        "Variable carry is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Edwards2Montgomery": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

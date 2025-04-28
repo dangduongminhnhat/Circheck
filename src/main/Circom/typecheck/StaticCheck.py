@@ -52,12 +52,13 @@ class ArrayCircom(Type):
 
 
 class TemplateCircom(Type):
-    def __init__(self, name, params, signals={}, signals_in=[], signals_out=[]):
+    def __init__(self, name, params, signals={}, signals_in=[], signals_out=[], args=[]):
         self.name = name
         self.params = params
         self.signals = signals
         self.signals_in = signals_in
         self.signals_out = signals_out
+        self.args = args
 
 
 class FunctionCircom(Type):
@@ -99,10 +100,17 @@ class TypeCheck(BaseVisitor):
             if var.name in env:
                 symbol = env[var.name]
                 break
-        if len(var.access) == 0:
-            symbol.mtype = typ
-        else:
-            symbol.mtype = ArrayCircom(typ, len(var.access))
+        if isinstance(typ, PrimeField):
+            if len(var.access) == 0:
+                symbol.mtype = typ
+            else:
+                symbol.mtype = ArrayCircom(typ, len(var.access))
+        elif isinstance(typ, ArrayCircom):
+            if len(var.access) == 0:
+                symbol.mtype = typ
+            else:
+                symbol.mtype = ArrayCircom(
+                    typ.eleType, len(var.access) + typ.dims)
         self.visit(var, param)
 
     def check(self):
@@ -126,7 +134,7 @@ class TypeCheck(BaseVisitor):
     def visitInclude(self, ast: Include, param):
         return None
 
-    def visitTemplate(self, ast: TemplateCircom, param):
+    def visitTemplate(self, ast: Template, param):
         if self.count_visited == 0:
             if ast.name_field in self.list_template:
                 raise Report(ReportType.ERROR, ast.locate,
@@ -150,7 +158,7 @@ class TypeCheck(BaseVisitor):
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
             self.list_template[ast.name_field] = param[0][ast.name_field] = Symbol(ast.name_field, TemplateCircom(
-                ast.name_field, ast.args, self.template_signals, self.signal_in, self.signal_out), None, ast)
+                ast.name_field, arg_list, self.template_signals, self.signal_in, self.signal_out, ast.args), None, ast)
             self.template_signals = None
             self.signal_in = None
             self.signal_out = None
@@ -160,6 +168,10 @@ class TypeCheck(BaseVisitor):
                 env[0][arg] = Symbol(arg, None, VarCircom())
             self.in_template = True
             self.visit(ast.body, env)
+            arg_list = []
+            for arg in ast.args:
+                arg_list.append(env[0][arg].mtype)
+            self.list_template[ast.name_field].mtype.params = arg_list
             if self.return_func is not None:
                 raise Report(ReportType.ERROR, ast.locate,
                              "Template can not have a return statement")
@@ -376,11 +388,15 @@ class TypeCheck(BaseVisitor):
                         lhe_type.signals = rhe_type.signals
                         lhe_type.signals_in = rhe_type.signals_in
                         lhe_type.signals_out = rhe_type.signals_out
+                        lhe_type.args = rhe_type.args
                     else:
                         if lhe_type.name != rhe_type.name:
                             raise Report(ReportType.ERROR, ast.locate,
                                          "Assignee and assigned types do not match.")
                 elif not is_same_type(lhe_type, rhe_type):
+                    if rhe_type is None:
+                        self.infer_type(ast.rhe, param, lhe_type)
+                        return
                     raise Report(ReportType.ERROR, ast.rhe.locate,
                                  "Assignee and assigned types do not match.")
 
@@ -552,7 +568,13 @@ class TypeCheck(BaseVisitor):
                 if not isinstance(var_type, TemplateCircom):
                     raise Report(ReportType.ERROR, ast.locate,
                                  f"Variable '{ast.name}' is not a component")
-                var_type = var_type.signals[access_type]
+                # print(ast.locate)
+                signal_type = var_type.signals[access_type]
+                if isinstance(signal_type, ArrayCircom):
+                    var_type = ArrayCircom(
+                        signal_type.eleType, signal_type.dims)
+                else:
+                    var_type = signal_type
         return var_type
 
     def visitNumber(self, ast: Number, param):
@@ -591,9 +613,9 @@ class TypeCheck(BaseVisitor):
         if len(ast.params) != len(template_type.params):
             raise Report(ReportType.ERROR, ast.locate,
                          "Don't have same size of params")
-        for par in ast.params:
-            param_type = self.visit(par, param)
-            if not isinstance(param_type, PrimeField):
+        for i in range(len(ast.params)):
+            param_type = self.visit(ast.params[i], param)
+            if not is_same_type(param_type, template_type.params[i]):
                 raise Report(ReportType.ERROR, par.locate,
                              "Type Mismatch in parameter")
         if ast.names and ast.names[0]:
@@ -639,7 +661,10 @@ class TypeCheck(BaseVisitor):
             elif not is_same_type(first_type, type_list[i]):
                 raise Report(ReportType.ERROR, ast.values[i].locate,
                              "All elements in the array must be of the same type")
-        return ArrayCircom(first_type, 1)
+        if isinstance(first_type, PrimeField):
+            return ArrayCircom(first_type, 1)
+        elif isinstance(first_type, ArrayCircom):
+            return ArrayCircom(first_type.eleType, first_type.dims + 1)
 
     def visitTupleExpr(self, ast: TupleExpr, param):
         return ast.values

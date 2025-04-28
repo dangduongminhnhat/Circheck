@@ -1,0 +1,17 @@
+{
+  "matPow@n=3@p=3": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-matrix\\circuits\\matPow.circom:8:4": [
+        "Output signal 'out[0][0]' is not constrained by any constraint.",
+        "Output signal 'out[1][0]' is not constrained by any constraint.",
+        "Output signal 'out[2][0]' is not constrained by any constraint.",
+        "Output signal 'out[0][1]' is not constrained by any constraint.",
+        "Output signal 'out[1][1]' is not constrained by any constraint.",
+        "Output signal 'out[2][1]' is not constrained by any constraint.",
+        "Output signal 'out[0][2]' is not constrained by any constraint.",
+        "Output signal 'out[1][2]' is not constrained by any constraint.",
+        "Output signal 'out[2][2]' is not constrained by any constraint."
+      ]
+    }
+  }
+}

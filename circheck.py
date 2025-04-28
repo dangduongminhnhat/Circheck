@@ -75,6 +75,7 @@ def typecheck(ast):
     try:
         checked.check()
     except Exception as e:
+        # traceback.print_exc()
         print(e)
         return None, None, None
     return checked.global_env, checked.list_function, checked.list_template
@@ -87,6 +88,7 @@ def generate_cdg(ast, param, list_function, list_template):
                                list_template).generateCDG()
         return graphs
     except Exception as e:
+        traceback.print_exc()
         print(e)
         return None
 

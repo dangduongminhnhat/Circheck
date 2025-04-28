@@ -1,8 +1,6 @@
 from enum import Enum, auto
-from dataclasses import dataclass
-from typing import Dict
 from StaticCheck import SignalType
-from AST import FileLocation
+from tqdm import tqdm
 
 
 class NodeType(Enum):
@@ -128,7 +126,9 @@ class CircuitDependenceGraph:
         return False
 
     def build_conditional_depend_edges(self, graphs):
-        for u in self.nodes.values():
+        print(
+            f"[Info]       Building conditional dependency edges of {self.name}...")
+        for u in tqdm(self.nodes.values()):
             if self.is_signal_in(u):
                 component = u.component
                 for v_id in self.components[component][SignalType.OUTPUT]:
@@ -159,7 +159,9 @@ class CircuitDependenceGraph:
                                     v.flow_from.append(edge)
 
     def build_condition_constraint_edges(self, graphs):
-        for u in self.nodes.values():
+        print(
+            f"[Info]       Building condition constraint edges of {self.name}...")
+        for u in tqdm(self.nodes.values()):
             if self.is_signal_in(u):
                 component = u.component
                 for v_id in self.components[component][SignalType.OUTPUT]:

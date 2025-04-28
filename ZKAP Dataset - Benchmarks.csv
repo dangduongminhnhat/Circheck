@@ -1,0 +1,317 @@
+Name,Project,Link,Expected Detector,Expected Detector,Expected Detector,Expected Detector,Expected Detector,"Circom
+Compile","Circom2LLVM
+Compile","Graph
+Generation",Groundtruth,Circomspect,Status,Detector,Status,"ZKSolid
+UCO","ZKSolid
+USCI","ZKSolid
+DCD","ZKSolid
+TM","ZKSolid
+US","ZKSolid
+USCO","ZKSolid
+AM","ZKSolid
+NDD","ZKSolid
+DBZ","ZKSolid
+UCO TP","ZKSolid
+USCI TP","ZKSolid
+DCD TP","ZKSolid
+TM TP","ZKSolid
+US TP","ZKSolid
+USCO TP","ZKSolid
+AM TP","ZKSolid
+NDD TP","ZKSolid
+DBZ TP",Comment
+Projects:,18,,,,,,,,,#safe,82,37,,85,,221,245,223,204,202,165,209,165,196,,,,,,,,,,
+Benchmarks:,258,,,,,,,,,#unsafe,58,224,,164,405,28,4,26,43,47,83,38,83,53,,,,,,,,,,
+,,,,,,,,,,,140,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,Circomspect,T,F,Precision,Recall,F1 Score,Timecost,,ZKSolid,T,F,,Recall,Precision,,Timecost,F1 Score,,,,,,,,,,
+,,,,,,,,P,39.29%,41.43%,48.67%,94.83%,0.64,0.18,,P,40.00%,16.43%,,96.55%,70.89%,,7.2,0.82,,,,,,,,,,
+,,,,,,,,N,17.14%,2.14%,,,,,,N,42.14%,1.43%,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Filling yellow as the background means it is a previously unknown bug and should be reported.
+UnconstrainedOutput@inspire.circom,knownbug,"GitHub - 0xPARC/zk-bug-tracker: A community-maintained collection of bugs, vulnerabilities, and exploits in apps using ZK crypto.",Unconstrained Circ. Output,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,safe,unsafe,safe,safe,TP,,TP,,,,FP,,,Root cause: The output signal is not constrained.
+ProcessMessages@MACI@msgBits=64.circom,knownbug,"GitHub - 0xPARC/zk-bug-tracker: A community-maintained collection of bugs, vulnerabilities, and exploits in apps using ZK crypto.",Unconstrained Comp. Input,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,unsafe,unsafe,safe,safe,safe,unsafe,safe,safe,,TP,TP,,,,FP,,,Root cause: A signal of component is not constrained.
+SingleAssignment0@inspire.circom,knownbug,https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment,Dataflow-constraint discrepancy,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,,unsafe,,safe,safe,unsafe,safe,safe,safe,unsafe,safe,safe,,,TP,,,,FP,,,Root cause: Discrepancy between computation and constraints.
+UnusedCompOutput@inspire.circom,knownbug,"GitHub - 0xPARC/zk-bug-tracker: A community-maintained collection of bugs, vulnerabilities, and exploits in apps using ZK crypto.",Unused Comp. Output,,,,,TRUE,TRUE,TRUE,unsafe,safe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,TP,,,,Root cause: The constraints system in sub-circuit is not constrained by the main circuit.
+BinSum@circomspect@n=2@ops=2.circom,knownbug,https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#side-effect-free-assignment,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,safe,safe,safe,safe,TP,,TP,,,,,,,Root cause: Discrepancy between computation and constraints.
+UnusedPubInput@EF.circom,knownbug,https://github.com/0xPARC/zk-bug-tracker#5-unused-public-inputs-optimized-out,Unused Circ. Signal,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,TP,,,,,Root cause: Unused input signal.
+DivZero@circomspect.circom,knownbug,https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#unconstrained-division,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+Decoder@multiplexer.circom,knownbug,https://github.com/iden3/circomlib/pull/81,Non-Deterministic-Dataflow,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,TP,,Root cause: Sensitive operators make the division-by-zero possible.
+RangeProofs@EF@bits=8@max=65535.circom,knownbug,https://github.com/0xPARC/zk-bug-tracker#dark-forest-1,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,TP,,,,,,"Root cause: Circuit accepts a smaller range than the input, e.g., LessThan requires Num2Bits"
+BigModOld@circom-pairing@n=8@k=2.circom,knownbug,https://github.com/yi-sun/circom-pairing/pull/16,Type-Mismatch,Assignment misuse,Non-Deterministic-Dataflow,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,safe,,,,TP,,FP,TP,TP,,"Root cause: Circuit accepts a smaller range than the input, e.g., LessThan requires Num2Bits"
+SingleAssignment1@inspire.circom,knownbug,https://github.com/trailofbits/circomspect/blob/main/doc/analysis_passes.md#signal-assignment,Assignment misuse,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,TP,,,Root cause: Assignment misuse. `<--` + `===` could be replaced by `<==`.
+DivModN@veridise@n=13.circom,internal,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/internal,Assignment misuse,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,TP,,,"Root cause: Assignment misuse. Specially, here, `\` and `%` doesn't perform the same semantic as `a*b+c === d`."
+Reward@veridise.circom,internal,,Assignment misuse,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,TP,,,Root cause: Assignment misuse. `<--` + `===` could be replaced by `<==`.
+ArrayXOR@telepathy@n=4.circom,internal,,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,safe,safe,safe,safe,TP,,TP,,,,,,,Root cause: At least one output signal is completely not constrained.
+Rotate@telepathy.circom,internal,,Unused Circ. Signal,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,TP,,,,,Root cause: The signal pair of pubkeysBigInt isn't used on g1BytesToBigInt.
+SSZLayer@telepathy@numBytes=2.circom,internal,,Unconstrained Circ. Output,Unused Circ. Signal,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,safe,safe,unsafe,safe,safe,safe,safe,TP,,,,TP,,,,,Root cause: At least one output signal is completely not constrained.
+SSZLayer@telepathy@numBytes=64.circom,internal,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,FP,,,,,
+SSZRestoreMerkleRoot@telepathy@depth=2@index=2.circom,internal,,Unused Circ. Signal,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,TP,,,,,Root cause: Unused signal.
+CoreVerifyPubkeyG1@circom-pairing@n=55@k=7.circom,circom-pairing,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/circom-pairing,Unused Comp. Output,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,unsafe,safe,safe,safe,,,,,FP,TP,,,,Root cause: component has output(s) but at least one output is not used in the context.
+LongToShortNoEndCarry@circom-pairing@n=32@k=3.circom,circom-pairing,,Assignment misuse,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,TP,,,Root cause: Assignment misuse. `<--` + `===` could be replaced by `<==`.
+AliasCheck@aliascheck.circom,circomlib,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/circomlib-cff5ab6,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+AND@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Ark@poseidon.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+BabyAdd@babyjub.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,FP,
+BabyCheck@babyjub.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+BabyDbl@babyjub.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,FP,
+BabyPbk@babyjub.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,unsafe,,,,,,FP,,,FP,
+BinSub@binsub.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+BinSum@binsum.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+BitElementMulAny@escalarmulany.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+Bits2Num_strict@bitify.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Bits2Num@bitify.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Bits2Point_Strict@pointbits.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,
+Bits2Point@pointbits.circom,circomlib,,Unconstrained Circ. Output,Unused Circ. Signal,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,safe,safe,unsafe,safe,safe,safe,safe,TP,,,,TP,,,,,
+CompConstant@compconstant.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Edwards2Montgomery@montgomery.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+EscalarMul@escalarmul.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,FP,
+EscalarMulAny@escalarmulany.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,,,,,,FP,,FP,TP,Root cause: Sensitive operators make the division-by-zero possible.
+EscalarMulFix@escalarmulfix.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,safe,unsafe,,,,,,FP,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+EscalarMulWindow@escalarmul.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,FP,
+EscalarProduct@multiplexer.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+ForceEqualIfEnabled@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,
+GreaterEqThan@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,FP,,,,,,
+GreaterThan@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,FP,,,,,,
+IsEqual@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,
+IsZero@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,
+LessEqThan@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,FP,,,,,,
+LessThan@comparators.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,FP,,,,,,
+MiMC7@mimc.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MiMCFeistel@mimcsponge.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MiMCSponge@mimcsponge.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,FP,,,,
+Montgomery2Edwards@montgomery.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+MontgomeryAdd@montgomery.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+MontgomeryDouble@montgomery.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+MultiAND@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MultiMiMC7@mimc.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MultiMux1@mux1.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MultiMux2@mux2.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MultiMux3@mux3.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+MultiMux4@mux4.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Multiplexer@multiplexer.circom,circomlib,,Non-Deterministic-Dataflow,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,TP,,Root cause: The usage of sub-circuit Decoder makes the circuit non-deterministic.
+Multiplexor2@escalarmulany.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Mux1@mux1.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Mux2@mux2.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Mux3@mux3.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Mux4@mux4.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+NAND@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+NOR@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+NOT@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Num2Bits_strict@bitify.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Num2Bits@bitify.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Num2BitsNeg@bitify.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,
+OR@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Pedersen@pedersen_old.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,FP,
+Pedersen@pedersen.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,unsafe,,,,,,FP,,,FP,
+Point2Bits_Strict@pointbits.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Point2Bits@pointbits.circom,circomlib,,Unconstrained Circ. Output,Unused Circ. Signal,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,safe,safe,unsafe,safe,safe,safe,safe,TP,,,,TP,,,,,"Root cause: Empty circuits, thus the output signal is not constrained."
+Poseidon@poseidon.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Segment@pedersen.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,safe,unsafe,,,,,,FP,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+SegmentMulAny@escalarmulany.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+SegmentMulFix@escalarmulfix.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,Root cause: Sensitive operators make the division-by-zero possible.
+Sigma@poseidon.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Sign@sign.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Switcher@switcher.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Window4@pedersen.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,
+WindowMulFix@escalarmulfix.circom,circomlib,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,safe,safe,safe,unsafe,,,,,,,,,TP,
+XOR@gates.circom,circomlib,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+ECDSAVerifyNoPubkeyCheck@circom-ecdsa@n=64@k=4.circom,circom-ecdsa,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/circom-ecdsa,Unused Circ. Signal,Non-Deterministic-Dataflow,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,unsafe,unsafe,unsafe,unsafe,safe,,,,FP,TP,FP,FP,TP,,"Root cause: This circuit missed the usage of a variable `p`, which looks like a missing constraint instead of a typo.
+Decoder problem, which is known before."
+bigadd@circom-ecdsa@n=1@k=5.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+bigadd@circom-ecdsa@n=2@k=3.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+biglessthan@circom-ecdsa@n=2@k=3.circom,circom-ecdsa,,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,safe,,,,TP,,FP,,FP,,Root cause: It is unsafe because it doesn't limit the input range(type) of `LessThan`.
+bigmod@circom-ecdsa@n=2@k=2.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+bigmod@circom-ecdsa@n=3@k=2.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+bigmult@circom-ecdsa@n=2@k=1.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,FP,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+bigmult@circom-ecdsa@n=2@k=2.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,,,,
+bigmult@circom-ecdsa@n=2@k=3.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,unsafe,safe,safe,,,,,,,,,,
+bigsub@circom-ecdsa@n=1@k=5.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,,,,,,,
+bigsub@circom-ecdsa@n=2@k=3.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,safe,safe,safe,safe,,,,,,,,,,
+bigsubmodp@circom-ecdsa@n=3@k=2.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,safe,safe,,,,,,,,,,
+secp256k1AddUnequal@circom-ecdsa@n=64@k=4.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,safe,,,,,,,,,,
+secp256k1Double@circom-ecdsa@n=64@k=4.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,safe,,,,,,,,,,
+secp256k1Poc@circom-ecdsa@n=64@k=4.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,unsafe,safe,safe,,,,,,,,,,
+secp256k1ScalarMult@circom-ecdsa@n=64@k=4.circom,circom-ecdsa,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,unsafe,unsafe,unsafe,unsafe,safe,,,,,FP,FP,FP,FP,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+aes_256_ctr_test.circom,aes-circom,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/aes-circom,Unconstrained Circ. Output,Unconstrained Comp. Input,Dataflow-constraint Discrepancy,Unused Comp. Output,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,unsafe,unsafe,safe,safe,unsafe,safe,safe,safe,TP,TP,TP,,,TP,,,,"Root cause: In template `AES256Encrypt`, input signals of sub-circuits `bits2num_1` are not constrained.
+Further, In template `EmulatedAesencSubstituteBytes`, output signals `out` are not constrained."
+aes_256_encrypt_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,unsafe,unsafe,safe,safe,unsafe,safe,safe,safe,,,,,,,,,,
+aes_256_key_expansion_test.circom,aes-circom,,Unconstrained Comp. Input,Dataflow-constraint Discrepancy,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,unsafe,unsafe,safe,safe,safe,safe,safe,safe,,TP,TP,,,,,,,"Root cause: In template `AES256KeyExpansion`, input signals of sub-circuits `bits2num_1` are not constrained."
+gcm_siv_dec_2_keys_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+gcm_siv_enc_2_keys_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+gfmul_int_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,safe,safe,,,,,,,,,,
+mul_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,FP,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+polyval_test.circom,aes-circom,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,safe,safe,,,,,,,,,,
+matAdd_test.circom,circom-matrix,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/circom-matrix,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matElemMul_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matElemPow_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matMul_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+matPow_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+matScalarAdd_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matScalarMul_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matScalarSub_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+matSub_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+outer_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+trace_test.circom,circom-matrix,,Unused Circ. Signal,,,,,TRUE,TRUE,TRUE,unsafe,safe,FN,unsafe,TP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,TP,,,,,Root cause: a[i][j] (i !=j ) are not used and it is the main circuit.
+tranpose_test.circom,circom-matrix,,,,,,,TRUE,TRUE,TRUE,,safe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Conv1D_test.circom,circom-ml,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/circom-ml,Unused Circ. Signal,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,TP,,,,,"Root cause:Some input signals `in` are not used in the template `Conv1D`.
+But it should be unsafe due to the definition of Conv1D."
+Conv2D_stride_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Conv2D_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+Dense_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+IsNegative_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+IsPositive_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+mnist_convnet_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+mnist_poly_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,safe,safe,,,,,,,,,,
+mnist_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+model1_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+ReLU_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+SumPooling2D_test.circom,circom-ml,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+biomebase.circom,darkforest-eth-9033eaf,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/darkforest-eth-9033eaf,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,unsafe,,,,,,,,,,
+CalculateTotal.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,unsafe,safe,FN,safe,FN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Root cause: Overflow will happen in `CalculateTotal`. But both ZKAP and Circomspect missed it.
+init.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,unsafe,,,,,,,,,,
+move.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,unsafe,,,,,,,,,,
+perlin.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,unsafe,unsafe,unsafe,,,,,,,,,,"We don't count the human inspection on this row, 
+but later we found out the reports about `PerlinValue` and `Modulo` are critical bugs."
+QuinSelector.circom,darkforest-eth-9033eaf,,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,TP,,,,FP,,Root cause: Input signal `index` is constrained by `LessThan` but not confirmed as the correct type by `Num2bits`.
+range_proof.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+reveal.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,,safe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,,,,,
+whitelist.circom,darkforest-eth-9033eaf,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,FP,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+batchverify.circom,ed25519-099d19c,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/ed25519-099d19c,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+binadd1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,safe,safe,,,,,,,,,,
+binadd2.circom,ed25519-099d19c,,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,Assignment misuse,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,safe,unsafe,safe,safe,TP,,TP,,,,TP,,,The same as row 164
+binaddirr.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,safe,safe,,,,,,,,,,
+binmul1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,,,,,,,,,,
+binmulfast1.circom,ed25519-099d19c,,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,Assignment misuse,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,TP,,TP,,,FP,TP,,,The same as row 164
+binmulfast51_1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,unsafe,safe,,,,,,,,,,
+binmulfast51_2.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,unsafe,safe,,,,,,,,,,
+binmulfast51.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,unsafe,safe,,,,,,,,,,
+binmullessthan51.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+binsub1.circom,ed25519-099d19c,,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,Assignment misuse,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,TP,,TP,,,FP,TP,,,Root cause: Template `fulladder` is unsafe because output signals `val` and `carry_out` are not constrained.
+chunkedadd.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,unsafe,safe,,,,,,,,,,
+chunkedadd1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,safe,unsafe,unsafe,safe,,,,,,,,,,
+chunkedmodulus.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+chunkify1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+inversemodulo1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,,,,,,,,,,
+modinv.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+modulus0.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,,,,,,,,,,
+modulus1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+modulus2.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,,,,,,,,,,
+modulusagainst2p.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+modulusq1.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+modulusq2.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,safe,safe,,,,,,,,,,
+point-addition51.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+pointcompress.circom,ed25519-099d19c,,Unconstrained Circ. Output,Dataflow-constraint Discrepancy,Assignment misuse,Unused Circ. Signal,Non-Deterministic-Dataflow,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,unsafe,safe,unsafe,safe,unsafe,unsafe,unsafe,unsafe,safe,TP,,TP,,TP,FP,TP,TP,,"Root cause: In template `PointCompress`, it has unconstrained output signal out[255] and P[3][i] are not used."
+scalarmul.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,unsafe,safe,unsafe,safe,safe,unsafe,unsafe,unsafe,safe,,,,,,,,,,
+verify.circom,ed25519-099d19c,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+test-balance-updater.circom,hermez-network-9a696e3-fixed,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/hermez-network-9a696e3-fixed,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+test-compute-fee.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+test-decode-tx.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+test-fee-accumulator.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+test-fee-tx.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,safe,,,,,,,,,,
+test-hash-inputs.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+test-rollup-main-L1.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+test-rollup-tx-states.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+test-rollup-tx.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,"""We don't count the human inspection on this row, 
+but later we found out the reports about `BitsCompressed2AySign` is a critical bug: Input signal `bjjCompressed[254]` is not used.."""
+test-rq-tx-verifier.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+test-withdraw.circom,hermez-network-9a696e3-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,safe,,,,,,,,,,
+hydra-s1.circom,hydra-2010a65,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/hydra-2010a65,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,FP,,FP,,FP,TP,Root cause: It uses template Montgomery2Edwards.
+verify-hydra-commitment.circom,hydra-2010a66,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,,,,,,FP,,FP,TP,Root cause: It uses template Montgomery2Edwards.
+verify-merkle-path.circom,hydra-2010a67,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+auth.circom,iden3-core-56a08f9,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/iden3-core-56a08f9,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+authTest.circom,iden3-core-56a08f10,,Unused Circ. Signal,Division-By-Zero,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,TP,FP,,FP,TP,The same as row 199
+authWithRelayTest.circom,iden3-core-56a08f11,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+credentialAtomicQueryMTP.circom,iden3-core-56a08f12,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+credentialAtomicQueryMTPTest.circom,iden3-core-56a08f13,,Unused Circ. Signal,Division-By-Zero,Type-Mismatch,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,TP,TP,FP,,FP,TP,"Root cause: Sensitive operators make the division-by-zero possible.
+In template `SMTVerifierLevel`, input signal `st_na` and `st_i0` are not used.
+In template `VerifyAuthentication` input signal userID is not used. 
+It will be problematic because circom will optimize it."
+credentialAtomicQueryMTPWithRelay.circom,iden3-core-56a08f14,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+credentialAtomicQueryMTPWithRelayTest.circom,iden3-core-56a08f15,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+credentialAtomicQuerySig.circom,iden3-core-56a08f16,,Unused Circ. Signal,Division-By-Zero,Type-Mismatch,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,TP,TP,FP,,FP,TP,"In template `getSubjectLocation`, signals `claimFlags` are not used.
+In template `getPubKeyFromClaim`, signals `claims` are not used."
+credentialAtomicQuerySigTest.circom,iden3-core-56a08f17,,Unused Circ. Signal,Division-By-Zero,Type-Mismatch,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,unsafe,unsafe,safe,unsafe,unsafe,,,,TP,TP,FP,,FP,TP,The same as row 202
+idOwnershipBySignatureTest.circom,iden3-core-56a08f18,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+idOwnershipBySignatureWithRelayTest.circom,iden3-core-56a08f19,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+inTest.circom,iden3-core-56a08f20,,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,TP,,,,FP,,The same as row 211
+poseidon.circom,iden3-core-56a08f21,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+poseidon14.circom,iden3-core-56a08f22,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+poseidon16.circom,iden3-core-56a08f23,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+queryTest.circom,iden3-core-56a08f24,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+stateTransition.circom,iden3-core-56a08f25,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,FP,FP,,FP,FP,"Root cause: In template `Query`, the input of `LessThan` and `GreaterThan` are not checked by the typechecker `Num2bits`"
+stateTransitionTest.circom,iden3-core-56a08f26,,Unused Circ. Signal,Division-By-Zero,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,unsafe,unsafe,safe,unsafe,unsafe,,,,,TP,FP,,FP,TP,"Root cause: It uses template Montgomery2Edwards
+In template PoseidonEx, variable """"S"""" is not used."
+utils_checkIdenStateMatchesRoots.circom,iden3-core-56a08f27,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+utils_getClaimExpiration.circom,iden3-core-56a08f28,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+utils_getClaimSubjectOtherIden.circom,iden3-core-56a08f29,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,safe,safe,,,,,,,,,,
+utils_getSubjectLocation.circom,iden3-core-56a08f30,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+utils_GetValueByIndex.circom,iden3-core-56a08f31,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+utils_isExpirable.circom,iden3-core-56a08f32,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+utils_isUpdatable.circom,iden3-core-56a08f33,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+utils_verifyClaimSignature.circom,iden3-core-56a08f34,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,,,,,,FP,,FP,TP,Root cause: It uses template Montgomery2Edwards.
+utils_verifyCredentialSubject.circom,iden3-core-56a08f35,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,unsafe,safe,safe,safe,,,,,,,,,,
+utils_verifyExpirationTime.circom,iden3-core-56a08f36,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,unsafe,unsafe,safe,safe,safe,,,,,,,,,,
+absorb_test.circom,keccak256-circom-af3e898,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/keccak256-circom-af3e898,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+chi_test.circom,keccak256-circom-af3e899,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+final_test.circom,keccak256-circom-af3e900,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+iota3_test.circom,keccak256-circom-af3e901,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+iota10_test.circom,keccak256-circom-af3e902,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+keccak_32_256_test.circom,keccak256-circom-af3e903,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+keccak_256_256_test.circom,keccak256-circom-af3e904,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+keccakf_test.circom,keccak256-circom-af3e905,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+keccakfRound0_test.circom,keccak256-circom-af3e906,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+keccakfRound20_test.circom,keccak256-circom-af3e907,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+pad_test.circom,keccak256-circom-af3e908,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+rhopi_test.circom,keccak256-circom-af3e909,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+squeeze_test.circom,keccak256-circom-af3e910,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,FP,,,,,"Root cause: Some signals `s` are not used, but it should be safe used as a library circuit."
+theta_test.circom,keccak256-circom-af3e911,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,unsafe,safe,safe,safe,safe,,,,,,,,,,
+batchUpdateStateTree_32_batch16.circom,maci-9b1b1a6-fixed,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/maci-9b1b1a6-fixed,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+batchUpdateStateTree_32_batch256.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+batchUpdateStateTree_32.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+batchUpdateStateTree_large.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+batchUpdateStateTree_medium.circom,maci-9b1b1a6-fixed,,Division-By-Zero,Type-Mismatch,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,TP,,FP,,FP,TP,"Root cause: In the template `QuinSelector`, the input siganl of `LessThan` is not checked by the type checker `Num2bits`."
+batchUpdateStateTree_small.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+batchUpdateStateTree_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+calculateTotal_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,unsafe,safe,FN,safe,FN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Root cause: Overflow will happen in `CalculateTotal`. But both ZKAP and Circomspect missed it.
+decrypt_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+ecdh_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+hasher5_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+hasher11_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+hashleftright_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+merkleTreeCheckRoot_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+merkleTreeInclusionProof_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+merkleTreeLeafExists_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+performChecksBeforeUpdate_test.circom,maci-9b1b1a6-fixed,,Type-Mismatch,Division-By-Zero,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,TP,,FP,,FP,TP,"Root cause: In the template `Splicer`, the input siganl of `LessThan` is not checked by the type checker `Num2bits`."
+publicKey_test.circom,maci-9b1b1a6-fixed,,Division-By-Zero,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,safe,safe,unsafe,safe,safe,unsafe,,,,,,FP,,,TP,Root cause: It uses template Edwards2Montgomery and Montgomery2Edwards.
+quadVoteTally_32_batch16.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+quadVoteTally_32_batch256.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,timeout,,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,timeout,,,,,,,,,,
+quadVoteTally_32.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+quadVoteTally_large.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,FP,,FP,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+quadVoteTally_medium.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+quadVoteTally_small.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+quadVoteTally_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+quinGeneratePathIndices_test.circom,maci-9b1b1a6-fixed,,Type-Mismatch,Assignment misuse,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,unsafe,safe,safe,,,,TP,,,TP,,,"Root cause: In template `QuinGeneratePathIndices`, the input signal of `LessThan` is not checked by the type checked `Num2bits`"
+quinSelector_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,FP,,,,FP,,The same as row 262
+quinTreeCheckRoot_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+quinTreeInclusionProof_test.circom,maci-9b1b1a6-fixed,,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,TP,,,,FP,,The same as row 262
+quinTreeLeafExists_test.circom,maci-9b1b1a6-fixed,,Type-Mismatch,,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,TP,,,,FP,,The same as row 262
+resultCommitmentVerifier_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,safe,,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,
+splicer_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,unsafe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+updateStateTree_test.circom,maci-9b1b1a6-fixed,,Division-By-Zero,Type-Mismatch,,,,TRUE,TRUE,TRUE,unsafe,unsafe,TP,unsafe,TP,safe,safe,safe,unsafe,safe,unsafe,safe,unsafe,unsafe,,,,TP,,FP,,FP,TP,The same as row 262
+verifySignature_test.circom,maci-9b1b1a6-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,unsafe,,,,,,,,,,
+semaphore.circom,semaphore-0f0fc95,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/semaphore-0f0fc95,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+deny.circom,zk-group-sigs-1337689-fixed,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/zk-group-sigs-1337689-fixed,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+reveal.circom,zk-group-sigs-1337689-fixed,,,,,,,TRUE,TRUE,TRUE,safe,safe,TN,unsafe,FP,safe,safe,safe,safe,safe,unsafe,safe,safe,safe,,,,,,FP,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+sign.circom,zk-group-sigs-1337689-fixed,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,unsafe,safe,safe,safe,unsafe,safe,unsafe,safe,,,,,,,,,,
+delete.circom,zk-SQL-4c3626d,https://github.com/whbjzzwjxq/ZKAP/tree/master/benchmarks/zk-SQL-4c3626d,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+insert.circom,zk-SQL-4c3626d,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,safe,TN,safe,safe,safe,safe,safe,safe,safe,safe,safe,,,,,,,,,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+select.circom,zk-SQL-4c3626d,,,,,,,TRUE,TRUE,TRUE,safe,unsafe,FP,unsafe,FP,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,FP,,Highly convincible to be safe. No potential problem discovered during the human inspection.
+update.circom,zk-SQL-4c3626d,,,,,,,TRUE,TRUE,TRUE,,unsafe,,unsafe,,safe,safe,safe,safe,safe,safe,safe,unsafe,safe,,,,,,,,,,
+,,,,,,,,,,,,,,,,Unconstrained Circ. Output,Unconstrained Comp. Input,Dataflow-constraint Discrepancy,Type-Mismatch,Unused Signal,Unused Comp. Output,Assignment misuse,Non-Deterministic-Dataflow,Division-By-Zero,"Bug Sum
+(Duplicated Root Cause)",,,,,,,,,
+,,,,,,,,,,,,,,,Bug Num:,9,2,7,12,14,2,8,3,24,58,,,,,,,,,
+,,,,,,,,,,,,,,,TP Num:,9,2,7,12,14,2,8,3,24,,,,,,,,,,
+,,,,,,,,,,,,,,,FP Num:,0,0,0,7,5,29,3,28,8,,,,,,,,,,
+,,,,,,,,,,,,,,,Precision:,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,,,,,,,,,,
+,,,,,,,,,,,,,,,FP Rate:,0.0%,0.0%,0.0%,36.8%,26.3%,93.5%,27.3%,90.3%,25.0%,,,,,,,,,,
+,,,,,,,,,,,,,,,Rate,15.5%,3.4%,12.1%,20.7%,24.1%,3.4%,13.8%,5.2%,41.4%,139.7%,,,,,,,,,
