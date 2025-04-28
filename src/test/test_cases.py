@@ -41,7 +41,9 @@ def test_bugs():
         "knownbugs",
         "maci-9b1b1a6-fixed",
         "semaphore-0f0fc95",
-        "zk-group-sigs-1337689-fixed"
+        "zk-group-sigs-1337689-fixed",
+        "zk-SQL-4c3626d",
+        "zk-SQL-4c3626d"
     ]
 
     # Because it's cause time out or recursive many times.
@@ -145,7 +147,9 @@ def test_bugs():
         "delete.circom",
         "insert.circom",
         "select.circom",
-        "update.circom"
+        "update.circom",
+        "hashTable.circom",
+        "utils.circom"
     ]
 
     for root, dirs, files in os.walk(benchmarks_dir):
