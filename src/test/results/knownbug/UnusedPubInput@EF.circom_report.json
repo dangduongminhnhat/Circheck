@@ -1,1 +1,9 @@
-{}
+{
+  "UnusedPubInput": {
+    "unused signal": {
+      "../../benchmarks\\knownbug\\UnusedPubInput@EF.circom:6:4": [
+        "This signal 'inThr' is declared but never used in any computation or constraint."
+      ]
+    }
+  }
+}

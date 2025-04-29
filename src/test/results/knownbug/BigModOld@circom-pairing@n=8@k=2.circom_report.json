@@ -1,14 +1,21 @@
 {
   "BigModOld@n=8@k=2": {
     "assignment missue": {
-      "../../benchmarks\\knownbugs\\BigModOld@circom-pairing@n=8@k=2.circom:15:8": [
+      "../../benchmarks\\knownbug\\BigModOld@circom-pairing@n=8@k=2.circom:15:8": [
         "Variable div is assigned using <-- instead of <==."
       ],
-      "../../benchmarks\\knownbugs\\BigModOld@circom-pairing@n=8@k=2.circom:16:8": [
+      "../../benchmarks\\knownbug\\BigModOld@circom-pairing@n=8@k=2.circom:16:8": [
         "Variable mod is assigned using <-- instead of <==."
       ],
-      "../../benchmarks\\knownbugs\\BigModOld@circom-pairing@n=8@k=2.circom:18:4": [
+      "../../benchmarks\\knownbug\\BigModOld@circom-pairing@n=8@k=2.circom:18:4": [
         "Variable div is assigned using <-- instead of <==."
+      ]
+    },
+    "unused signal": {
+      "../../benchmarks\\knownbug\\BigModOld@circom-pairing@n=8@k=2.circom:21:26": [
+        "This signal 'range_checks[0].out' is declared but never used in any computation or constraint.",
+        "This signal 'range_checks[1].out' is declared but never used in any computation or constraint.",
+        "This signal 'range_checks[2].out' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -16,18 +23,25 @@
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\node_modules\\circomlib\\circuits\\bitify.circom:32:8": [
         "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "BigLessThan@n=8@k=2": {
+    "unused component output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:426:21": [
+        "This output 'eq_ands[0].out' is not checked nor used from the call site."
       ]
     }
   },
@@ -37,11 +51,11 @@
         "Signal 'out[0]' depends on 'a[0]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'a[1]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[3]' depends on 'a[2]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'a[2]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[2]' depends on 'a[2]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[4]' depends on 'a[2]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'b[0]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[3]' depends on 'b[1]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[4]' depends on 'b[2]' via dataflow, but there is no corresponding constraint dependency."
       ]
@@ -72,6 +86,33 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:366:8": [
         "Variable runningCarry is assigned using <-- instead of <==."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:355:28": [
+        "This signal 'outRangeChecks[0].out' is declared but never used in any computation or constraint.",
+        "This signal 'outRangeChecks[1].out' is declared but never used in any computation or constraint.",
+        "This signal 'outRangeChecks[2].out' is declared but never used in any computation or constraint.",
+        "This signal 'outRangeChecks[3].out' is declared but never used in any computation or constraint.",
+        "This signal 'outRangeChecks[4].out' is declared but never used in any computation or constraint.",
+        "This signal 'outRangeChecks[5].out' is declared but never used in any computation or constraint."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:362:33": [
+        "This signal 'runningCarryRangeChecks[0].out' is declared but never used in any computation or constraint."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:367:37": [
+        "This signal 'runningCarryRangeChecks[1].out' is declared but never used in any computation or constraint.",
+        "This signal 'runningCarryRangeChecks[2].out' is declared but never used in any computation or constraint.",
+        "This signal 'runningCarryRangeChecks[3].out' is declared but never used in any computation or constraint.",
+        "This signal 'runningCarryRangeChecks[4].out' is declared but never used in any computation or constraint."
+      ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:361:4": [
+        "Potential divide-by-zero issue detected."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\circuits\\bigint.circom:366:8": [
+        "Potential divide-by-zero issue detected."
+      ]
     }
   },
   "LessThan@n=8": {
@@ -89,17 +130,17 @@
   "Num2Bits@n=11": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[9]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[10]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[9]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
@@ -111,15 +152,15 @@
   "Num2Bits@n=9": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
@@ -131,16 +172,16 @@
   "Num2Bits@n=10": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-pairing\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[5]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[9]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[6]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {

@@ -38,12 +38,12 @@ def test_bugs():
         "iden3-core-56a08f9",
         "internal",
         "keccak256-circom-af3e898",
-        "knownbugs",
-        "maci-9b1b1a6-fixed",
-        "semaphore-0f0fc95",
-        "zk-group-sigs-1337689-fixed",
-        "zk-SQL-4c3626d",
-        "zk-SQL-4c3626d"
+        # "knownbug",
+        # "maci-9b1b1a6-fixed",
+        # "semaphore-0f0fc95",
+        # "zk-group-sigs-1337689-fixed",
+        # "zk-SQL-4c3626d",
+        # "zk-SQL-4c3626d"
     ]
 
     # Because it's cause time out or recursive many times.
@@ -167,11 +167,11 @@ def test_bugs():
             ".circom") and file not in file_not_check]
         fails = []
         for file_path in bug_files:
-            # tests = [
-            #     '../../benchmarks\\hermez-network-9a696e3-fixed\\']
+            # tests = ['../../benchmarks\\knownbug\\BigModOld@circom-pairing@n=8@k=2.circom',
+            #          '../../benchmarks\\knownbug\\RangeProofs@EF@bits=8@max=65535.circom']
             # if file_path not in tests:
             #     continue
-            # if file_path != tests[0]:
+            # if file_path != "../../benchmarks\knownbug\\UnusedPubInput@EF.circom":
             #     continue
             print(f"[Info]       Running analysis for {file_path}")
             graphs, reports = detect(file_path)

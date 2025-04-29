@@ -277,7 +277,7 @@ class CDGGeneration(BaseVisitor):
         for dim in ast.dimensions:
             val = self.visit(dim, param).value
             if val is None:
-                raise Report(ReportType.ERROR, ast.dimensions,
+                raise Report(ReportType.ERROR, ast.dimensions.locate,
                              "None value dims array.")
             dimensions.append(val)
         for env in param["env"]:
@@ -412,13 +412,6 @@ class CDGGeneration(BaseVisitor):
                                     param["node"][fNode], param["node"][name], edge_type, edge_name)
                                 param["node"][fNode].flow_to.append(edge)
                                 param["node"][name].flow_from.append(edge)
-                        # if isinstance(rhe_symbol.xtype, SignalCircom):
-                        #     print(param["node"].keys())
-                        #     template_name = param["node"][rhe_symbol.name].component
-                        #     signal_type = rhe_symbol.xtype.signal_type
-                        #     del param["node"][rhe_symbol.name]
-                        #     param["component"][template_name][signal_type].remove(
-                        #         rhe_symbol.name)
             elif isinstance(symbol.xtype, ComponentCircom):
                 template_type, args = self.visit(ast.rhe, param)
                 value = symbol.value
@@ -434,12 +427,12 @@ class CDGGeneration(BaseVisitor):
                         access_val = self.visit(ast.access[i], param)
                         value = value[access_val]
                     last_access = self.visit(ast.access[-1], param)
-                    value[last_access] = TemplateCircom(
-                        graph_name, template_type.params, template_type.signals, template_type.signals_in, template_type.signals_out)
+                    value[last_access] = TemplateCircom(graph_name, template_type.params, template_type.signals,
+                                                        template_type.signals_in, template_type.signals_out, template_type.args, template_type.signals_ast)
                     append_template = value[last_access]
                 else:
-                    symbol.value = TemplateCircom(
-                        graph_name, template_type.params, template_type.signals, template_type.signals_in, template_type.signals_out)
+                    symbol.value = TemplateCircom(graph_name, template_type.params, template_type.signals,
+                                                  template_type.signals_in, template_type.signals_out, template_type.args, template_type.signals_ast)
                     append_template = symbol.value
                 if not graph_name in param["component"]:
                     param["component"][graph_name] = {
@@ -447,6 +440,20 @@ class CDGGeneration(BaseVisitor):
                         SignalType.OUTPUT: [],
                         SignalType.INTERMEDIATE: []
                     }
+                    lhe = Variable(ast.locate, ast.var, ast.access)
+                    lhe_name = self.visit(lhe, param).name
+                    for signal_in in append_template.signals_in:
+                        signal_name = lhe_name + "." + signal_in
+                        param["node"][signal_name] = Node(
+                            ast.rhe.locate, signal_name, NodeType.SIGNAL, SignalType.INPUT, graph_name)
+                        param["component"][graph_name][SignalType.INPUT].append(
+                            signal_name)
+                    for signal_out in append_template.signals_out:
+                        signal_name = lhe_name + "." + signal_out
+                        param["node"][signal_name] = Node(
+                            ast.rhe.locate, signal_name, NodeType.SIGNAL, SignalType.OUTPUT, graph_name)
+                        param["component"][graph_name][SignalType.OUTPUT].append(
+                            signal_name)
                 self.remaining.append((append_template, args))
         else:
             lhe = Variable(ast.locate, ast.var, ast.access)
@@ -690,10 +697,18 @@ class CDGGeneration(BaseVisitor):
                     name += "[" + str(access_value) + "]"
                     if is_access:
                         value = value[access_value]
-            if template_name and name not in param["node"]:
-                param["node"][name] = Node(
-                    ast.locate, name, NodeType.SIGNAL, signal_type, template_name)
-                param["component"][template_name][signal_type].append(name)
+            if template_name:
+                if name not in param["node"]:
+                    param["node"][name] = Node(
+                        ast.locate, name, NodeType.SIGNAL, signal_type, template_name)
+                    param["component"][template_name][signal_type].append(name)
+                    var_name, signal_name = name.split(".")
+                    signal_name = signal_name.split("[")[0]
+                    del_name = var_name + "." + signal_name
+                    if del_name in param["node"]:
+                        del param["node"][del_name]
+                        param["component"][template_name][signal_type].remove(
+                            del_name)
                 return Symbol(name, var_type, SignalCircom(signal_type), ast, None)
             else:
                 return Symbol(name, var_type, ComponentCircom(), ast, None)
@@ -705,11 +720,6 @@ class CDGGeneration(BaseVisitor):
                 else:
                     var_type.dims -= 1
                 name += "[" + str(access_value) + "]"
-            # if name not in param["node"]:
-            #     param["node"][name] = Node(
-            #         ast.locate, name, NodeType.SIGNAL, symbol.xtype.signal_type, param["name"])
-            #     param["component"][param["name"]
-            #                        ][symbol.xtype.signal_type].append(name)
             return Symbol(name, var_type, symbol.xtype, ast, None)
 
     def visitNumber(self, ast: Number, param):

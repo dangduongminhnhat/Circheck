@@ -1,1 +1,9 @@
-{}
+{
+  "DivZero": {
+    "divide by zero": {
+      "../../benchmarks\\knownbug\\DivZero@circomspect.circom:7:4": [
+        "Potential divide-by-zero issue detected."
+      ]
+    }
+  }
+}

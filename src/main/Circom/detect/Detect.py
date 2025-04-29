@@ -37,6 +37,12 @@ class Detector:
 
             print("[Info]       Detecting assignment misuse...")
             self.detect_assignment_misue(graph)
+
+            print("[Info]       Detecting unused signals...")
+            self.detect_unused_signal(graph)
+
+            print("[Info]       Detecting divide by zero unsafe...")
+            self.detect_divide_by_zero_unsafe(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -182,7 +188,7 @@ class Detector:
             return False
         if node.node_type == NodeType.CONSTANT:
             return False
-        return (len(node.flow_from()) + len(node.flow_to())) == 0
+        return (len(node.flow_from) + len(node.flow_to)) == 0
 
     def detect_unused_signal(self, graph):
         results = []
@@ -271,3 +277,40 @@ class Detector:
                 results.append(Report(ReportType.WARNING, edge.ast.locate,
                                f"Variable {edge.ast.var} is assigned using {op} instead of {instead_op}."))
         self.reports[graph.name]["assignment missue"] = results
+
+    def flat_expr(self, graph, expr):
+        if isinstance(expr, Variable):
+            name = expr.name
+            for node in graph.nodes.values():
+                if name in node.id and node.is_signal():
+                    return True
+        elif isinstance(expr, InfixOp):
+            return self.flat_expr(graph, expr.lhe) or self.flat_expr(graph, expr.rhe)
+        elif isinstance(expr, PrefixOp):
+            return self.flat_expr(graph, expr.rhe)
+        elif isinstance(expr, InlineSwitchOp):
+            return self.flat_expr(graph, expr.cond) or self.flat_expr(graph, expr.if_true) or self.flat_expr(graph, expr.if_false)
+        elif isinstance(expr, Call):
+            for arg in expr.args:
+                if self.flat_expr(graph, arg):
+                    return True
+        return False
+
+    def is_denominator_with_signal(self, graph, expr):
+        if isinstance(expr, InfixOp):
+            if expr.infix_op == "/":
+                if self.flat_expr(graph, expr.rhe):
+                    return True
+            if self.is_denominator_with_signal(graph, expr.lhe) or self.is_denominator_with_signal(graph, expr.rhe):
+                return True
+        elif isinstance(expr, InlineSwitchOp):
+            return self.is_denominator_with_signal(graph, expr.cond) or self.is_denominator_with_signal(graph, expr.if_true) or self.is_denominator_with_signal(graph, expr.if_false)
+        return False
+
+    def detect_divide_by_zero_unsafe(self, graph):
+        results = []
+        for edge in graph.edges.values():
+            if edge.ast and self.is_denominator_with_signal(graph, edge.ast.rhe):
+                results.append(Report(ReportType.WARNING, edge.ast.locate,
+                               f"Potential divide-by-zero issue detected."))
+        self.reports[graph.name]["divide by zero"] = results

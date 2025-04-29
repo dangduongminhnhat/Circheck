@@ -118,7 +118,6 @@ file_not_check = [
 ]
 
 while data:
-    # print(data)
     col = data.split(",")
     name, project, groundtruth = col[0], col[1], col[2]
     if name in file_not_check:
@@ -152,18 +151,20 @@ while data:
         else:
             evaluation = 'Incorrect'
 
+        if groundtruth == "":
+            if col[3] == col[4][:-1]:
+                groundtruth = col[3]
+
         if groundtruth == 'unsafe' and result == 'unsafe':
             TP += 1
         elif groundtruth == 'safe' and result == 'safe':
             TN += 1
         elif groundtruth == 'safe' and result == 'unsafe':
             FP += 1
+            print("false positive =", json_path)
         elif groundtruth == 'unsafe' and result == 'safe':
             FN += 1
-        else:
-            print(groundtruth, col)
-    else:
-        print(json_path)
+            print("false negative =", json_path)
 
     output_rows.append({
         'Name': name,
@@ -194,24 +195,3 @@ print(f"Accuracy: {accuracy:.4f}")
 print(f"Precision (unsafe): {precision:.4f}")
 print(f"Recall (unsafe): {recall:.4f}")
 print(f"F1-Score (unsafe): {f1_score:.4f}")
-
-
-def count_files_in_subfolders(root_dir):
-    total_files = 0
-    # Duyệt qua tất cả các thư mục con của thư mục root_dir
-    for root, dirs, files in os.walk(root_dir):
-        # Loại bỏ thư mục 'libs' nếu không muốn tính
-        if 'libs' in dirs:
-            # Điều này giúp loại bỏ thư mục 'libs' khỏi quá trình duyệt
-            dirs.remove('libs')
-        # Đếm tất cả các tệp trong thư mục hiện tại
-        total_files += len(files)
-    return total_files
-
-
-# Thay đổi thành đường dẫn thư mục benchmarks của bạn
-# benchmark_dir = "../../benchmarks"
-total_files = count_files_in_subfolders(results_dir)
-
-print(
-    f"Total number of files in subfolders of '{results_dir}': {total_files}")

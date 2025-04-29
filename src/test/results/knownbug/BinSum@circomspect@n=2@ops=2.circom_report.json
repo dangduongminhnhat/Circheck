@@ -1,14 +1,14 @@
 {
   "BinSum@n=2@ops=2": {
     "data flow constraint discrepancy": {
-      "../../benchmarks\\knownbugs\\BinSum@circomspect@n=2@ops=2.circom:19:4": [
-        "Signal 'out[2]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
+      "../../benchmarks\\knownbug\\BinSum@circomspect@n=2@ops=2.circom:19:4": [
+        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[2]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
-      "../../benchmarks\\knownbugs\\BinSum@circomspect@n=2@ops=2.circom:31:8": [
+      "../../benchmarks\\knownbug\\BinSum@circomspect@n=2@ops=2.circom:31:8": [
         "Variable out is assigned using <-- instead of <==."
       ]
     }

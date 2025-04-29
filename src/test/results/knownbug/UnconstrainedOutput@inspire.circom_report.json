@@ -1,17 +1,17 @@
 {
   "UnconstrainedOutput": {
     "unconstrained_output": {
-      "../../benchmarks\\knownbugs\\UnconstrainedOutput@inspire.circom:5:4": [
+      "../../benchmarks\\knownbug\\UnconstrainedOutput@inspire.circom:5:4": [
         "Output signal 'out' is not constrained by any constraint."
       ]
     },
     "data flow constraint discrepancy": {
-      "../../benchmarks\\knownbugs\\UnconstrainedOutput@inspire.circom:5:4": [
+      "../../benchmarks\\knownbug\\UnconstrainedOutput@inspire.circom:5:4": [
         "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
-      "../../benchmarks\\knownbugs\\UnconstrainedOutput@inspire.circom:7:4": [
+      "../../benchmarks\\knownbug\\UnconstrainedOutput@inspire.circom:7:4": [
         "Variable out is assigned using <-- instead of <==."
       ]
     }

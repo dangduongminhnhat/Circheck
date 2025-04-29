@@ -52,13 +52,14 @@ class ArrayCircom(Type):
 
 
 class TemplateCircom(Type):
-    def __init__(self, name, params, signals={}, signals_in=[], signals_out=[], args=[]):
+    def __init__(self, name, params, signals={}, signals_in=[], signals_out=[], args=[], signals_ast={}):
         self.name = name
         self.params = params
         self.signals = signals
         self.signals_in = signals_in
         self.signals_out = signals_out
         self.args = args
+        self.signals_ast = signals_ast
 
 
 class FunctionCircom(Type):
@@ -89,6 +90,7 @@ class TypeCheck(BaseVisitor):
         self.list_template = {}
         self.in_template = False
         self.template_signals = None
+        self.signals_ast = None
         self.signal_in = None
         self.signal_out = None
         self.is_multi_sub = False
@@ -147,6 +149,7 @@ class TypeCheck(BaseVisitor):
                 env[0][arg] = Symbol(arg, None, VarCircom())
             self.in_template = True
             self.template_signals = {}
+            self.signals_ast = {}
             self.signal_in = []
             self.signal_out = []
             self.visit(ast.body, env)
@@ -158,8 +161,9 @@ class TypeCheck(BaseVisitor):
             for arg in ast.args:
                 arg_list.append(env[0][arg].mtype)
             self.list_template[ast.name_field] = param[0][ast.name_field] = Symbol(ast.name_field, TemplateCircom(
-                ast.name_field, arg_list, self.template_signals, self.signal_in, self.signal_out, ast.args), None, ast)
+                ast.name_field, arg_list, self.template_signals, self.signal_in, self.signal_out, ast.args, self.signals_ast), None, ast)
             self.template_signals = None
+            self.signals_ast = None
             self.signal_in = None
             self.signal_out = None
         else:
@@ -305,6 +309,7 @@ class TypeCheck(BaseVisitor):
                 mtype = PrimeField()
             if self.count_visited == 0:
                 self.template_signals[ast.name] = mtype
+                self.signals_ast[ast.name] = ast
             param[0][ast.name] = Symbol(ast.name, mtype, xtype, ast)
         elif isinstance(xtype, VarCircom):
             if len(ast.dimensions) > 0:

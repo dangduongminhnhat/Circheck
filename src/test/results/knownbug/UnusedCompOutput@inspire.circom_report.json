@@ -1,1 +1,9 @@
-{}
+{
+  "UnusedCompOutput": {
+    "unused component output": {
+      "../../benchmarks\\knownbug\\UnusedCompOutput@inspire.circom:14:20": [
+        "This output 'inc.out' is not checked nor used from the call site."
+      ]
+    }
+  }
+}
