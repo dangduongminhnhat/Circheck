@@ -7,6 +7,8 @@ import pandas as pd
 output_file = 'evaluation.csv'
 results_dir = os.path.join(os.path.dirname(__file__), "results")
 TP = TN = FP = FN = 0
+TP_circomspect = TN_circomspect = FP_circomspect = FN_circomspect = 0
+TP_zkap = TN_zkap = FP_zkap = FN_zkap = 0
 
 output_rows = []
 file = open("zkap.txt", "r")
@@ -119,7 +121,8 @@ file_not_check = [
 
 while data:
     col = data.split(",")
-    name, project, groundtruth = col[0], col[1], col[2]
+    name, project, groundtruth, circomspect, zkap = col[0], col[1], col[2], col[3], col[4]
+    zkap = zkap.replace("\n", "")
     if name in file_not_check:
         data = file.readline()
         continue
@@ -133,7 +136,6 @@ while data:
     json_path = results_dir + "\\" + project + "\\" + name
 
     result = 'file not found'
-    evaluation = 'Incorrect'
 
     if os.path.exists(json_path):
         with open(json_path, 'r', encoding='utf-8') as jf:
@@ -146,14 +148,9 @@ while data:
             except json.JSONDecodeError:
                 result = 'invalid json'
 
-        if groundtruth == result:
-            evaluation = 'Correct'
-        else:
-            evaluation = 'Incorrect'
-
         if groundtruth == "":
-            if col[3] == col[4][:-1]:
-                groundtruth = col[3]
+            if circomspect == zkap:
+                groundtruth = zkap
 
         if groundtruth == 'unsafe' and result == 'unsafe':
             TP += 1
@@ -161,37 +158,68 @@ while data:
             TN += 1
         elif groundtruth == 'safe' and result == 'unsafe':
             FP += 1
-            print("false positive =", json_path)
+            print("+++ false positive =", json_path)
         elif groundtruth == 'unsafe' and result == 'safe':
             FN += 1
-            print("false negative =", json_path)
+            print("--- false negative =", json_path)
 
-    output_rows.append({
-        'Name': name,
-        'Project': project,
-        'Groundtruth': groundtruth,
-        'Result': result,
-        'Evaluation': evaluation
-    })
+        if groundtruth == 'unsafe' and circomspect == 'unsafe':
+            TP_circomspect += 1
+        elif groundtruth == 'safe' and circomspect == 'safe':
+            TN_circomspect += 1
+        elif groundtruth == 'safe' and circomspect == 'unsafe':
+            FP_circomspect += 1
+        elif groundtruth == 'unsafe' and circomspect == 'safe':
+            FN_circomspect += 1
+
+        if groundtruth == 'unsafe' and zkap == 'unsafe':
+            TP_zkap += 1
+        elif groundtruth == 'safe' and zkap == 'safe':
+            TN_zkap += 1
+        elif groundtruth == 'safe' and zkap == 'unsafe':
+            FP_zkap += 1
+        elif groundtruth == 'unsafe' and zkap == 'safe':
+            FN_zkap += 1
+    else:
+        print("not found: ", json_path)
+
     data = file.readline()
 
 
 file.close()
 
-total = TP + TN + FP + FN
-accuracy = (TP + TN) / total if total > 0 else 0
-precision = TP / (TP + FP) if (TP + FP) > 0 else 0
-recall = TP / (TP + FN) if (TP + FN) > 0 else 0
-f1_score = 2 * precision * recall / \
-    (precision + recall) if (precision + recall) > 0 else 0
 
-print("\n=== Evaluation Report ===")
-print(f"Total Samples: {total}")
-print(f"True Positive (TP): {TP}")
-print(f"True Negative (TN): {TN}")
-print(f"False Positive (FP): {FP}")
-print(f"False Negative (FN): {FN}")
-print(f"Accuracy: {accuracy:.4f}")
-print(f"Precision (unsafe): {precision:.4f}")
-print(f"Recall (unsafe): {recall:.4f}")
-print(f"F1-Score (unsafe): {f1_score:.4f}")
+def evaluate(tp, tn, fp, fn):
+    total = tp + tn + fp + fn
+    accuracy = (tp + tn) / total if total else 0
+    precision = tp / (tp + fp) if (tp + fp) else 0
+    recall = tp / (tp + fn) if (tp + fn) else 0
+    f1 = 2 * precision * recall / \
+        (precision + recall) if (precision + recall) else 0
+    fp_rate = fp / (fp + tn) if (fp + tn) else 0
+    fn_rate = fn / (fn + tp) if (fn + tp) else 0
+    return {
+        "Total": total,
+        "True Positive (TP)":  tp,
+        "True Negative (TN)": tn,
+        "False Positive (FP)": fp,
+        "False Negative (FN)": fn,
+        "Accuracy": round(accuracy, 4),
+        "Precision": round(precision, 4),
+        "Recall": round(recall, 4),
+        "F1-Score": round(f1, 4),
+        "FP Rate": round(fp_rate, 4),
+        "FN Rate": round(fn_rate, 4),
+    }
+
+
+circheck_stats = evaluate(TP, TN, FP, FN)
+circomspect_stats = evaluate(
+    TP_circomspect, TN_circomspect, FP_circomspect, FN_circomspect)
+zkap_stats = evaluate(TP_zkap, TN_zkap, FP_zkap, FN_zkap)
+
+for tool, stats in zip(["Circheck", "ZKAP", "CIRCOMSPECT"],
+                       [circheck_stats, zkap_stats, circomspect_stats]):
+    print(f"\n=== {tool} ===")
+    for k, v in stats.items():
+        print(f"{k}: {v}")

@@ -14,16 +14,33 @@
   "Num2Bits@n=5": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:32:8": [
         "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "IsZero": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
+        "Variable inv is assigned using <-- instead of <==."
+      ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
+        "Potential divide-by-zero issue detected."
+      ]
+    },
+    "nondeterministic data flow": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
+        "Potential non-deterministic dataflow: conditional assignment depends on a signal."
       ]
     }
   }

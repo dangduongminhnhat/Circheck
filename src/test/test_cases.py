@@ -31,14 +31,14 @@ def test_bugs():
         "circom-ml",
         "circom-pairing",
         "circomlib-cff5ab6",
-        "darkforest-eth-9033eaf",
+        # "darkforest-eth-9033eaf",
         "ed25519-099d19c",
         "hermez-network-9a696e3-fixed",
         "hydra-2010a65",
         "iden3-core-56a08f9",
         "internal",
         "keccak256-circom-af3e898",
-        # "knownbug",
+        "knownbug",
         # "maci-9b1b1a6-fixed",
         # "semaphore-0f0fc95",
         # "zk-group-sigs-1337689-fixed",
@@ -172,6 +172,8 @@ def test_bugs():
             # if file_path not in tests:
             #     continue
             # if file_path != "../../benchmarks\knownbug\\UnusedPubInput@EF.circom":
+            #     continue
+            # if "biomebase.circom" not in file_path:
             #     continue
             print(f"[Info]       Running analysis for {file_path}")
             graphs, reports = detect(file_path)

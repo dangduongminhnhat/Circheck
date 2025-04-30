@@ -1,1 +1,11 @@
-{}
+{
+  "Conv1D@nInputs=20@nChannels=3@nFilters=2@kernelSize=4@strides=3": {
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\Conv1D.circom:9:4": [
+        "This signal 'in[19][0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19][1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19][2]' is declared but never used in any computation or constraint."
+      ]
+    }
+  }
+}

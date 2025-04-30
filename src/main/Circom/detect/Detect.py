@@ -43,6 +43,9 @@ class Detector:
 
             print("[Info]       Detecting divide by zero unsafe...")
             self.detect_divide_by_zero_unsafe(graph)
+
+            print("[Info]       Detecting nondeterministic data flow...")
+            self.detect_nondeterministic_data_flow(graph)
         return self.reports
 
     def detect_unconstrainted_output(self, graph):
@@ -309,8 +312,24 @@ class Detector:
 
     def detect_divide_by_zero_unsafe(self, graph):
         results = []
-        for edge in graph.edges.values():
+        for edge in tqdm(graph.edges.values()):
             if edge.ast and self.is_denominator_with_signal(graph, edge.ast.rhe):
                 results.append(Report(ReportType.WARNING, edge.ast.locate,
                                f"Potential divide-by-zero issue detected."))
         self.reports[graph.name]["divide by zero"] = results
+
+    def is_branch_cond_with_signal(self, graph, expr):
+        if isinstance(expr, InfixOp):
+            if self.is_branch_cond_with_signal(graph, expr.lhe) or self.is_branch_cond_with_signal(graph, expr.rhe):
+                return True
+        elif isinstance(expr, InlineSwitchOp):
+            return self.flat_expr(graph, expr.cond)
+        return False
+
+    def detect_nondeterministic_data_flow(self, graph):
+        results = []
+        for edge in tqdm(graph.edges.values()):
+            if edge.ast and self.is_branch_cond_with_signal(graph, edge.ast.rhe):
+                results.append(Report(ReportType.WARNING, edge.ast.locate,
+                                      "Potential non-deterministic dataflow: conditional assignment depends on a signal."))
+        self.reports[graph.name]["nondeterministic data flow"] = results

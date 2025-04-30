@@ -1,1 +1,14 @@
-{}
+{
+  "trace@m=3": {
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-matrix\\circuits\\trace.circom:7:4": [
+        "This signal 'a[1][0]' is declared but never used in any computation or constraint.",
+        "This signal 'a[2][0]' is declared but never used in any computation or constraint.",
+        "This signal 'a[0][1]' is declared but never used in any computation or constraint.",
+        "This signal 'a[2][1]' is declared but never used in any computation or constraint.",
+        "This signal 'a[0][2]' is declared but never used in any computation or constraint.",
+        "This signal 'a[1][2]' is declared but never used in any computation or constraint."
+      ]
+    }
+  }
+}

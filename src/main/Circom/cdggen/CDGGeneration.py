@@ -630,6 +630,7 @@ class CDGGeneration(BaseVisitor):
 
     def visitInlineSwitchOp(self, ast: InlineSwitchOp, param):
         cond_val = self.visit(ast.cond, param).value
+        FindNode.switch_op = cond_val
         if cond_val is None:
             return Symbol("", PrimeField(), None, ast, None)
         if cond_val:
@@ -817,6 +818,7 @@ class CDGGeneration(BaseVisitor):
 # Help Class to find Node in Expression
 class FindNode(BaseVisitor):
     node_number = 0
+    switch_op = None
 
     def visitInfixOp(self, ast: InfixOp, param):
         return self.visit(ast.lhe, param) + self.visit(ast.rhe, param)
@@ -825,7 +827,13 @@ class FindNode(BaseVisitor):
         return self.visit(ast.rhe, param)
 
     def visitInlineSwitchOp(self, ast: InlineSwitchOp, param):
-        return []
+        cond = self.visit(ast.cond, param)
+        if FindNode.switch_op is None:
+            return cond
+        elif FindNode.switch_op == True:
+            return cond + self.visit(ast.if_true, param)
+        elif FindNode.switch_op == False:
+            return cond + self.visit(ast.if_false, param)
 
     def visitParrallelOp(self, ast: ParallelOp, param):
         return self.visit(ast.rhe, param)
