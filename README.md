@@ -117,7 +117,7 @@ If you specify a JSON output file, the results will also be saved to the file. F
 
 The JSON file will contain detailed information about the analysis, including detected vulnerabilities. A sample JSON output might look like this:
 
-```bash
+```json
 {
   "SingleAssignment0": {
     "data flow constraint discrepancy": {
