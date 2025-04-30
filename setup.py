@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="circheck",
-    version="0.1.0",
+    version="0.1.1",
     description="Static analysis tool to detect ZKP vulnerabilities in Circom circuits.",
     author="Dang Duong Minh Nhat",
     author_email="dangduongminhnhat2003@gmail.com",

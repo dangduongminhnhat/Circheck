@@ -1,3 +1,5 @@
+LICENSE
+README.md
 setup.py
 src/circheck/__init__.py
 src/circheck/cli.py
