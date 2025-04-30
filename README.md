@@ -133,3 +133,7 @@ The JSON file will contain detailed information about the analysis, including de
   }
 }
 ```
+
+## License
+
+Licensed under the [MIT License](LICENSE) © 2025 Dang Duong Minh Nhat.
