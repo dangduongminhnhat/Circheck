@@ -15,8 +15,8 @@ def main(argv):
     if len(argv) < 1:
         printUsage()
     elif argv[0] == 'gen':
-        subprocess.run(["java", "-jar", ANTLR_JAR, "-o", "../target",
-                       "-no-listener", "-visitor", "main/Circom/parser/Circom.g4"])
+        subprocess.run(["java", "-jar", ANTLR_JAR, "-o", "./circheck/target",
+                       "-no-listener", "-visitor", "circheck/parser/Circom.g4"])
     else:
         printUsage()
 

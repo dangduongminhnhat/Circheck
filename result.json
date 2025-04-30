@@ -1,0 +1,14 @@
+{
+  "SingleAssignment0": {
+    "data flow constraint discrepancy": {
+      ".\\demo.circom:4:4": [
+        "Signal 'out' depends on 'a' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      ".\\demo.circom:5:4": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  }
+}

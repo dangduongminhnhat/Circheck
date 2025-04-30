@@ -4,14 +4,14 @@ import time
 from datetime import datetime
 
 locpath = [
-    '../../src/main/Circom/parser/',
-    '../../src/main/Circom/astgen/',
-    '../../src/main/Circom/typecheck/',
-    '../../src/main/Circom/utils/',
-    '../../src/main/Circom/cdggen/',
-    '../../src/main/Circom/detect/',
-    '../../target/',
-    '../../'
+    '../circheck/parser/',
+    '../circheck/astgen/',
+    '../circheck/typecheck/',
+    '../circheck/utils/',
+    '../circheck/cdggen/',
+    '../circheck/detect/',
+    '../circheck/',
+    '../../target/'
 ]
 
 for p in locpath:
@@ -234,5 +234,5 @@ def test_bugs():
 
 
 if __name__ == "__main__":
-    from circheck import detect, report_to_file
+    from core import detect, report_to_file
     test_bugs()
