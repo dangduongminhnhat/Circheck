@@ -4,12 +4,32 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
         "Output signal 'outs[0]' is not constrained by any constraint."
       ]
+    },
+    "unused component output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This output 'S[0].xRout' is not checked nor used from the call site."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This signal 'S[0].xRout' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "MiMCSponge@nInputs=2@nRounds=220@nOutputs=1": {
     "unconstrained_output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
         "Output signal 'outs[0]' is not constrained by any constraint."
+      ]
+    },
+    "unused component output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This output 'S[1].xRout' is not checked nor used from the call site."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This signal 'S[1].xRout' is declared but never used in any computation or constraint."
       ]
     }
   }

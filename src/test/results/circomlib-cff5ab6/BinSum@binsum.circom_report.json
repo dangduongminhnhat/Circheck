@@ -2,8 +2,8 @@
   "BinSum@n=2@ops=2": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\binsum.circom:68:4": [
-        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[2]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
       ]
     },

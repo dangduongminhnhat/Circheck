@@ -4,12 +4,25 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Variable out is assigned using <-- instead of <==."
       ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
+        "Potential divide-by-zero issue detected."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:35:4": [
+        "Potential divide-by-zero issue detected."
+      ]
     }
   },
   "MontgomeryDouble": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
         "Variable lamda is assigned using <-- instead of <==."
+      ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
+        "Potential divide-by-zero issue detected."
       ]
     }
   },
@@ -18,12 +31,25 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
         "Variable lamda is assigned using <-- instead of <==."
       ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
+        "Potential divide-by-zero issue detected."
+      ]
     }
   },
   "Montgomery2Edwards": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:54:4": [
         "Variable out is assigned using <-- instead of <==."
+      ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:53:4": [
+        "Potential divide-by-zero issue detected."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:54:4": [
+        "Potential divide-by-zero issue detected."
       ]
     }
   },
@@ -34,6 +60,14 @@
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:48:4": [
         "Variable yout is assigned using <-- instead of <==."
+      ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
+        "Potential divide-by-zero issue detected."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:48:4": [
+        "Potential divide-by-zero issue detected."
       ]
     }
   }

@@ -3,6 +3,18 @@
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
         "Signal 'out[7]' depends on 'carry[7]' via dataflow, but there is no corresponding constraint dependency."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:101:13": [
+        "Signal 'lt1[0].out' depends on 'lt1[0].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt1[1].out' depends on 'lt1[1].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt1[2].out' depends on 'lt1[2].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt1[3].out' depends on 'lt1[3].in' via dataflow, but there is no corresponding constraint dependency."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:108:13": [
+        "Signal 'lt2[0].out' depends on 'lt2[0].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt2[1].out' depends on 'lt2[1].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt2[2].out' depends on 'lt2[2].in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'lt2[3].out' depends on 'lt2[3].in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {
@@ -14,6 +26,23 @@
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
         "Variable out is assigned using <-- instead of <==."
+      ]
+    }
+  },
+  "LessThanPower@base=51": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
+        "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:9:2": [
+        "Variable out is assigned using <-- instead of <==."
+      ]
+    },
+    "nondeterministic data flow": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:9:2": [
+        "Potential non-deterministic dataflow: conditional assignment depends on a signal."
       ]
     }
   }

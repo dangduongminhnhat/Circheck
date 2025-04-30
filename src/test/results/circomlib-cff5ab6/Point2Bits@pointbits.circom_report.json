@@ -259,6 +259,12 @@
         "Output signal 'out[254]' is not constrained by any constraint.",
         "Output signal 'out[255]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\pointbits.circom:130:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint."
+      ]
     }
   }
 }

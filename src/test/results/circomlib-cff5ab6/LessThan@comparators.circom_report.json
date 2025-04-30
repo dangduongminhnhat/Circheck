@@ -9,8 +9,8 @@
   "Num2Bits@n=3": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },

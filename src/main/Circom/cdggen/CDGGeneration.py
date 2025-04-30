@@ -211,8 +211,7 @@ class CDGGeneration(BaseVisitor):
         if graph_name in self.graphs:
             return None
         param["name"] = graph_name
-        print(
-            f"[Info]       Creating CDG: name = {graph_name}, path = {ast.locate.path}")
+        print(f"[Info]       Creating CDG: {graph_name}, in {ast.locate.path}")
         param["env"] = [{}] + param["env"]
         param["component"][graph_name] = {
             SignalType.INPUT: [],

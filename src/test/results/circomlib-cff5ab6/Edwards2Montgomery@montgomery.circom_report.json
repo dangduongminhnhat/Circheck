@@ -4,6 +4,14 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Variable out is assigned using <-- instead of <==."
       ]
+    },
+    "divide by zero": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
+        "Potential divide-by-zero issue detected."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:35:4": [
+        "Potential divide-by-zero issue detected."
+      ]
     }
   }
 }

@@ -1,0 +1,148 @@
+[Per-project log generated at 2025-04-30 19:11:59.370294]
+
+[PROJECT: benchmarks]
+- Total files: 0
+- Success: 0
+- Failed: 0
+- Time: 0.00s
+- Avg time per file: 0.00s
+
+[PROJECT: aes-circom]
+- Total files: 8
+- Success: 8
+- Failed: 0
+- Time: 509.45s
+- Avg time per file: 63.68s
+
+[PROJECT: circom-ecdsa]
+- Total files: 14
+- Success: 14
+- Failed: 0
+- Time: 38.18s
+- Avg time per file: 2.73s
+
+[PROJECT: circom-matrix]
+- Total files: 12
+- Success: 12
+- Failed: 0
+- Time: 1.09s
+- Avg time per file: 0.09s
+
+[PROJECT: circom-ml]
+- Total files: 10
+- Success: 10
+- Failed: 0
+- Time: 159.69s
+- Avg time per file: 15.97s
+
+[PROJECT: circom-pairing]
+- Total files: 1
+- Success: 1
+- Failed: 0
+- Time: 2.84s
+- Avg time per file: 2.84s
+
+[PROJECT: circomlib-cff5ab6]
+- Total files: 62
+- Success: 62
+- Failed: 0
+- Time: 59.76s
+- Avg time per file: 0.96s
+
+[PROJECT: darkforest-eth-9033eaf]
+- Total files: 9
+- Success: 9
+- Failed: 0
+- Time: 77.01s
+- Avg time per file: 8.56s
+
+[PROJECT: ed25519-099d19c]
+- Total files: 21
+- Success: 21
+- Failed: 0
+- Time: 82.89s
+- Avg time per file: 3.95s
+
+[PROJECT: hermez-network-9a696e3-fixed]
+- Total files: 4
+- Success: 4
+- Failed: 0
+- Time: 6.31s
+- Avg time per file: 1.58s
+
+[PROJECT: hydra-2010a65]
+- Total files: 0
+- Success: 0
+- Failed: 0
+- Time: 0.00s
+- Avg time per file: 0.00s
+
+[PROJECT: iden3-core-56a08f9]
+- Total files: 2
+- Success: 2
+- Failed: 0
+- Time: 12.01s
+- Avg time per file: 6.01s
+
+[PROJECT: internal]
+- Total files: 6
+- Success: 6
+- Failed: 0
+- Time: 115.20s
+- Avg time per file: 19.20s
+
+[PROJECT: keccak256-circom-af3e898]
+- Total files: 9
+- Success: 9
+- Failed: 0
+- Time: 651.15s
+- Avg time per file: 72.35s
+
+[PROJECT: knownbug]
+- Total files: 11
+- Success: 11
+- Failed: 0
+- Time: 3.14s
+- Avg time per file: 0.29s
+
+[PROJECT: maci-9b1b1a6-fixed]
+- Total files: 4
+- Success: 4
+- Failed: 0
+- Time: 24.35s
+- Avg time per file: 6.09s
+
+[PROJECT: semaphore-0f0fc95]
+- Total files: 0
+- Success: 0
+- Failed: 0
+- Time: 0.00s
+- Avg time per file: 0.00s
+
+[PROJECT: zk-group-sigs-1337689-fixed]
+- Total files: 3
+- Success: 3
+- Failed: 0
+- Time: 2.28s
+- Avg time per file: 0.76s
+
+[PROJECT: zk-SQL-4c3626d]
+- Total files: 0
+- Success: 0
+- Failed: 0
+- Time: 0.00s
+- Avg time per file: 0.00s
+
+[PROJECT: utils]
+- Total files: 0
+- Success: 0
+- Failed: 0
+- Time: 0.00s
+- Avg time per file: 0.00s
+
+[OVERALL SUMMARY]
+- Total files: 176
+- Success: 176
+- Failed: 0
+- Total time: 1745.36s
+- Avg time per file: 9.92s

@@ -6850,12 +6850,84 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=1": {
     "unconstrained_output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:109:4": [
         "Output signal 'out[0]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -6924,6 +6996,71 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=3": {
@@ -6932,6 +7069,13 @@
         "Output signal 'out[0]' is not constrained by any constraint.",
         "Output signal 'out[1]' is not constrained by any constraint.",
         "Output signal 'out[2]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -6997,6 +7141,68 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=6": {
@@ -7008,6 +7214,16 @@
         "Output signal 'out[3]' is not constrained by any constraint.",
         "Output signal 'out[4]' is not constrained by any constraint.",
         "Output signal 'out[5]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7069,6 +7285,64 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=10": {
@@ -7084,6 +7358,20 @@
         "Output signal 'out[7]' is not constrained by any constraint.",
         "Output signal 'out[8]' is not constrained by any constraint.",
         "Output signal 'out[9]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7140,6 +7428,59 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=15": {
@@ -7160,6 +7501,25 @@
         "Output signal 'out[12]' is not constrained by any constraint.",
         "Output signal 'out[13]' is not constrained by any constraint.",
         "Output signal 'out[14]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7210,6 +7570,53 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=21": {
@@ -7236,6 +7643,31 @@
         "Output signal 'out[18]' is not constrained by any constraint.",
         "Output signal 'out[19]' is not constrained by any constraint.",
         "Output signal 'out[20]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7279,6 +7711,46 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=28": {
@@ -7313,6 +7785,38 @@
         "Output signal 'out[26]' is not constrained by any constraint.",
         "Output signal 'out[27]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=28": {
@@ -7346,6 +7850,38 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7389,6 +7925,46 @@
         "Output signal 'out[34]' is not constrained by any constraint.",
         "Output signal 'out[35]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=19": {
@@ -7413,6 +7989,29 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7465,6 +8064,55 @@
         "Output signal 'out[43]' is not constrained by any constraint.",
         "Output signal 'out[44]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=9": {
@@ -7479,6 +8127,19 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7540,6 +8201,65 @@
         "Output signal 'out[52]' is not constrained by any constraint.",
         "Output signal 'out[53]' is not constrained by any constraint.",
         "Output signal 'out[54]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7609,6 +8329,72 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=2": {
@@ -7616,6 +8402,12 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:109:4": [
         "Output signal 'out[0]' is not constrained by any constraint.",
         "Output signal 'out[1]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7673,6 +8465,60 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=14": {
@@ -7692,6 +8538,24 @@
         "Output signal 'out[11]' is not constrained by any constraint.",
         "Output signal 'out[12]' is not constrained by any constraint.",
         "Output signal 'out[13]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7736,6 +8600,47 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=27": {
@@ -7769,6 +8674,37 @@
         "Output signal 'out[25]' is not constrained by any constraint.",
         "Output signal 'out[26]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=23": {
@@ -7797,6 +8733,33 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7845,6 +8808,51 @@
         "Output signal 'out[39]' is not constrained by any constraint.",
         "Output signal 'out[40]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=8": {
@@ -7858,6 +8866,18 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -7921,6 +8941,66 @@
         "Output signal 'out[54]' is not constrained by any constraint.",
         "Output signal 'out[55]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=56": {
@@ -7983,6 +9063,66 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=8": {
@@ -7996,6 +9136,18 @@
         "Output signal 'out[5]' is not constrained by any constraint.",
         "Output signal 'out[6]' is not constrained by any constraint.",
         "Output signal 'out[7]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8042,6 +9194,49 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=25": {
@@ -8073,6 +9268,35 @@
         "Output signal 'out[23]' is not constrained by any constraint.",
         "Output signal 'out[24]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=21": {
@@ -8099,6 +9323,31 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8149,6 +9398,53 @@
         "Output signal 'out[41]' is not constrained by any constraint.",
         "Output signal 'out[42]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=2": {
@@ -8156,6 +9452,12 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:23:4": [
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8225,6 +9527,72 @@
         "Output signal 'out[60]' is not constrained by any constraint.",
         "Output signal 'out[61]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=46": {
@@ -8277,6 +9645,56 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=18": {
@@ -8300,6 +9718,28 @@
         "Output signal 'out[15]' is not constrained by any constraint.",
         "Output signal 'out[16]' is not constrained by any constraint.",
         "Output signal 'out[17]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8331,6 +9771,35 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8377,6 +9846,49 @@
         "Output signal 'out[37]' is not constrained by any constraint.",
         "Output signal 'out[38]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=3": {
@@ -8385,6 +9897,13 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8453,6 +9972,71 @@
         "Output signal 'out[59]' is not constrained by any constraint.",
         "Output signal 'out[60]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=44": {
@@ -8503,6 +10087,54 @@
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint.",
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShL@n=64@r=20": {
@@ -8529,6 +10161,30 @@
         "Output signal 'out[18]' is not constrained by any constraint.",
         "Output signal 'out[19]' is not constrained by any constraint."
       ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
+      ]
     }
   },
   "ShR@n=64@r=20": {
@@ -8554,6 +10210,30 @@
         "Output signal 'out[61]' is not constrained by any constraint.",
         "Output signal 'out[62]' is not constrained by any constraint.",
         "Output signal 'out[63]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\sha256\\shift.circom:22:4": [
+        "This signal 'in[0]' is declared but never used in any computation or constraint.",
+        "This signal 'in[1]' is declared but never used in any computation or constraint.",
+        "This signal 'in[2]' is declared but never used in any computation or constraint.",
+        "This signal 'in[3]' is declared but never used in any computation or constraint.",
+        "This signal 'in[4]' is declared but never used in any computation or constraint.",
+        "This signal 'in[5]' is declared but never used in any computation or constraint.",
+        "This signal 'in[6]' is declared but never used in any computation or constraint.",
+        "This signal 'in[7]' is declared but never used in any computation or constraint.",
+        "This signal 'in[8]' is declared but never used in any computation or constraint.",
+        "This signal 'in[9]' is declared but never used in any computation or constraint.",
+        "This signal 'in[10]' is declared but never used in any computation or constraint.",
+        "This signal 'in[11]' is declared but never used in any computation or constraint.",
+        "This signal 'in[12]' is declared but never used in any computation or constraint.",
+        "This signal 'in[13]' is declared but never used in any computation or constraint.",
+        "This signal 'in[14]' is declared but never used in any computation or constraint.",
+        "This signal 'in[15]' is declared but never used in any computation or constraint.",
+        "This signal 'in[16]' is declared but never used in any computation or constraint.",
+        "This signal 'in[17]' is declared but never used in any computation or constraint.",
+        "This signal 'in[18]' is declared but never used in any computation or constraint.",
+        "This signal 'in[19]' is declared but never used in any computation or constraint."
       ]
     }
   },
@@ -8604,6 +10284,54 @@
         "Output signal 'out[41]' is not constrained by any constraint.",
         "Output signal 'out[42]' is not constrained by any constraint.",
         "Output signal 'out[43]' is not constrained by any constraint."
+      ]
+    },
+    "unused signal": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\keccak256-circom-af3e898\\utils.circom:108:4": [
+        "This signal 'in[20]' is declared but never used in any computation or constraint.",
+        "This signal 'in[21]' is declared but never used in any computation or constraint.",
+        "This signal 'in[22]' is declared but never used in any computation or constraint.",
+        "This signal 'in[23]' is declared but never used in any computation or constraint.",
+        "This signal 'in[24]' is declared but never used in any computation or constraint.",
+        "This signal 'in[25]' is declared but never used in any computation or constraint.",
+        "This signal 'in[26]' is declared but never used in any computation or constraint.",
+        "This signal 'in[27]' is declared but never used in any computation or constraint.",
+        "This signal 'in[28]' is declared but never used in any computation or constraint.",
+        "This signal 'in[29]' is declared but never used in any computation or constraint.",
+        "This signal 'in[30]' is declared but never used in any computation or constraint.",
+        "This signal 'in[31]' is declared but never used in any computation or constraint.",
+        "This signal 'in[32]' is declared but never used in any computation or constraint.",
+        "This signal 'in[33]' is declared but never used in any computation or constraint.",
+        "This signal 'in[34]' is declared but never used in any computation or constraint.",
+        "This signal 'in[35]' is declared but never used in any computation or constraint.",
+        "This signal 'in[36]' is declared but never used in any computation or constraint.",
+        "This signal 'in[37]' is declared but never used in any computation or constraint.",
+        "This signal 'in[38]' is declared but never used in any computation or constraint.",
+        "This signal 'in[39]' is declared but never used in any computation or constraint.",
+        "This signal 'in[40]' is declared but never used in any computation or constraint.",
+        "This signal 'in[41]' is declared but never used in any computation or constraint.",
+        "This signal 'in[42]' is declared but never used in any computation or constraint.",
+        "This signal 'in[43]' is declared but never used in any computation or constraint.",
+        "This signal 'in[44]' is declared but never used in any computation or constraint.",
+        "This signal 'in[45]' is declared but never used in any computation or constraint.",
+        "This signal 'in[46]' is declared but never used in any computation or constraint.",
+        "This signal 'in[47]' is declared but never used in any computation or constraint.",
+        "This signal 'in[48]' is declared but never used in any computation or constraint.",
+        "This signal 'in[49]' is declared but never used in any computation or constraint.",
+        "This signal 'in[50]' is declared but never used in any computation or constraint.",
+        "This signal 'in[51]' is declared but never used in any computation or constraint.",
+        "This signal 'in[52]' is declared but never used in any computation or constraint.",
+        "This signal 'in[53]' is declared but never used in any computation or constraint.",
+        "This signal 'in[54]' is declared but never used in any computation or constraint.",
+        "This signal 'in[55]' is declared but never used in any computation or constraint.",
+        "This signal 'in[56]' is declared but never used in any computation or constraint.",
+        "This signal 'in[57]' is declared but never used in any computation or constraint.",
+        "This signal 'in[58]' is declared but never used in any computation or constraint.",
+        "This signal 'in[59]' is declared but never used in any computation or constraint.",
+        "This signal 'in[60]' is declared but never used in any computation or constraint.",
+        "This signal 'in[61]' is declared but never used in any computation or constraint.",
+        "This signal 'in[62]' is declared but never used in any computation or constraint.",
+        "This signal 'in[63]' is declared but never used in any computation or constraint."
       ]
     }
   }

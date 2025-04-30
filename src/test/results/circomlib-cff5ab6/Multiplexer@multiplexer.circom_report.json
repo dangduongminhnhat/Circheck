@@ -6,5 +6,12 @@
         "Output signal 'out[1]' is not constrained by any constraint."
       ]
     }
+  },
+  "Decoder@w=2": {
+    "nondeterministic data flow": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\multiplexer.circom:85:8": [
+        "Potential non-deterministic dataflow: conditional assignment depends on a signal."
+      ]
+    }
   }
 }
