@@ -119,9 +119,29 @@ file_not_check = [
     "utils.circom"
 ]
 
+CIRCHECK_TO_ZKAP = {
+    "unconstrained_output": "Unconstrained Circ. Output",
+    "unconstrained component input": "Unconstrained Comp. Input",
+    "data flow constraint discrepancy": "Dataflow-constraint Discrepancy",
+    "unused component output": "Unused Comp. Output",
+    "unused signal": "Unused Circ. Signal",
+    "divide by zero": "Division-By-Zero",
+    "nondeterministic data flow": "Non-Deterministic-Dataflow",
+    "type mismatch": "Type-Mismatch",
+    "assignment missue": "Assignment misuse"
+}
+
+ZKAP_TO_CIRCHECK = {v: k for k, v in CIRCHECK_TO_ZKAP.items()}
+
+all_bug_types = list(CIRCHECK_TO_ZKAP.keys())
+vul_stats = {bug: {'TP': 0, 'FP': 0, 'FN': 0, 'TN': 0}
+             for bug in all_bug_types}
+
 while data:
     col = data.split(",")
-    name, project, groundtruth, circomspect, zkap = col[0], col[1], col[2], col[3], col[4]
+    name, project, groundtruth, circomspect, zkap = col[0], col[1], col[10], col[11], col[12]
+    expected_detetector = col[2:7]
+    circheck_bugs = set()
     zkap = zkap.replace("\n", "")
     if name in file_not_check:
         data = file.readline()
@@ -145,13 +165,11 @@ while data:
                     result = 'safe'
                 else:
                     result = 'unsafe'
+                    for circuit_name, circuit_issues in data.items():
+                        for issue_type, locations in circuit_issues.items():
+                            circheck_bugs.add(issue_type)
             except json.JSONDecodeError:
                 result = 'invalid json'
-
-        if groundtruth == "":
-            if circomspect == zkap:
-                groundtruth = zkap
-
         if groundtruth == 'unsafe' and result == 'unsafe':
             TP += 1
         elif groundtruth == 'safe' and result == 'safe':
@@ -180,6 +198,19 @@ while data:
             FP_zkap += 1
         elif groundtruth == 'unsafe' and zkap == 'safe':
             FN_zkap += 1
+        if groundtruth in ["safe", "unsafe"]:
+            for bug in all_bug_types:
+                in_zkap = CIRCHECK_TO_ZKAP[bug] in expected_detetector
+                in_circheck = bug in circheck_bugs
+
+                if in_zkap and in_circheck:
+                    vul_stats[bug]['TP'] += 1
+                elif not in_zkap and in_circheck:
+                    vul_stats[bug]['FP'] += 1
+                elif in_zkap and not in_circheck:
+                    vul_stats[bug]['FN'] += 1
+                elif not in_zkap and not in_circheck:
+                    vul_stats[bug]['TN'] += 1
     else:
         print("not found: ", json_path)
 
@@ -222,4 +253,10 @@ for tool, stats in zip(["Circheck", "ZKAP", "CIRCOMSPECT"],
                        [circheck_stats, zkap_stats, circomspect_stats]):
     print(f"\n=== {tool} ===")
     for k, v in stats.items():
+        print(f"{k}: {v}")
+
+for bug_type, values in vul_stats.items():
+    result = evaluate(values["TP"], values["TN"], values["FP"], values["FN"])
+    print(f"\n=== {bug_type} ===")
+    for k, v in result.items():
         print(f"{k}: {v}")
