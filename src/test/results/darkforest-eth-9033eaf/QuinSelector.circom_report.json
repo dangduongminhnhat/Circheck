@@ -1,4 +1,11 @@
 {
+  "QuinSelector@choices=4": {
+    "type mismatch": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\QuinSelector.circom:13:4": [
+        "Signal 'index' flows into 'LessThan' without being properly range-checked."
+      ]
+    }
+  },
   "LessThan@n=4": {
     "unconstrained_output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:92:4": [
@@ -14,11 +21,11 @@
   "Num2Bits@n=5": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {

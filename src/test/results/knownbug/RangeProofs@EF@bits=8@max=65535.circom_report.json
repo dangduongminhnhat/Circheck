@@ -1,4 +1,14 @@
 {
+  "RangeProof@bits=2@max=65535": {
+    "type mismatch": {
+      "../../benchmarks\\knownbug\\RangeProofs@EF@bits=8@max=65535.circom:11:4": [
+        "Signal 'in' flows into 'LessThan' without being properly range-checked."
+      ],
+      "../../benchmarks\\knownbug\\RangeProofs@EF@bits=8@max=65535.circom:16:4": [
+        "Signal 'in' flows into 'LessThan' without being properly range-checked."
+      ]
+    }
+  },
   "LessThan@n=2": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:98:14": [
@@ -9,9 +19,9 @@
   "Num2Bits@n=3": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {

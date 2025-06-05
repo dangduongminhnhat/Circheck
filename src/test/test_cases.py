@@ -11,7 +11,7 @@ locpath = [
     '../circheck/cdggen/',
     '../circheck/detect/',
     '../circheck/',
-    '../../target/'
+    '../circheck/target/'
 ]
 
 for p in locpath:
@@ -31,25 +31,25 @@ def test_bugs():
 
     # checked already
     done_dir = [
-        # "aes-circom",
-        # "circom-ecdsa",
-        # "circom-matrix",
-        # "circom-ml",
-        # "circom-pairing",
-        # "circomlib-cff5ab6",
-        # "darkforest-eth-9033eaf",
-        # "ed25519-099d19c",
-        # "hermez-network-9a696e3-fixed",
-        # "hydra-2010a65",
-        # "iden3-core-56a08f9",
-        # "internal",
-        # "keccak256-circom-af3e898",
-        # "knownbug",
-        # "maci-9b1b1a6-fixed",
-        # "semaphore-0f0fc95",
-        # "zk-group-sigs-1337689-fixed",
-        # "zk-SQL-4c3626d",
-        # "zk-SQL-4c3626d"
+        "aes-circom",
+        "circom-ecdsa",
+        "circom-matrix",
+        "circom-ml",
+        "circom-pairing",
+        "circomlib-cff5ab6",
+        "darkforest-eth-9033eaf",
+        "ed25519-099d19c",
+        "hermez-network-9a696e3-fixed",
+        "hydra-2010a65",
+        "iden3-core-56a08f9",
+        "internal",
+        "keccak256-circom-af3e898",
+        "knownbug",
+        "maci-9b1b1a6-fixed",
+        "semaphore-0f0fc95",
+        "zk-group-sigs-1337689-fixed",
+        "zk-SQL-4c3626d",
+        "zk-SQL-4c3626d"
     ]
 
     # Because it's cause time out or recursive many times.

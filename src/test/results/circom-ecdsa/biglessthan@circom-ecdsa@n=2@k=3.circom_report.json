@@ -4,6 +4,18 @@
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:322:21": [
         "This output 'eq_ands[0].out' is not checked nor used from the call site."
       ]
+    },
+    "type mismatch": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:307:8": [
+        "Signal 'a[0]' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'a[1]' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'a[2]' flows into 'LessThan' without being properly range-checked."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:308:8": [
+        "Signal 'b[0]' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'b[1]' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'b[2]' flows into 'LessThan' without being properly range-checked."
+      ]
     }
   },
   "LessThan@n=2": {
@@ -21,8 +33,8 @@
   "Num2Bits@n=3": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },

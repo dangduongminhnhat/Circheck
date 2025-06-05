@@ -207,8 +207,12 @@ while data:
                     vul_stats[bug]['TP'] += 1
                 elif not in_zkap and in_circheck:
                     vul_stats[bug]['FP'] += 1
+                    if bug == "type mismatch":
+                        print("+++ false positive =", json_path)
                 elif in_zkap and not in_circheck:
                     vul_stats[bug]['FN'] += 1
+                    if bug == "type mismatch":
+                        print("--- false negative =", json_path)
                 elif not in_zkap and not in_circheck:
                     vul_stats[bug]['TN'] += 1
     else:
