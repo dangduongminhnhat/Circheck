@@ -6,14 +6,16 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="circheck",
-    version="0.1.3",
+    version="0.2.0",
     description="Static analysis tool to detect ZKP vulnerabilities in Circom circuits.",
     author="Dang Duong Minh Nhat",
     author_email="dangduongminhnhat2003@gmail.com",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
-        "antlr4-python3-runtime"
+        'antlr4-python3-runtime==4.9.2',
+        'colorama==0.4.6',
+        'tqdm==4.67.1'
     ],
     entry_points={
         'console_scripts': [
