@@ -1,15 +1,26 @@
 {
   "BinSum@n=2@ops=2": {
-    "data flow constraint discrepancy": {
+    "unconstrained_output": {
       "../../benchmarks\\knownbug\\BinSum@circomspect@n=2@ops=2.circom:19:4": [
-        "Signal 'out[1]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
+        "Output signal 'out[0]' is not constrained by any constraint.",
+        "Output signal 'out[1]' is not constrained by any constraint.",
+        "Output signal 'out[2]' is not constrained by any constraint."
       ]
     },
-    "assignment missue": {
-      "../../benchmarks\\knownbug\\BinSum@circomspect@n=2@ops=2.circom:31:8": [
-        "Variable out is assigned using <-- instead of <==."
+    "data flow constraint discrepancy": {
+      "../../benchmarks\\knownbug\\BinSum@circomspect@n=2@ops=2.circom:19:4": [
+        "Signal 'out[0]' depends on 'in[0][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in[0][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in[0][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in[1][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in[1][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in[1][0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in[0][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in[0][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in[0][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
   }

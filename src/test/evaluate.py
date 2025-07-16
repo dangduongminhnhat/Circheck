@@ -176,10 +176,10 @@ while data:
             TN += 1
         elif groundtruth == 'safe' and result == 'unsafe':
             FP += 1
-            print("+++ false positive =", json_path)
+            # print("+++ false positive =", json_path)
         elif groundtruth == 'unsafe' and result == 'safe':
             FN += 1
-            print("--- false negative =", json_path)
+            # print("--- false negative =", json_path)
 
         if groundtruth == 'unsafe' and circomspect == 'unsafe':
             TP_circomspect += 1
@@ -196,10 +196,15 @@ while data:
             TN_zkap += 1
         elif groundtruth == 'safe' and zkap == 'unsafe':
             FP_zkap += 1
+            # print("+++ false positive - zkap =", json_path)
         elif groundtruth == 'unsafe' and zkap == 'safe':
             FN_zkap += 1
+            # print("--- false negative - zkap =", json_path)
+
         if groundtruth in ["safe", "unsafe"]:
             for bug in all_bug_types:
+                # if bug != "type mismatch":
+                #     continue
                 in_zkap = CIRCHECK_TO_ZKAP[bug] in expected_detetector
                 in_circheck = bug in circheck_bugs
 
@@ -207,12 +212,10 @@ while data:
                     vul_stats[bug]['TP'] += 1
                 elif not in_zkap and in_circheck:
                     vul_stats[bug]['FP'] += 1
-                    if bug == "type mismatch":
-                        print("+++ false positive =", json_path)
+                    print("+++ false positive =", json_path, bug)
                 elif in_zkap and not in_circheck:
                     vul_stats[bug]['FN'] += 1
-                    if bug == "type mismatch":
-                        print("--- false negative =", json_path)
+                    print("--- false negative =", json_path, bug)
                 elif not in_zkap and not in_circheck:
                     vul_stats[bug]['TN'] += 1
     else:

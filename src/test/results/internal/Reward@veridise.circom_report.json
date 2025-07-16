@@ -2,7 +2,7 @@
   "Reward": {
     "assignment missue": {
       "../../benchmarks\\internal\\Reward@veridise.circom:7:4": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     }
   }

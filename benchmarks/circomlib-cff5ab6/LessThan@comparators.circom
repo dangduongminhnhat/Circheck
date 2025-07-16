@@ -2,5 +2,5 @@ pragma circom 2.0.0;
 
 include "../libs/circomlib/circuits/comparators.circom";
 
-component main = LessThan(2);
+component main = LessEqThan(2);
         

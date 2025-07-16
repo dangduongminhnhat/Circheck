@@ -2,10 +2,10 @@
   "DivModN@n=13": {
     "assignment missue": {
       "../../benchmarks\\internal\\DivModN@veridise@n=13.circom:7:4": [
-        "Variable div is assigned using <-- instead of <==."
+        "The dataflow for signal 'div' does not mathematically match any of its constraints."
       ],
       "../../benchmarks\\internal\\DivModN@veridise@n=13.circom:8:4": [
-        "Variable mod is assigned using <-- instead of <==."
+        "The dataflow for signal 'mod' does not mathematically match any of its constraints."
       ]
     }
   }

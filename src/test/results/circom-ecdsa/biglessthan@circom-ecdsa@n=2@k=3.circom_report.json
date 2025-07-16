@@ -18,36 +18,10 @@
       ]
     }
   },
-  "LessThan@n=2": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\comparators.circom:92:4": [
-        "Output signal 'out' is not constrained by any constraint."
-      ]
-    },
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\comparators.circom:98:14": [
-        "Signal 'n2b.out[2]' depends on 'n2b.in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=3": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:32:8": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    }
-  },
   "IsZero": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\comparators.circom:30:4": [
-        "Variable inv is assigned using <-- instead of <==."
+        "The dataflow for signal 'inv' does not mathematically match any of its constraints."
       ]
     },
     "divide by zero": {

@@ -1,20 +1,8 @@
 {
   "BinSub@n=2": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\binsub.circom:47:4": [
-        "Signal 'aux' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\binsub.circom:45:4": [
-        "Signal 'out[1]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in[1][1]' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\binsub.circom:60:8": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\binsub.circom:68:4": [
-        "Variable aux is assigned using <-- instead of <==."
+        "The dataflow for signal 'aux' does not mathematically match any of its constraints."
       ]
     }
   }

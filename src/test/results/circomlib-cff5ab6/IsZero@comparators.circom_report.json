@@ -2,7 +2,7 @@
   "IsZero": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
-        "Variable inv is assigned using <-- instead of <==."
+        "The dataflow for signal 'inv' does not mathematically match any of its constraints."
       ]
     },
     "divide by zero": {

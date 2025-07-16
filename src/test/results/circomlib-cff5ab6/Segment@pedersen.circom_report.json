@@ -1,17 +1,5 @@
 {
-  "Segment@nWindows=2": {
-    "unused signal": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\pedersen.circom:131:21": [
-        "This signal 'windows[1].out8' is declared but never used in any computation or constraint."
-      ]
-    }
-  },
   "Edwards2Montgomery": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Potential divide-by-zero issue detected."
@@ -22,11 +10,6 @@
     }
   },
   "MontgomeryDouble": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
-        "Variable lamda is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
         "Potential divide-by-zero issue detected."
@@ -34,11 +17,6 @@
     }
   },
   "MontgomeryAdd": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
-        "Variable lamda is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
         "Potential divide-by-zero issue detected."
@@ -46,11 +24,6 @@
     }
   },
   "Montgomery2Edwards": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:54:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:53:4": [
         "Potential divide-by-zero issue detected."

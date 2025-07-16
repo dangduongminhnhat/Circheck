@@ -1,58 +1,25 @@
 {
-  "LessThan@n=2": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\comparators.circom:98:14": [
-        "Signal 'n2b.out[2]' depends on 'n2b.in' via dataflow, but there is no corresponding constraint dependency."
+  "ModSub@n=2": {
+    "type mismatch": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:31:4": [
+        "Signal 'a' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:32:4": [
+        "Signal 'b' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
       ]
     }
   },
-  "LessThan@n=3": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\comparators.circom:98:14": [
-        "Signal 'n2b.out[3]' depends on 'n2b.in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=3": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Output signal 'out[0]' is not constrained by any constraint.",
-        "Output signal 'out[1]' is not constrained by any constraint.",
-        "Output signal 'out[2]' is not constrained by any constraint."
-      ]
-    },
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:32:8": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    }
-  },
-  "Num2Bits@n=4": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Output signal 'out[0]' is not constrained by any constraint.",
-        "Output signal 'out[1]' is not constrained by any constraint.",
-        "Output signal 'out[2]' is not constrained by any constraint."
-      ]
-    },
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:32:8": [
-        "Variable out is assigned using <-- instead of <==."
+  "ModSubThree@n=2": {
+    "type mismatch": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:50:4": [
+        "Signal 'a' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:51:4": [
+        "Signal 'b_plus_c' flows into 'LessThan' without being properly range-checked.",
+        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
       ]
     }
   }

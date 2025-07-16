@@ -9,11 +9,6 @@
       "../../benchmarks\\knownbug\\UnconstrainedOutput@inspire.circom:5:4": [
         "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
-    },
-    "assignment missue": {
-      "../../benchmarks\\knownbug\\UnconstrainedOutput@inspire.circom:7:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
     }
   }
 }

@@ -1,5 +1,10 @@
 {
   "LessThanPower@base=51": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    },
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
         "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
@@ -7,7 +12,7 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:9:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     },
     "nondeterministic data flow": {

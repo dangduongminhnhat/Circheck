@@ -1,13 +1,5 @@
 {
   "BabyAdd": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
-        "Variable xout is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:48:4": [
-        "Variable yout is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
         "Potential divide-by-zero issue detected."

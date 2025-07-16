@@ -1,18 +1,5 @@
 {
-  "SegmentMulAny@n=2": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\escalarmulany.circom:74:4": [
-        "Output signal 'dbl[0]' is not constrained by any constraint.",
-        "Output signal 'dbl[1]' is not constrained by any constraint."
-      ]
-    }
-  },
   "Edwards2Montgomery": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Potential divide-by-zero issue detected."
@@ -23,11 +10,6 @@
     }
   },
   "Montgomery2Edwards": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:54:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:53:4": [
         "Potential divide-by-zero issue detected."
@@ -38,14 +20,6 @@
     }
   },
   "BabyAdd": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
-        "Variable xout is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:48:4": [
-        "Variable yout is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
         "Potential divide-by-zero issue detected."
@@ -56,11 +30,6 @@
     }
   },
   "MontgomeryDouble": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
-        "Variable lamda is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
         "Potential divide-by-zero issue detected."
@@ -68,11 +37,6 @@
     }
   },
   "MontgomeryAdd": {
-    "assignment missue": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
-        "Variable lamda is assigned using <-- instead of <==."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:102:4": [
         "Potential divide-by-zero issue detected."

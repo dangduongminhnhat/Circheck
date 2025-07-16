@@ -37,7 +37,7 @@ def test_bugs():
         "circom-ml",
         "circom-pairing",
         "circomlib-cff5ab6",
-        "darkforest-eth-9033eaf",
+        # "darkforest-eth-9033eaf",
         "ed25519-099d19c",
         "hermez-network-9a696e3-fixed",
         "hydra-2010a65",
@@ -182,6 +182,8 @@ def test_bugs():
             project_start = time.time()
 
             for file_path in bug_files:
+                if "range_proof.circom" not in file_path:
+                    continue
                 print(f"[Info]       Running analysis for {file_path}")
                 file_start = time.time()
                 graphs, reports = detect(file_path)

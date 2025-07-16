@@ -1,14 +1,1 @@
-{
-  "Chunkify@n=256@chunkSize=51": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkify.circom:8:2": [
-        "Output signal 'out[0]' is not constrained by any constraint.",
-        "Output signal 'out[1]' is not constrained by any constraint.",
-        "Output signal 'out[2]' is not constrained by any constraint.",
-        "Output signal 'out[3]' is not constrained by any constraint.",
-        "Output signal 'out[4]' is not constrained by any constraint.",
-        "Output signal 'out[5]' is not constrained by any constraint."
-      ]
-    }
-  }
-}
+{}

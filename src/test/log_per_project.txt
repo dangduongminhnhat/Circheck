@@ -1,4 +1,4 @@
-[Per-project log generated at 2025-06-05 15:37:34.376855]
+[Per-project log generated at 2025-07-17 01:57:58.543426]
 
 [PROJECT: benchmarks]
 - Total files: 0
@@ -7,12 +7,12 @@
 - Time: 0.00s
 - Avg time per file: 0.00s
 
-[PROJECT: iden3-core-56a08f9]
+[PROJECT: darkforest-eth-9033eaf]
 - Total files: 1
 - Success: 1
 - Failed: 0
-- Time: 5.68s
-- Avg time per file: 5.68s
+- Time: 1.02s
+- Avg time per file: 1.02s
 
 [PROJECT: utils]
 - Total files: 0
@@ -25,4 +25,5 @@
 - Total files: 1
 - Success: 1
 - Failed: 0
-- Total time: 5.69s
+- Total time: 1.02s
+- Avg time per file: 1.02s

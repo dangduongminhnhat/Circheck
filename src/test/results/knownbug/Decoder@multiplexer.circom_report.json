@@ -1,5 +1,11 @@
 {
   "Decoder@w=2": {
+    "assignment missue": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\multiplexer.circom:85:8": [
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints."
+      ]
+    },
     "nondeterministic data flow": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\multiplexer.circom:85:8": [
         "Potential non-deterministic dataflow: conditional assignment depends on a signal."

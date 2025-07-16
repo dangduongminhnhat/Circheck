@@ -54,12 +54,13 @@ class Node:
 
 
 class Edge:
-    def __init__(self, node_from, node_to, edge_type, name, ast=None):
+    def __init__(self, node_from, node_to, edge_type, name, ast, count_constraint=0):
         self.node_from = node_from
         self.node_to = node_to
         self.edge_type = edge_type
         self.name = name
         self.ast = ast
+        self.count_constraint = count_constraint
 
 
 def getEdgeName(edge_type, nFrom, nTo):
@@ -76,6 +77,9 @@ class CircuitDependenceGraph:
         self.name = name
         self.components = components
         self.node_flows_to = {}
+        self._constraint_cache = {}
+        self._depend_cache = {}
+        self.params = None
 
     def is_signal(self, node):
         return node.node_type == NodeType.SIGNAL
@@ -96,34 +100,38 @@ class CircuitDependenceGraph:
         return self.is_signal_of(node, component) and self.is_signal_out(node)
 
     def has_path_depend(self, a: Node, b: Node) -> bool:
+        cache = self._depend_cache
+        if a.id in cache:
+            return b.id in cache[a.id]
         visited = set()
         stack = [a]
         while stack:
             current = stack.pop()
-            if current.id == b.id:
-                return True
             if current.id in visited:
                 continue
             visited.add(current.id)
-            for edge in a.flow_to:
+            for edge in current.flow_to:
                 if edge.edge_type == EdgeType.DEPEND:
                     stack.append(edge.node_to)
-        return False
+        cache[a.id] = visited
+        return b.id in visited
 
     def has_path_constraint(self, a: Node, b: Node) -> bool:
+        cache = self._constraint_cache
+        if a.id in cache:
+            return b.id in cache[a.id]
         visited = set()
         stack = [a]
         while stack:
             current = stack.pop()
-            if current.id == b.id:
-                return True
             if current.id in visited:
                 continue
             visited.add(current.id)
             for edge in current.flow_to:
                 if edge.edge_type == EdgeType.CONSTRAINT:
                     stack.append(edge.node_to)
-        return False
+        cache[a.id] = visited
+        return b.id in visited
 
     def build_conditional_depend_edges(self, graphs):
         print(
@@ -137,7 +145,7 @@ class CircuitDependenceGraph:
                         edge_name = getEdgeName(EdgeType.DEPEND, u, v)
                         if edge_name not in self.edges:
                             edge = self.edges[edge_name] = Edge(
-                                u, v, EdgeType.DEPEND, edge_name)
+                                u, v, EdgeType.DEPEND, edge_name, None)
                             u.flow_to.append(edge)
                             v.flow_from.append(edge)
                     else:
@@ -154,9 +162,10 @@ class CircuitDependenceGraph:
                                 edge_name = getEdgeName(EdgeType.DEPEND, u, v)
                                 if edge_name not in self.edges:
                                     edge = self.edges[edge_name] = Edge(
-                                        u, v, EdgeType.DEPEND, edge_name)
+                                        u, v, EdgeType.DEPEND, edge_name, None)
                                     u.flow_to.append(edge)
                                     v.flow_from.append(edge)
+                                    self._depend_cache[u.id].add(v.id)
 
     def build_condition_constraint_edges(self, graphs):
         print(
@@ -170,14 +179,14 @@ class CircuitDependenceGraph:
                         edge_name = getEdgeName(EdgeType.CONSTRAINT, u, v)
                         if edge_name not in self.edges:
                             edge = self.edges[edge_name] = Edge(
-                                u, v, EdgeType.CONSTRAINT, edge_name)
+                                u, v, EdgeType.CONSTRAINT, edge_name, None)
                             u.flow_to.append(edge)
                             v.flow_from.append(edge)
                             edge_name_reversed = getEdgeName(
                                 EdgeType.CONSTRAINT, v, u)
                             if edge_name_reversed not in self.edges:
                                 edge = self.edges[edge_name] = Edge(
-                                    v, u, EdgeType.CONSTRAINT, edge_name_reversed)
+                                    v, u, EdgeType.CONSTRAINT, edge_name_reversed, None)
                                 v.flow_to.append(edge)
                                 u.flow_from.append(edge)
                     else:
@@ -195,16 +204,21 @@ class CircuitDependenceGraph:
                                     EdgeType.CONSTRAINT, u, v)
                                 if edge_name not in self.edges:
                                     edge = self.edges[edge_name] = Edge(
-                                        u, v, EdgeType.CONSTRAINT, edge_name)
+                                        u, v, EdgeType.CONSTRAINT, edge_name, None)
                                     u.flow_to.append(edge)
                                     v.flow_from.append(edge)
+                                    self._constraint_cache[u.id].add(v.id)
                                     edge_name_reversed = getEdgeName(
                                         EdgeType.CONSTRAINT, v, u)
                                     if edge_name_reversed not in self.edges:
                                         edge = self.edges[edge_name] = Edge(
-                                            v, u, EdgeType.CONSTRAINT, edge_name_reversed)
+                                            v, u, EdgeType.CONSTRAINT, edge_name_reversed, None)
                                         v.flow_to.append(edge)
                                         u.flow_from.append(edge)
+                                        if v.id not in self._constraint_cache:
+                                            self._constraint_cache[v.id] = set(
+                                            )
+                                        self._constraint_cache[v.id].add(u.id)
 
     def flows_to(self, node):
         if node.id in self.node_flows_to:
@@ -227,6 +241,8 @@ class CircuitDependenceGraph:
                         flows_to_sub = self.flows_to(to_1)
                         flows_to_set.union(flows_to_sub)
                         flows_to_set.add(to_1.id)
+        # if node.id in self.params:
+        #     flows_to_set = flows_to_set | self.params[node.id]
         self.node_flows_to[node.id] = flows_to_set
         return flows_to_set
 

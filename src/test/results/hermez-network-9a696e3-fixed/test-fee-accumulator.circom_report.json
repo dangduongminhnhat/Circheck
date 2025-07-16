@@ -1,42 +1,15 @@
 {
   "FeeAccumulator@maxFeeTx=16": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\fee-accumulator.circom:62:4": [
-        "Output signal 'accFeeOut[0]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[1]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[2]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[3]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[4]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[5]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[6]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[7]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[8]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[9]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[10]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[11]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[12]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[13]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[14]' is not constrained by any constraint.",
-        "Output signal 'accFeeOut[15]' is not constrained by any constraint."
-      ]
-    },
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\fee-accumulator.circom:76:20": [
         "This output 'chain[15].isSelectedOut' is not checked nor used from the call site."
       ]
     }
   },
-  "FeeAccumulatorStep": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\fee-accumulator.circom:25:4": [
-        "Output signal 'accFeeOut' is not constrained by any constraint."
-      ]
-    }
-  },
   "IsZero": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:29:4": [
-        "Variable inv is assigned using <-- instead of <==."
+        "The dataflow for signal 'inv' does not mathematically match any of its constraints."
       ]
     },
     "divide by zero": {

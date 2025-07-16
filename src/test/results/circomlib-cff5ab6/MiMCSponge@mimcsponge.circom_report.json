@@ -1,10 +1,5 @@
 {
   "MiMCSponge@nInputs=2@nRounds=2@nOutputs=2": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:9:2": [
-        "Output signal 'outs[1]' is not constrained by any constraint."
-      ]
-    },
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:31:21": [
         "This output 'S[2].xRout' is not checked nor used from the call site."

@@ -1,22 +1,4 @@
 {
-  "PointAdd": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\point-addition.circom:36:4": [
-        "Output signal 'R[0][0]' is not constrained by any constraint.",
-        "Output signal 'R[1][0]' is not constrained by any constraint.",
-        "Output signal 'R[2][0]' is not constrained by any constraint.",
-        "Output signal 'R[3][0]' is not constrained by any constraint.",
-        "Output signal 'R[0][1]' is not constrained by any constraint.",
-        "Output signal 'R[1][1]' is not constrained by any constraint.",
-        "Output signal 'R[2][1]' is not constrained by any constraint.",
-        "Output signal 'R[3][1]' is not constrained by any constraint.",
-        "Output signal 'R[0][2]' is not constrained by any constraint.",
-        "Output signal 'R[1][2]' is not constrained by any constraint.",
-        "Output signal 'R[2][2]' is not constrained by any constraint.",
-        "Output signal 'R[3][2]' is not constrained by any constraint."
-      ]
-    }
-  },
   "ChunkedMul@m=3@n=3@base=85": {
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:93:2": [
@@ -35,13 +17,14 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -66,13 +49,17 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -95,10 +82,15 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:39:4": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:40:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'carry[6]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -113,10 +105,10 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:80:8": [
-        "Variable sum is assigned using <-- instead of <==."
+        "The dataflow for signal 'sum[0]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:81:8": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'carry[9]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -149,13 +141,25 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[14]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[15]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[16]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -191,13 +195,28 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[14]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[15]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[16]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[17]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[18]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[19]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -227,17 +246,31 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints."
       ]
     }
   },
   "LessThanPower@base=85": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    },
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
         "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
@@ -245,7 +278,7 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:9:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     },
     "nondeterministic data flow": {
@@ -281,13 +314,23 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[14]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -304,10 +347,12 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:39:4": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:40:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'carry[3]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -341,13 +386,26 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[14]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[15]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[16]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[17]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -375,13 +433,20 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -410,13 +475,21 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -448,13 +521,24 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[14]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[15]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -480,13 +564,18 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -513,13 +602,19 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -549,13 +644,22 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[9]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[10]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[11]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[12]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[13]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -579,17 +683,25 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints."
       ]
     }
   },
   "LessThanBounded@base=85": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:15:2": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    },
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:15:2": [
         "Signal 'out' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency.",
@@ -602,17 +714,9 @@
         "Signal 'lt2.out' depends on 'lt2.in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
-    "unused component output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:17:18": [
-        "This output 'lt1.out' is not checked nor used from the call site."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:20:18": [
-        "This output 'lt2.out' is not checked nor used from the call site."
-      ]
-    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:23:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     },
     "nondeterministic data flow": {
@@ -622,6 +726,11 @@
     }
   },
   "LessThanBounded@base=86": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:15:2": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    },
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:15:2": [
         "Signal 'out' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency.",
@@ -634,17 +743,9 @@
         "Signal 'lt2.out' depends on 'lt2.in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
-    "unused component output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:17:18": [
-        "This output 'lt1.out' is not checked nor used from the call site."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:20:18": [
-        "This output 'lt2.out' is not checked nor used from the call site."
-      ]
-    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:23:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     },
     "nondeterministic data flow": {
@@ -674,13 +775,17 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[7]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[8]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -702,17 +807,23 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints."
       ]
     }
   },
   "LessThanPower@base=86": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    },
     "data flow constraint discrepancy": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:7:2": [
         "Signal 'out' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
@@ -720,7 +831,7 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:9:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     },
     "nondeterministic data flow": {
@@ -748,13 +859,15 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[5]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[6]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -774,13 +887,12 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -801,13 +913,13 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[3]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[4]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -825,13 +937,10 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -850,13 +959,11 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:138:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:139:4": [
-        "Variable carry is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints.",
+        "The dataflow for signal 'out[1]' does not mathematically match any of its constraints."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[2]' does not mathematically match any of its constraints."
       ]
     }
   },
@@ -883,7 +990,7 @@
     },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedmul.circom:143:2": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out[0]' does not mathematically match any of its constraints."
       ]
     }
   }

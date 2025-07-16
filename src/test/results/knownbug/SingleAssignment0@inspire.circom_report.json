@@ -7,7 +7,7 @@
     },
     "assignment missue": {
       "../../benchmarks\\knownbug\\SingleAssignment0@inspire.circom:7:4": [
-        "Variable out is assigned using <-- instead of <==."
+        "The dataflow for signal 'out' does not mathematically match any of its constraints."
       ]
     }
   }

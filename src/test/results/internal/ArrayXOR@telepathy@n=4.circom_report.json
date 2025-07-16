@@ -19,11 +19,6 @@
         "Signal 'out[2]' depends on 'b[2]' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'out[3]' depends on 'b[3]' via dataflow, but there is no corresponding constraint dependency."
       ]
-    },
-    "assignment missue": {
-      "../../benchmarks\\internal\\ArrayXOR@telepathy@n=4.circom:9:8": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
     }
   }
 }
