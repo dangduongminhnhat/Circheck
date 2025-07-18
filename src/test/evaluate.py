@@ -131,11 +131,26 @@ CIRCHECK_TO_ZKAP = {
     "assignment missue": "Assignment misuse"
 }
 
+ZKSOLID_BUGS = ["UCO", "USCI", "DCD", "TM", "US", "USCO", "AM", "NDD", "DBZ"]
+ZKSOLID_TO_CIRCHECK = {
+    "UCO": "unconstrained_output",
+    "USCI": "unconstrained component input",
+    "DCD": "data flow constraint discrepancy",
+    "TM": "type mismatch",
+    "US": "unused signal",
+    "USCO": "unused component output",
+    "AM": "assignment missue",
+    "NDD": "nondeterministic data flow",
+    "DBZ": "divide by zero"
+}
+
 ZKAP_TO_CIRCHECK = {v: k for k, v in CIRCHECK_TO_ZKAP.items()}
 
 all_bug_types = list(CIRCHECK_TO_ZKAP.keys())
 vul_stats = {bug: {'TP': 0, 'FP': 0, 'FN': 0, 'TN': 0}
              for bug in all_bug_types}
+zksolid_bug_stats = {bug: {'TP': 0, 'FP': 0, 'FN': 0, 'TN': 0}
+                     for bug in ZKSOLID_BUGS}
 
 while data:
     col = data.split(",")
@@ -218,6 +233,24 @@ while data:
                     print("--- false negative =", json_path, bug)
                 elif not in_zkap and not in_circheck:
                     vul_stats[bug]['TN'] += 1
+
+            zksolid_values = col[13:22]
+            for i, bug_short in enumerate(ZKSOLID_BUGS):
+                cir_bug = ZKSOLID_TO_CIRCHECK[bug_short]
+                zkap_bug_name = CIRCHECK_TO_ZKAP[cir_bug]
+
+                in_zkap = zkap_bug_name in expected_detetector
+                in_zksolid = zksolid_values[i].strip().lower() == "unsafe"
+
+                stats = zksolid_bug_stats[bug_short]
+                if in_zkap and in_zksolid:
+                    stats['TP'] += 1
+                elif not in_zkap and in_zksolid:
+                    stats['FP'] += 1
+                elif in_zkap and not in_zksolid:
+                    stats['FN'] += 1
+                else:
+                    stats['TN'] += 1
     else:
         print("not found: ", json_path)
 
@@ -265,5 +298,12 @@ for tool, stats in zip(["Circheck", "ZKAP", "CIRCOMSPECT"],
 for bug_type, values in vul_stats.items():
     result = evaluate(values["TP"], values["TN"], values["FP"], values["FN"])
     print(f"\n=== {bug_type} ===")
+    for k, v in result.items():
+        print(f"{k}: {v}")
+
+print("\n=== ZKAP Evaluation ===")
+for bug, values in zksolid_bug_stats.items():
+    result = evaluate(values["TP"], values["TN"], values["FP"], values["FN"])
+    print(f"\nBug: {ZKSOLID_TO_CIRCHECK[bug]}")
     for k, v in result.items():
         print(f"{k}: {v}")

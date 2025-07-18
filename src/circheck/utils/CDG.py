@@ -1,6 +1,7 @@
 from enum import Enum, auto
 from StaticCheck import SignalType
 from tqdm import tqdm
+from collections import defaultdict
 
 
 class NodeType(Enum):
@@ -78,7 +79,9 @@ class CircuitDependenceGraph:
         self.components = components
         self.node_flows_to = {}
         self._constraint_cache = {}
+        self._constraint_cache_second = {}
         self._depend_cache = {}
+        self._visit_state = {}
         self.params = None
 
     def is_signal(self, node):
@@ -118,12 +121,22 @@ class CircuitDependenceGraph:
 
     def has_path_constraint(self, a: Node, b: Node) -> bool:
         cache = self._constraint_cache
-        if a.id in cache:
-            return b.id in cache[a.id]
-        visited = set()
-        stack = [a]
+        # if b.id in cache and a.id in cache[b.id]:
+        #     return True
+        if a.id in cache and b.id in cache[a.id]:
+            return True
+        if a.id in self._visit_state:
+            stack = self._visit_state[a.id]
+            visited = cache[a.id]
+        else:
+            visited = set()
+            stack = [a]
         while stack:
             current = stack.pop()
+            if current.id == b.id:
+                cache[a.id] = visited
+                self._visit_state[a.id] = stack
+                return True
             if current.id in visited:
                 continue
             visited.add(current.id)
@@ -131,7 +144,8 @@ class CircuitDependenceGraph:
                 if edge.edge_type == EdgeType.CONSTRAINT:
                     stack.append(edge.node_to)
         cache[a.id] = visited
-        return b.id in visited
+        self._visit_state[a.id] = []
+        return False
 
     def build_conditional_depend_edges(self, graphs):
         print(

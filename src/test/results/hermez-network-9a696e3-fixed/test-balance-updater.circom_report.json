@@ -1,4 +1,11 @@
 {
+  "BalanceUpdater": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\balance-updater.circom:80:20": [
+        "Signal 'n2bSender.out[192]' depends on 'n2bSender.in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
   "ComputeFee": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\src\\compute-fee.circom:69:8": [
@@ -193,7 +200,24 @@
       ]
     }
   },
+  "Num2Bits@n=193": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\bitify.circom:26:4": [
+        "Signal 'out[131]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
   "IsZero": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:27:4": [
+        "Signal 'inv' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:29:4": [
         "The dataflow for signal 'inv' does not mathematically match any of its constraints."
@@ -207,6 +231,15 @@
     "nondeterministic data flow": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:29:4": [
         "Potential non-deterministic dataflow: conditional assignment depends on a signal."
+      ]
+    }
+  },
+  "Num2Bits@n=8": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\bitify.circom:26:4": [
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
   }

@@ -1,1 +1,32 @@
-{}
+{
+  "Num2Bits@n=254": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\bitify.circom:27:4": [
+        "Signal 'out[194]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[161]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[149]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[102]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[87]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
+  "Num2Bits@n=135": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\bitify.circom:27:4": [
+        "Output signal 'out[127]' is not constrained by any constraint."
+      ]
+    },
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\bitify.circom:27:4": [
+        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[127]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  }
+}

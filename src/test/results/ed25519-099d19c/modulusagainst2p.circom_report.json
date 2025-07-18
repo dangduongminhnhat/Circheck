@@ -1,4 +1,18 @@
 {
+  "ModSub@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedsub.circom:35:17": [
+        "Signal 'lt.out' depends on 'lt.in[0]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
+  "ModSubThree@base=85": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedsub.circom:51:17": [
+        "Signal 'lt.out' depends on 'lt.in[0]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
   "LessThanBounded@base=85": {
     "unconstrained_output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\lt.circom:15:2": [

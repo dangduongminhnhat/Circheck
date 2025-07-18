@@ -1,1 +1,16 @@
-{}
+{
+  "MiMCSponge@nInputs=1@nRounds=220@nOutputs=1": {
+    "unused component output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This output 'S[0].xRout' is not checked nor used from the call site."
+      ]
+    }
+  },
+  "MiMCSponge@nInputs=2@nRounds=220@nOutputs=1": {
+    "unused component output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
+        "This output 'S[1].xRout' is not checked nor used from the call site."
+      ]
+    }
+  }
+}

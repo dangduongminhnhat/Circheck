@@ -1,5 +1,10 @@
 {
   "IsZero": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:28:4": [
+        "Signal 'inv' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
         "The dataflow for signal 'inv' does not mathematically match any of its constraints."

@@ -1,4 +1,11 @@
 {
+  "mnist_poly": {
+    "unconstrained_output": {
+      "../../benchmarks\\circom-ml\\mnist_poly_test.circom:18:4": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    }
+  },
   "ArgMax@n=2": {
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\ArgMax.circom:22:25": [
@@ -25,6 +32,13 @@
       ]
     }
   },
+  "Sum@nInputs=1": {
+    "unconstrained_output": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\util.circom:40:4": [
+        "Output signal 'out' is not constrained by any constraint."
+      ]
+    }
+  },
   "GreaterThan@n=252": {
     "type mismatch": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\comparators.circom:124:4": [
@@ -32,6 +46,20 @@
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\comparators.circom:125:4": [
         "Signal 'in[0]' flows into 'LessThan' without being properly range-checked."
+      ]
+    }
+  },
+  "Num2Bits@n=253": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-ml\\circuits\\circomlib\\bitify.circom:27:4": [
+        "Signal 'out[194]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[131]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[252]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
   }

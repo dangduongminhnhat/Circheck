@@ -1,5 +1,10 @@
 {
   "LongToShortNoEndCarry@n=2@k=1": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:226:4": [
+        "Signal 'out[1]' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:235:4": [
         "The dataflow for signal 'out[0]' does not mathematically match any of its constraints."
@@ -9,6 +14,22 @@
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:264:4": [
         "The dataflow for signal 'runningCarry[0]' does not mathematically match any of its constraints."
+      ]
+    }
+  },
+  "Num2Bits@n=2": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
+  "Num2Bits@n=3": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
   }

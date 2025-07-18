@@ -1,4 +1,24 @@
 {
+  "Num2Bits@n=253": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
+        "Signal 'out[194]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[131]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
+  "EscalarMulAny@n=253": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\escalarmulany.circom:175:12": [
+        "Signal 'm2e[0].out[0]' depends on 'm2e[0].in[1]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
   "IsZero": {
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
@@ -16,6 +36,16 @@
       ]
     }
   },
+  "SegmentMulAny@n=105": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\escalarmulany.circom:87:4": [
+        "Signal 'e2m.out[1]' depends on 'e2m.in[0]' via dataflow, but there is no corresponding constraint dependency."
+      ],
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\escalarmulany.circom:112:4": [
+        "Signal 'm2e.out[0]' depends on 'm2e.in[0]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    }
+  },
   "MontgomeryDouble": {
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:137:4": [
@@ -24,6 +54,12 @@
     }
   },
   "Montgomery2Edwards": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:51:4": [
+        "Signal 'out[0]' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[0]' depends on 'in[1]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:53:4": [
         "Potential divide-by-zero issue detected."
@@ -44,6 +80,12 @@
     }
   },
   "Edwards2Montgomery": {
+    "data flow constraint discrepancy": {
+      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:32:4": [
+        "Signal 'out[1]' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency.",
+        "Signal 'out[1]' depends on 'in[1]' via dataflow, but there is no corresponding constraint dependency."
+      ]
+    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Potential divide-by-zero issue detected."
