@@ -1,30 +1,4 @@
 {
-  "GFMULInt": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\aes-circom-0784f74\\circuits\\gfmul_int.circom:26:56": [
-        "Signal 'num2bits_1[1].out[22]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[11]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[29]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[14]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[7]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[31]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'num2bits_1[1].out[2]' depends on 'num2bits_1[1].in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=64": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\aes-circom-0784f74\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[29]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[22]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[31]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[14]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[7]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
   "VCLMULEmulator@imm=0": {
     "unused signal": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\aes-circom-0784f74\\circuits\\vclmul_emulator.circom:7:4": [

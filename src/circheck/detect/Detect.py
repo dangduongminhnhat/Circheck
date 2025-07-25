@@ -246,7 +246,7 @@ class Detector:
             for edge in node.flow_from:
                 # if edge.edge_type == EdgeType.CONSTRAINT:
                 #     continue
-                if edge.node_from.is_signal():
+                if edge.node_from.is_signal() and edge.node_from.component != edge.node_to.component:
                     input_nodes.append(edge.node_from)
                 if edge.node_from.node_type == NodeType.CONSTANT:
                     for e1 in edge.node_from.flow_from:

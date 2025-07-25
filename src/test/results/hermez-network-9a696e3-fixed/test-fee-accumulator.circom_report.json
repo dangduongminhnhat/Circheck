@@ -7,11 +7,6 @@
     }
   },
   "IsZero": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:27:4": [
-        "Signal 'inv' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\hermez-network-9a696e3-fixed\\node_modules\\circomlib\\circuits\\comparators.circom:29:4": [
         "The dataflow for signal 'inv' does not mathematically match any of its constraints."

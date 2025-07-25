@@ -218,7 +218,7 @@ while data:
 
         if groundtruth in ["safe", "unsafe"]:
             for bug in all_bug_types:
-                # if bug != "type mismatch":
+                # if bug != "unconstrained_output":
                 #     continue
                 in_zkap = CIRCHECK_TO_ZKAP[bug] in expected_detetector
                 in_circheck = bug in circheck_bugs
@@ -246,9 +246,11 @@ while data:
                 if in_zkap and in_zksolid:
                     stats['TP'] += 1
                 elif not in_zkap and in_zksolid:
+                    print("+++ false positive - zkap =", json_path, bug_short)
                     stats['FP'] += 1
                 elif in_zkap and not in_zksolid:
                     stats['FN'] += 1
+                    print("--- false negative - zkap =", json_path, bug_short)
                 else:
                     stats['TN'] += 1
     else:

@@ -10,17 +10,5 @@
         "Signal 'hash.in' depends on 'msg' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
-  },
-  "Num2Bits@n=64": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[29]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[22]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
   }
 }

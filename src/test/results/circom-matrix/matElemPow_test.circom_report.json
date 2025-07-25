@@ -1,16 +1,1 @@
-{
-  "matElemPow@m=2@n=3@p=5": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-matrix\\circuits\\matElemPow.circom:8:4": [
-        "Output signal 'out[1][2]' is not constrained by any constraint."
-      ]
-    }
-  },
-  "power@p=5": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib-matrix\\circuits\\power.circom:6:4": [
-        "Output signal 'out' is not constrained by any constraint."
-      ]
-    }
-  }
-}
+{}

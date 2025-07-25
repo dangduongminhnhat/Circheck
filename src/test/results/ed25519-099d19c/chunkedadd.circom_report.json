@@ -14,13 +14,6 @@
         "Signal 'lt1[2][1].out' depends on 'lt1[2][1].in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'lt1[2][2].out' depends on 'lt1[2][2].in' via dataflow, but there is no corresponding constraint dependency.",
         "Signal 'lt1[2][3].out' depends on 'lt1[2][3].in' via dataflow, but there is no corresponding constraint dependency."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\ed25519-099d19c-fixed\\chunkedadd.circom:53:13": [
-        "Signal 'lt2[0].out' depends on 'lt2[0].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'lt2[1].out' depends on 'lt2[1].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'lt2[2].out' depends on 'lt2[2].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'lt2[3].out' depends on 'lt2[3].in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'lt2[4].out' depends on 'lt2[4].in' via dataflow, but there is no corresponding constraint dependency."
       ]
     },
     "assignment missue": {

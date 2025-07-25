@@ -2,39 +2,20 @@
   "ModSub@n=2": {
     "type mismatch": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:31:4": [
-        "Signal 'a' flows into 'LessThan' without being properly range-checked.",
-        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
+        "Signal 'a' flows into 'LessThan' without being properly range-checked."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:32:4": [
-        "Signal 'b' flows into 'LessThan' without being properly range-checked.",
-        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
+        "Signal 'b' flows into 'LessThan' without being properly range-checked."
       ]
     }
   },
   "ModSubThree@n=2": {
     "type mismatch": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:50:4": [
-        "Signal 'a' flows into 'LessThan' without being properly range-checked.",
-        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
+        "Signal 'a' flows into 'LessThan' without being properly range-checked."
       ],
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\circuits\\bigint.circom:51:4": [
-        "Signal 'b_plus_c' flows into 'LessThan' without being properly range-checked.",
-        "Signal 'lt.out' flows into 'LessThan' without being properly range-checked."
-      ]
-    }
-  },
-  "Num2Bits@n=3": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=4": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circom-ecdsa\\node_modules\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[3]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
+        "Signal 'b_plus_c' flows into 'LessThan' without being properly range-checked."
       ]
     }
   }

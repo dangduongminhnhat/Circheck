@@ -479,12 +479,12 @@ class CDGGeneration(BaseVisitor):
             name = self.visit(lhe, param).name
             self.visit(ast.rhe, param)
             contains = FindNode().visit(ast.rhe, param)
-            for fNode in contains:
-                if fNode in param["var"]:
-                    fNode += "[var" + str(param["var"][fNode])
-                if fNode == name:
-                    continue
-                if "--" in ast.op:
+            if "--" in ast.op:
+                for fNode in contains:
+                    if fNode in param["var"]:
+                        fNode += "[var" + str(param["var"][fNode])
+                    if fNode == name:
+                        continue
                     depend_edge_name = self.getEdgeName(
                         EdgeType.DEPEND, fNode, name)
                     if depend_edge_name not in param["edge"]:
@@ -492,43 +492,58 @@ class CDGGeneration(BaseVisitor):
                             param["node"][fNode], param["node"][name], EdgeType.DEPEND, depend_edge_name, ast)
                         param["node"][fNode].flow_to.append(edge_depend)
                         param["node"][name].flow_from.append(edge_depend)
-                if "==" in ast.op:
-                    if fNode not in self.params[param["name"]]:
-                        self.params[param["name"]][fNode] = set()
-                    self.params[param["name"]][fNode].add(name)
-                    constraint_edge_name = self.getEdgeName(
-                        EdgeType.CONSTRAINT, fNode, name)
-                    if constraint_edge_name not in param["edge"]:
-                        edge_constraint = param["edge"][constraint_edge_name] = Edge(
-                            param["node"][fNode], param["node"][name], EdgeType.CONSTRAINT, constraint_edge_name, ast)
-                        param["node"][fNode].flow_to.append(edge_constraint)
-                        param["node"][name].flow_from.append(edge_constraint)
-                    edge_name_reversed = self.getEdgeName(
-                        EdgeType.CONSTRAINT, name, fNode)
-                    if edge_name_reversed not in param["edge"]:
-                        edge_reversed = param["edge"][edge_name_reversed] = Edge(
-                            param["node"][name], param["node"][fNode], EdgeType.CONSTRAINT, edge_name_reversed, ast)
-                        param["node"][name].flow_to.append(edge_reversed)
-                        param["node"][fNode].flow_from.append(edge_reversed)
-                    if fNode in param["expr"]:
-                        for add_name in param["expr"][fNode]:
-                            cons_1 = self.getEdgeName(
-                                EdgeType.CONSTRAINT, add_name, name)
-                            if cons_1 not in param["edge"]:
-                                edge_cons_1 = param["edge"][cons_1] = Edge(
-                                    param["node"][add_name], param["node"][name], EdgeType.CONSTRAINT, cons_1, ast)
-                                param["node"][add_name].flow_to.append(
-                                    edge_cons_1)
-                                param["node"][name].flow_from.append(
-                                    edge_cons_1)
-                            cons_2 = self.getEdgeName(
-                                EdgeType.CONSTRAINT, name, add_name)
-                            if cons_2 not in param["edge"]:
-                                edge_cons_2 = param["edge"][cons_2] = Edge(
-                                    param["node"][name], param["node"][add_name], EdgeType.CONSTRAINT, cons_2, ast)
-                                param["node"][name].flow_to.append(edge_cons_2)
-                                param["node"][add_name].flow_from.append(
-                                    edge_cons_2)
+            elif "==" in ast.op:
+                contains = [name] + contains
+                for i in range(len(contains)):
+                    for j in range(i + 1, len(contains)):
+                        name = contains[i]
+                        fNode = contains[j]
+                        if fNode in param["var"]:
+                            fNode += "[var" + str(param["var"][fNode])
+                        if name in param["var"]:
+                            name += "[var" + str(param["var"][name])
+                        if fNode == name:
+                            continue
+                        if fNode not in self.params[param["name"]]:
+                            self.params[param["name"]][fNode] = set()
+                        self.params[param["name"]][fNode].add(name)
+                        constraint_edge_name = self.getEdgeName(
+                            EdgeType.CONSTRAINT, fNode, name)
+                        if constraint_edge_name not in param["edge"]:
+                            edge_constraint = param["edge"][constraint_edge_name] = Edge(
+                                param["node"][fNode], param["node"][name], EdgeType.CONSTRAINT, constraint_edge_name, ast)
+                            param["node"][fNode].flow_to.append(
+                                edge_constraint)
+                            param["node"][name].flow_from.append(
+                                edge_constraint)
+                        edge_name_reversed = self.getEdgeName(
+                            EdgeType.CONSTRAINT, name, fNode)
+                        if edge_name_reversed not in param["edge"]:
+                            edge_reversed = param["edge"][edge_name_reversed] = Edge(
+                                param["node"][name], param["node"][fNode], EdgeType.CONSTRAINT, edge_name_reversed, ast)
+                            param["node"][name].flow_to.append(edge_reversed)
+                            param["node"][fNode].flow_from.append(
+                                edge_reversed)
+                        if fNode in param["expr"]:
+                            for add_name in param["expr"][fNode]:
+                                cons_1 = self.getEdgeName(
+                                    EdgeType.CONSTRAINT, add_name, name)
+                                if cons_1 not in param["edge"]:
+                                    edge_cons_1 = param["edge"][cons_1] = Edge(
+                                        param["node"][add_name], param["node"][name], EdgeType.CONSTRAINT, cons_1, ast)
+                                    param["node"][add_name].flow_to.append(
+                                        edge_cons_1)
+                                    param["node"][name].flow_from.append(
+                                        edge_cons_1)
+                                cons_2 = self.getEdgeName(
+                                    EdgeType.CONSTRAINT, name, add_name)
+                                if cons_2 not in param["edge"]:
+                                    edge_cons_2 = param["edge"][cons_2] = Edge(
+                                        param["node"][name], param["node"][add_name], EdgeType.CONSTRAINT, cons_2, ast)
+                                    param["node"][name].flow_to.append(
+                                        edge_cons_2)
+                                    param["node"][add_name].flow_from.append(
+                                        edge_cons_2)
 
     def visitMultiSubstitution(self, ast: MultiSubstitution, param):
         lhe_value = self.visit(ast.lhe, param)

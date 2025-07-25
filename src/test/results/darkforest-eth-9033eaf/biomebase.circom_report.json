@@ -9,6 +9,8 @@
   "MultiScalePerlin": {
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:518:24": [
+        "This output 'divBy16.is_dividend_negative' is not checked nor used from the call site.",
+        "This output 'divBy16.dividend_adjustment' is not checked nor used from the call site.",
         "This output 'divBy16.neg_remainder' is not checked nor used from the call site."
       ]
     }
@@ -33,28 +35,7 @@
       ]
     }
   },
-  "Num2Bits@n=254": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[194]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[161]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[149]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[102]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[87]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
   "GetCornersAndGradVectors@scale_bits=16@DENOMINATOR=1125899906842624000@SQRT_P=1000000000000000000000000000000000000": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:167:24": [
-        "Signal 'xmodulo.quotient' depends on 'xmodulo.divisor' via dataflow, but there is no corresponding constraint dependency."
-      ],
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:171:24": [
-        "Signal 'ymodulo.quotient' depends on 'ymodulo.divisor' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:167:24": [
         "This output 'xmodulo.quotient' is not checked nor used from the call site.",
@@ -113,11 +94,6 @@
     }
   },
   "IsZero": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:28:4": [
-        "Signal 'inv' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "assignment missue": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\comparators.circom:30:4": [
         "The dataflow for signal 'inv' does not mathematically match any of its constraints."
@@ -134,30 +110,7 @@
       ]
     }
   },
-  "Num2Bits@n=36": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[17]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=35": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[17]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
   "Modulo@divisor_bits=16@SQRT_P=1000000000000000000000000000000000000": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:78:4": [
-        "Signal 'raw_remainder' depends on 'divisor' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "type mismatch": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:123:4": [
         "Signal 'remainder' flows into 'LessThan' without being properly range-checked."
@@ -177,50 +130,6 @@
       ]
     }
   },
-  "Num2Bits@n=62": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[29]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[22]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[61]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=37": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[17]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[36]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=135": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Output signal 'out[127]' is not constrained by any constraint."
-      ]
-    },
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[127]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Random": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\perlin.circom:33:78": [
-        "Signal 'num2Bits.out[0]' depends on 'num2Bits.in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
   "QuinSelector@choices=16": {
     "type mismatch": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\darkforest-eth-9033eaf\\QuinSelector.circom:13:4": [
@@ -228,60 +137,10 @@
       ]
     }
   },
-  "Num2Bits@n=129": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=128": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[0]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=17": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[16]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[1]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
   "MiMCSponge@nInputs=3@nRounds=4@nOutputs=1": {
     "unused component output": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\mimcsponge.circom:17:11": [
         "This output 'S[2].xRout' is not checked nor used from the call site."
-      ]
-    }
-  },
-  "Num2Bits@n=130": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[33]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[11]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[8]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[129]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    }
-  },
-  "Num2Bits@n=5": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\bitify.circom:27:4": [
-        "Signal 'out[2]' depends on 'in' via dataflow, but there is no corresponding constraint dependency.",
-        "Signal 'out[4]' depends on 'in' via dataflow, but there is no corresponding constraint dependency."
       ]
     }
   }

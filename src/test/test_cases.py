@@ -182,7 +182,7 @@ def test_bugs():
             project_start = time.time()
 
             for file_path in bug_files:
-                # if "range_proof.circom" not in file_path:
+                # if "matPow_test.circom" not in file_path:
                 #     continue
                 print(f"[Info]       Running analysis for {file_path}")
                 file_start = time.time()

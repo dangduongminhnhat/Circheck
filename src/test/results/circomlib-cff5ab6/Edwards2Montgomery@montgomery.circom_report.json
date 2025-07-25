@@ -1,10 +1,5 @@
 {
   "Edwards2Montgomery": {
-    "data flow constraint discrepancy": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:32:4": [
-        "Signal 'out[1]' depends on 'in[0]' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\montgomery.circom:34:4": [
         "Potential divide-by-zero issue detected."

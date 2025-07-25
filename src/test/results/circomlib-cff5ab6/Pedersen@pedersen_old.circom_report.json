@@ -1,12 +1,4 @@
 {
-  "Pedersen@n=2": {
-    "unconstrained_output": {
-      "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\pedersen_old.circom:25:4": [
-        "Output signal 'out[0]' is not constrained by any constraint.",
-        "Output signal 'out[1]' is not constrained by any constraint."
-      ]
-    }
-  },
   "BabyAdd": {
     "divide by zero": {
       "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\libs\\circomlib\\circuits\\babyjub.circom:45:4": [
