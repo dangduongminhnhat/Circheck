@@ -27,29 +27,28 @@ def test_bugs():
         os.path.dirname(__file__), "log_per_project.txt")
     fails = []
     success = 0
-    count = 0
 
     # checked already
     done_dir = [
-        "aes-circom",
-        "circom-ecdsa",
-        "circom-matrix",
-        "circom-ml",
-        "circom-pairing",
-        "circomlib-cff5ab6",
-        "darkforest-eth-9033eaf",
-        "ed25519-099d19c",
-        "hermez-network-9a696e3-fixed",
-        "hydra-2010a65",
-        "iden3-core-56a08f9",
-        "internal",
-        "keccak256-circom-af3e898",
-        "knownbug",
-        "maci-9b1b1a6-fixed",
-        "semaphore-0f0fc95",
-        "zk-group-sigs-1337689-fixed",
-        "zk-SQL-4c3626d",
-        "zk-SQL-4c3626d"
+        # "aes-circom",
+        # "circom-ecdsa",
+        # "circom-matrix",
+        # "circom-ml",
+        # "circom-pairing",
+        # "circomlib-cff5ab6",
+        # "darkforest-eth-9033eaf",
+        # "ed25519-099d19c",
+        # "hermez-network-9a696e3-fixed",
+        # "hydra-2010a65",
+        # "iden3-core-56a08f9",
+        # "internal",
+        # "keccak256-circom-af3e898",
+        # "knownbug",
+        # "maci-9b1b1a6-fixed",
+        # "semaphore-0f0fc95",
+        # "zk-group-sigs-1337689-fixed",
+        # "zk-SQL-4c3626d",
+        # "zk-SQL-4c3626d"
     ]
 
     # Because it's cause time out or recursive many times.
@@ -117,6 +116,10 @@ def test_bugs():
         "keccakf_test.circom",
         "keccak_256_256_test.circom",
         "keccak_32_256_test.circom",
+        "keccakfRound0_test.circom",
+        "keccakfRound20_test.circom",
+        "rhopi_test.circom",
+        "theta_test.circom",
         "batchUpdateStateTree_32.circom",
         "batchUpdateStateTree_32_batch16.circom",
         "batchUpdateStateTree_32_batch256.circom",
@@ -155,7 +158,61 @@ def test_bugs():
         "select.circom",
         "update.circom",
         "hashTable.circom",
-        "utils.circom"
+        "utils.circom",
+        "bigadd@circom-ecdsa@n=1@k=5.circom",
+        "bigmod@circom-ecdsa@n=2@k=2.circom",
+        "bigmod@circom-ecdsa@n=3@k=2.circom",
+        "bigmult@circom-ecdsa@n=2@k=2.circom",
+        "bigmult@circom-ecdsa@n=2@k=3.circom",
+        "bigsub@circom-ecdsa@n=1@k=5.circom",
+        "bigsub@circom-ecdsa@n=2@k=3.circom",
+        "bigsubmodp@circom-ecdsa@n=3@k=2.circom",
+        "secp256k1AddUnequal@circom-ecdsa@n=64@k=4.circom",
+        "secp256k1Double@circom-ecdsa@n=64@k=4.circom",
+        "secp256k1Poc@circom-ecdsa@n=64@k=4.circom",
+        "aes_256_encrypt_test.circom",
+        "gcm_siv_dec_2_keys_test.circom",
+        "gcm_siv_enc_2_keys_test.circom",
+        "gfmul_int_test.circom",
+        "polyval_test.circom",
+        "matAdd_test.circom",
+        "matElemMul_test.circom",
+        "matElemPow_test.circom",
+        "matScalarAdd_test.circom",
+        "matScalarMul_test.circom",
+        "matScalarSub_test.circom",
+        "matSub_test.circom",
+        "outer_test.circom",
+        "tranpose_test.circom",
+        "Conv2D_stride_test.circom",
+        "Conv2D_test.circom",
+        "IsPositive_test.circom",
+        "mnist_poly_test.circom",
+        "biomebase.circom",
+        "init.circom",
+        "move.circom",
+        "perlin.circom",
+        "reveal.circom",
+        "binadd1.circom",
+        "binaddirr.circom",
+        "binmul1.circom",
+        "binmulfast51_1.circom",
+        "binmulfast51_2.circom",
+        "binmulfast51.circom",
+        "binmullessthan51.circom",
+        "chunkedadd.circom",
+        "chunkedadd1.circom",
+        "chunkedmodulus.circom",
+        "modinv.circom",
+        "modulusagainst2p.circom",
+        "point-addition51.circom",
+        "scalarmul.circom",
+        "test-balance-updater.circom",
+        "test-fee-accumulator.circom",
+        "queryTest.circom",
+        "ecdh_test.circom",
+        "deny.circom",
+        "sign.circom"
     ]
 
     total_start = time.time()
@@ -175,6 +232,9 @@ def test_bugs():
 
             bug_files = [os.path.join(root, file)for file in files if file.endswith(
                 ".circom") and file not in file_not_check]
+            if subdir_name == "zk-group-sigs-1337689-fixed":
+                bug_files.append(
+                    "C:\\Users\\GAMING\\Desktop\\Capstone_Project\\benchmarks\\zk-group-sigs-1337689-fixed\\reveal.circom")
 
             f_projlog.write(f"[PROJECT: {subdir_name}]\n")
             project_success = 0
@@ -200,9 +260,6 @@ def test_bugs():
                     project_fail += 1
                     f_filelog.write(f"[FAIL] {file_path} in {duration:.2f}s\n")
                 print("---------------------------------------------")
-            count += 1
-            # if count == 2:
-            #     break
 
             project_end = time.time()
             project_time = project_end - project_start

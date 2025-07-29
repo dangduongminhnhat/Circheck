@@ -1,7 +1,5 @@
-import csv
 import json
 import os
-import pandas as pd
 
 
 output_file = 'evaluation.csv'
@@ -78,6 +76,10 @@ file_not_check = [
     "keccakf_test.circom",
     "keccak_256_256_test.circom",
     "keccak_32_256_test.circom",
+    "keccakfRound0_test.circom",
+    "keccakfRound20_test.circom",
+    "rhopi_test.circom",
+    "theta_test.circom",
     "batchUpdateStateTree_32.circom",
     "batchUpdateStateTree_32_batch16.circom",
     "batchUpdateStateTree_32_batch256.circom",
@@ -116,7 +118,61 @@ file_not_check = [
     "select.circom",
     "update.circom",
     "hashTable.circom",
-    "utils.circom"
+    "utils.circom",
+    "bigadd@circom-ecdsa@n=1@k=5.circom",
+    "bigmod@circom-ecdsa@n=2@k=2.circom",
+    "bigmod@circom-ecdsa@n=3@k=2.circom",
+    "bigmult@circom-ecdsa@n=2@k=2.circom",
+    "bigmult@circom-ecdsa@n=2@k=3.circom",
+    "bigsub@circom-ecdsa@n=1@k=5.circom",
+    "bigsub@circom-ecdsa@n=2@k=3.circom",
+    "bigsubmodp@circom-ecdsa@n=3@k=2.circom",
+    "secp256k1AddUnequal@circom-ecdsa@n=64@k=4.circom",
+    "secp256k1Double@circom-ecdsa@n=64@k=4.circom",
+    "secp256k1Poc@circom-ecdsa@n=64@k=4.circom",
+    "aes_256_encrypt_test.circom",
+    "gcm_siv_dec_2_keys_test.circom",
+    "gcm_siv_enc_2_keys_test.circom",
+    "gfmul_int_test.circom",
+    "polyval_test.circom",
+    "matAdd_test.circom",
+    "matElemMul_test.circom",
+    "matElemPow_test.circom",
+    "matScalarAdd_test.circom",
+    "matScalarMul_test.circom",
+    "matScalarSub_test.circom",
+    "matSub_test.circom",
+    "outer_test.circom",
+    "tranpose_test.circom",
+    "Conv2D_stride_test.circom",
+    "Conv2D_test.circom",
+    "IsPositive_test.circom",
+    "mnist_poly_test.circom",
+    "biomebase.circom",
+    "init.circom",
+    "move.circom",
+    "perlin.circom",
+    "reveal.circom",
+    "binadd1.circom",
+    "binaddirr.circom",
+    "binmul1.circom",
+    "binmulfast51_1.circom",
+    "binmulfast51_2.circom",
+    "binmulfast51.circom",
+    "binmullessthan51.circom",
+    "chunkedadd.circom",
+    "chunkedadd1.circom",
+    "chunkedmodulus.circom",
+    "modinv.circom",
+    "modulusagainst2p.circom",
+    "point-addition51.circom",
+    "scalarmul.circom",
+    "test-balance-updater.circom",
+    "test-fee-accumulator.circom",
+    "queryTest.circom",
+    "ecdh_test.circom",
+    "deny.circom",
+    "sign.circom"
 ]
 
 CIRCHECK_TO_ZKAP = {
@@ -159,8 +215,9 @@ while data:
     circheck_bugs = set()
     zkap = zkap.replace("\n", "")
     if name in file_not_check:
-        data = file.readline()
-        continue
+        if name != "reveal.circom" or "zk-group-sigs-1337689-fixed" not in project:
+            data = file.readline()
+            continue
     name = name + "_report.json"
     if project == "circomlib":
         project = "circomlib-cff5ab6"
@@ -254,7 +311,7 @@ while data:
                 else:
                     stats['TN'] += 1
     else:
-        print("not found: ", json_path)
+        print("not found: ", json_path, "groundtruth ===", groundtruth)
 
     data = file.readline()
 
