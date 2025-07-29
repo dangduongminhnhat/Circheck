@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="circheck",
-    version="0.2.0",
+    version="0.3.0",
     description="Static analysis tool to detect ZKP vulnerabilities in Circom circuits.",
     author="Dang Duong Minh Nhat",
     author_email="dangduongminhnhat2003@gmail.com",

@@ -1,6 +1,6 @@
 [project]
 name = "circheck"
-version = "0.2.0"
+version = "0.3.0"
 description = "Static analysis tool to detect ZKP vulnerabilities in Circom circuits."
 authors = [{ name="Dang Duong Minh Nhat", email="dangduongminhnhat2003@gmail.com" }]
 readme = { file = "README.md", content-type = "text/markdown" }
