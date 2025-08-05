@@ -1,5 +1,6 @@
 # Circheck: Detecting Semantic Vulnerabilities in Circom using Circuit Dependence Graphs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16741615.svg)](https://doi.org/10.5281/zenodo.16741615)
 This repository contains the source code and evaluation framework for the research paper: **"Circheck: Detecting Semantic Vulnerabilities in Circom using Circuit Dependence Graphs"**.
 
 ## About
