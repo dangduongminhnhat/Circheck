@@ -1,20 +1,10 @@
-# Circheck
+# Circheck: Detecting Semantic Vulnerabilities in Circom using Circuit Dependence Graphs
 
-**Circheck** is a static analysis tool for Circom source code, designed to detect security vulnerabilities in Zero-Knowledge Proof (ZKP) circuits written in the Circom language. This tool helps developers and users ensure the security and integrity of their ZKP projects by analyzing the source code and identifying potential issues during circuit design.
+This repository contains the source code and evaluation framework for the research paper: **"Circheck: Detecting Semantic Vulnerabilities in Circom using Circuit Dependence Graphs"**.
 
-## Features
+## About
 
-Circheck detects a variety of potential issues in Circom circuits, including:
-
-- **Unconstrained Output Signals**: Detects output signals that are not constrained by any constraints.
-- **Unconstrained Component Inputs**: Identifies input signals to components that are not constrained and may accept unchecked values.
-- **Data Flow Constraint Discrepancy**: Finds signals that depend on others via dataflow but lack corresponding constraint dependencies.
-- **Unused Component Outputs**: Warns when outputs of components are not used or checked in the circuit.
-- **Unused Signals**: Identifies signals that are declared but never used in any computation or constraint.
-- **Type Mismatch**: Detects potential type mismatches, such as signals flowing into templates like `Num2Bits` without proper range checks.
-- **Assignment Misuse**: Finds assignment misuse, where a variable is assigned using the wrong operator.
-- **Divide by Zero**: Warns of potential divide-by-zero issues in the circuit.
-- **Non-deterministic Data Flow**: Flags conditional assignments depending on signals, which may lead to non-deterministic data flows.
+Circheck is a static analysis framework designed to automatically detect semantic vulnerabilities in Circom circuits. By constructing a Circuit Dependence Graph (CDG) to model signal and constraint dependencies, Circheck targets nine classes of common vulnerabilities that, while syntactically valid, can lead to invalid proofs or information leakage. Our evaluation demonstrates that Circheck achieves competitive, state-of-the-art performance, with a high recall of 96% and an F1-score of 0.83.
 
 ## Installation
 
@@ -30,6 +20,21 @@ or you can install Circheck via pip, use the following command:
 
 ```bash
 pip install circheck
+```
+
+## Reproducing Paper Results
+
+To reproduce all quantitative results presented in our paper (specifically Tables III, IV, and V in Section VII), run the main evaluation script.
+
+This script will execute Circheck on the 118 benchmark circuits. The final summary tables matching those in the paper will be printed to your console at the end of the execution. Detailed logs for each run will be saved to the following files:
+
+- `src/test/log_per_project.txt`
+- `src/test/log_per_file.txt`
+
+To start the evaluation, run:
+
+```bash
+python src/test/test_cases.py
 ```
 
 ## Usage
@@ -61,76 +66,31 @@ Circheck is a static analysis tool designed to detect ZKP vulnerabilities in Cir
 
    This will run the analysis and save the results in the specified JSON file.
 
-### Example Output:
+## Features
 
-When you run the tool, you'll see progress information printed to the terminal, such as:
+Circheck detects a variety of potential issues in Circom circuits, including:
 
-```bash
-PS C:\Users\GAMING\Desktop\Capstone_Project> circheck .\demo.circom --json .\result.json
-[Info]       Generating AST for: .\demo.circom
-[Success]    AST generated successfully.
-[Success]    Type checking passed.
-[Info]       Creating CDG: SingleAssignment0, in .\demo.circom
-[Info]       Building conditional dependency edges of SingleAssignment0...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<?, ?it/s]
-[Info]       Building condition constraint edges of SingleAssignment0...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<?, ?it/s]
-[Success]    CDG created successfully.
-[Info]       Starting the analysis process of graph SingleAssignment0.
-[Info]       Detecting unconstrainted output...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<?, ?it/s]
-[Info]       Detecting unconstrained component input...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<?, ?it/s]
-[Info]       Detecting data flow constraint discrepancy...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<?, ?it/s]
-[Info]       Detecting unused component output...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<?, ?it/s]
-[Info]       Detecting type mismatch...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<?, ?it/s]
-[Info]       Detecting assignment misuse...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:00<?, ?it/s]
-[Info]       Detecting unused signals...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:00<?, ?it/s]
-[Info]       Detecting nondeterministic data flow...
-100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 7/7 [00:00<?, ?it/s]
-[Success]    Detection completed successfully.
-[Timeit]     Analysis completed in 0.30 s
+- **Unconstrained Output Signals**: Detects output signals that are not constrained by any constraints.
+- **Unconstrained Component Inputs**: Identifies input signals to components that are not constrained and may accept unchecked values.
+- **Data Flow Constraint Discrepancy**: Finds signals that depend on others via dataflow but lack corresponding constraint dependencies.
+- **Unused Component Outputs**: Warns when outputs of components are not used or checked in the circuit.
+- **Unused Signals**: Identifies signals that are declared but never used in any computation or constraint.
+- **Type Mismatch**: Detects potential type mismatches, such as signals flowing into templates like `Num2Bits` without proper range checks.
+- **Assignment Misuse**: Finds assignment misuse, where a variable is assigned using the wrong operator.
+- **Divide by Zero**: Warns of potential divide-by-zero issues in the circuit.
+- **Non-deterministic Data Flow**: Flags conditional assignments depending on signals, which may lead to non-deterministic data flows.
+
+## How to Cite
+
+If you use Circheck in your research, please cite our paper:
+
 ```
-
-If there are any warnings or issues detected, they will be printed like this:
-
-```bash
-[Warning]    In .\demo.circom:4:4
-             Signal 'out' depends on 'a' via dataflow, but there is no corresponding constraint dependency.
-[Warning]    In .\demo.circom:5:4
-             Variable out is assigned using <-- instead of <==.
-⚠ Total warnings: 2
-```
-
-### Example JSON Output:
-
-If you specify a JSON output file, the results will also be saved to the file. For example:
-
-```bash
-[Success] Saved report to path/to/output/report.json
-```
-
-The JSON file will contain detailed information about the analysis, including detected vulnerabilities. A sample JSON output might look like this:
-
-```json
-{
-  "SingleAssignment0": {
-    "data flow constraint discrepancy": {
-      ".\\demo.circom:4:4": [
-        "Signal 'out' depends on 'a' via dataflow, but there is no corresponding constraint dependency."
-      ]
-    },
-    "assignment missue": {
-      ".\\demo.circom:5:4": [
-        "Variable out is assigned using <-- instead of <==."
-      ]
-    }
-  }
+@article{dang2025circheck,
+  author    = {Minh Nhat Dang-Duong and Cao Thang Trinh and Nhat Minh Pham and Khuong Nguyen-An},
+  title     = {Circheck: Detecting Semantic Vulnerabilities in Circom using Circuit Dependence Graphs},
+  journal   = {IEEE Transactions on Dependable and Secure Computing},
+  year      = {2025},
+  note      = {Submitted for review}
 }
 ```
 
